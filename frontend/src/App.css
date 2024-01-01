@@ -92,3 +92,7 @@ input {
   background-color: rgb(220, 89, 89);
   color: white;
 }
+
+.notes-grid {
+  margin-top: 20px;
+}
