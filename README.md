@@ -1,5 +1,7 @@
 # notes-app
 
+Running through freecodecamp [full-stack-project-tutorial-create-a-notes-app-using-react-and-node-js](https://www.freecodecamp.org/news/full-stack-project-tutorial-create-a-notes-app-using-react-and-node-js/)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
