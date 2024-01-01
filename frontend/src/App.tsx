@@ -14,6 +14,7 @@ function App() {
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState<string>("");
   const [selectedNote, setSelectedNote] = useState<Note | null>(null);
+  const [connectionIssue, setConnectionIssue] = useState<boolean>(false);
 
   useEffect(() => {
     fetchNotes();
@@ -26,6 +27,7 @@ function App() {
       setNotes(data);
     } catch (error) {
       console.log(error);
+      setConnectionIssue(true)
     }
   };
 
@@ -48,6 +50,7 @@ function App() {
       setContent("");
     } catch (error) {
       console.error(error);
+      setConnectionIssue(true)
     }
   };
 
@@ -56,6 +59,26 @@ function App() {
     setTitle(note.title);
     setContent(note.content);
   };
+
+  const renderNoteGrid = () => {
+    return(<div className="notes-grid">
+    {notes.map((note) => (
+      <div className="note-item" onClick={() => handleNoteClick(note)}>
+        <div className="notes-header">
+          <button
+            onClick={(event) => {
+              deleteNote(event, note.id || 0);
+            }}
+          >
+            x
+          </button>
+        </div>
+        <h2>{note.title}</h2>
+        <p>{note.content}</p>
+      </div>
+    ))}
+  </div>)
+  }
 
   const handleUpdateNote = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -87,6 +110,7 @@ function App() {
     setSelectedNote(null);
     } catch (error) {
       console.error(error);
+      setConnectionIssue(true)
     };
   }
 
@@ -108,11 +132,14 @@ function App() {
       setNotes(updatedNotes);
     } catch (e) {
       console.log(e);
+      setConnectionIssue(true)
     }
   };
 
   return (
     <div className="AppContainer">
+      <h1>Notes App</h1>
+      {connectionIssue && <h3 className='connection-warning'>Warning: API Connection Issue</h3>}
       <form
         className="note-form"
         onSubmit={(event) =>
@@ -142,23 +169,7 @@ function App() {
           <button type="submit">Add Note</button>
         )}
       </form>
-      <div className="notes-grid">
-        {notes.map((note) => (
-          <div className="note-item" onClick={() => handleNoteClick(note)}>
-            <div className="notes-header">
-              <button
-                onClick={(event) => {
-                  deleteNote(event, note.id || 0);
-                }}
-              >
-                x
-              </button>
-            </div>
-            <h2>{note.title}</h2>
-            <p>{note.content}</p>
-          </div>
-        ))}
-      </div>
+      {renderNoteGrid()}
     </div>
   );
 }

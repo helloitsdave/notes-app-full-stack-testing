@@ -96,3 +96,7 @@ input {
 .notes-grid {
   margin-top: 20px;
 }
+
+.connection-warning {
+  color: red;
+}
