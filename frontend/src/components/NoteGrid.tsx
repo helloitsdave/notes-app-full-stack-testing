@@ -28,9 +28,9 @@ const NoteGrid = (props: NoteGridProps) => {
     return (
     <div className="notes-grid">
         {props.notes.map((note: Note) => (
-          <div className="note-item" onClick={() => props.onNoteClick(note)}>
+          <div data-testid='note-item' className="note-item" onClick={() => props.onNoteClick(note)}>
             <div className="notes-header">
-              <button
+              <button data-testid="delete-button"
                 onClick={(event) => {
                   deleteNote(event, note.id || 0);
                 }}
@@ -38,8 +38,8 @@ const NoteGrid = (props: NoteGridProps) => {
                 x
               </button>
             </div>
-            <h2>{note.title}</h2>
-            <p>{note.content}</p>
+            <h2 data-testid="note-title">{note.title}</h2>
+            <p data-testid="note-content">{note.content}</p>
           </div>
         ))}
       </div>
