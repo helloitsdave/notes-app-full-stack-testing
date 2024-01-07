@@ -1,71 +1,16 @@
 import React, { useEffect, useState } from "react";
-import type Note from ".././types/note";
-
-const URL = process.env.REACT_APP_API_BASE_URL || "";
+import type NoteType from "../types/note";
 
 interface NoteFormProps {
-  onNoteChange: () => void;
-  selectedNote?: Note | null;
-  onNoteClick: (note: Note | null) => void;
+  addNote: (newNote: NoteType) => void;
+  updateNote: (updatedNote: NoteType) => void;
+  selectedNote: NoteType | null;
+  onCancel: () => void;
 }
 
 const NoteForm: React.FC<NoteFormProps> = (props) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-
-  const handleAddNote = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      const response = await fetch(URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          title,
-          content,
-        }),
-      });
-      await response.json();
-      props.onNoteChange();
-      setTitle("");
-      setContent("");
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const handleUpdateNote = async (event: React.FormEvent) => {
-    event.preventDefault();
-
-    if (!props.selectedNote) {
-      return;
-    }
-
-    setTitle(props.selectedNote.title);
-    setContent(props.selectedNote.content);
-
-    try {
-      const response = await fetch(`${URL}/${props.selectedNote.id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          title,
-          content,
-        }),
-      });
-      await response.json();
-
-      props.onNoteChange();
-
-      setTitle("");
-      setContent("");
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   useEffect(() => {
     if (props.selectedNote) {
@@ -77,13 +22,30 @@ const NoteForm: React.FC<NoteFormProps> = (props) => {
     }
   }, [props.selectedNote]);
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const newNote = { title, content };
+
+    if (props.selectedNote) {
+      // Update existing note
+      props.updateNote({ ...props.selectedNote, ...newNote });
+    } else {
+      // Add new note
+      props.addNote(newNote);
+    }
+
+    setTitle('');
+    setContent('');
+    props.onCancel(); // Reset selectedNote and switch back to add mode
+  };
+
+
   return (
     <div>
       <form
         className="note-form"
-        onSubmit={(event) =>
-          props.selectedNote ? handleUpdateNote(event) : handleAddNote(event)
-        }
+        onSubmit={handleSubmit}
       >
         <input
           type="text"
@@ -99,14 +61,8 @@ const NoteForm: React.FC<NoteFormProps> = (props) => {
           rows={10}
           value={content}
         />
-        {props.selectedNote ? (
-          <div className="edit-buttons">
-            <button type="submit">Save</button>
-            <button onClick={() => props.onNoteClick(null)}>Cancel</button>
-          </div>
-        ) : (
-          <button type="submit">Add Note</button>
-        )}
+        <button type="submit">{props.selectedNote ? 'Save' : 'Add Note'}</button>
+        {props.selectedNote && <button type="button" onClick={props.onCancel}>Cancel</button>}
       </form>
     </div>
   );

@@ -65,7 +65,7 @@ app.put("/api/notes/:id", async (req, res) => {
       await prisma.note.delete({
         where: { id },
       });
-      res.status(204).send();
+      res.json({ status: "ok" });
     } catch (error) {
       res.status(500).send("Oops, something went wrong");
     }

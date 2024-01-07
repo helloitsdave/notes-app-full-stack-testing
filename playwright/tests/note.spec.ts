@@ -25,12 +25,10 @@ test('Create, View and Delete Note e2e', async () => {
   });
 
   await test.step('Delete note', async () => {
-    await page.getByTestId('note-item').first().getByTestId('delete-button').click();
+    await page.getByTestId('note-delete-button').first().click();
     await expect(page.getByTestId('note-title').first()).not.toHaveText(NOTE_TITLE);
   });
-});
 
-test('Note without Title', async () => {
   await test.step('Add a note without a title', async () => {
     await page.getByPlaceholder('Content').fill(NOTE_CONTENT);
     await page.getByRole('button', { name: 'Add Note' }).click();

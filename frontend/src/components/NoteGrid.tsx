@@ -1,50 +1,32 @@
-import type Note from ".././types/note";
+import Note from "./Note";
+import type NoteType from "../types/note";
 
-const URL = process.env.REACT_APP_API_BASE_URL || "";
-
-type NoteGridProps = {
-    notes: Note[];
-    onNoteChange: () => void;
-    onNoteClick: (note: Note) => void;
+interface NotesListProps {
+  notes: NoteType[];
+  handleEdit: (note: NoteType) => void;
+  deleteNote: (noteId: number) => void;
 }
 
-const NoteGrid = (props: NoteGridProps) => {
-    
-      const deleteNote = async (event: React.MouseEvent, noteId: number) => {
-        event.stopPropagation();
-    
-        try {
-          await fetch(`${URL}/${noteId}`, {
-            method: "DELETE",
-          });
-    
-          props.onNoteChange();
-        } catch (e) {
-          console.log(e);
-          // setConnectionIssue(true)
-        }
-      };
-    
-    return (
-    <div className="notes-grid">
-        {props.notes.map((note: Note) => (
-          <div data-testid='note-item' className="note-item" onClick={() => props.onNoteClick(note)}>
-            <div className="notes-header">
-              <button data-testid="delete-button"
-                onClick={(event) => {
-                  deleteNote(event, note.id || 0);
-                }}
-              >
-                x
-              </button>
-            </div>
-            <h2 data-testid="note-title">{note.title}</h2>
-            <p data-testid="note-content">{note.content}</p>
-          </div>
+const NoteGrid: React.FC<NotesListProps> = ({
+  notes,
+  handleEdit,
+  deleteNote,
+}) => {
+  return (
+    <div className='notes-list'>
+      <header>{notes.length > 0 && <h2>Notes</h2>}</header>
+      <div className="notes-grid">
+        {notes.map((note) => (
+          <Note
+            key={note.id}
+            note={note}
+            handleEdit={() => handleEdit(note)}
+            deleteNote={() => deleteNote(note.id || 0)}
+          />
         ))}
       </div>
-    )
-
-}
+    </div>
+  );
+};
 
 export default NoteGrid;
