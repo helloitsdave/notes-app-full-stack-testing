@@ -1,8 +1,6 @@
 name: React Component Tests
 
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
@@ -30,7 +28,7 @@ jobs:
         npm run test:coverage
 
     - name: Coverage Report
-      uses: romeovs/lcov-reporter-action@v0.2.15
+      uses: romeovs/lcov-reporter-action@v0.2.16
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         lcov-file: ./frontend/coverage/lcov.info
