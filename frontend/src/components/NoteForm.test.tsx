@@ -58,6 +58,7 @@ describe("NoteForm", () => {
     // When user enters text in the title and content inputs
     userEvent.type(titleInput, "New Title");
     userEvent.type(contentInput, "New Content");
+
     // Then the title and content fields should be updated
     expect(titleInput.value).toBe("New Title");
     expect(contentInput.value).toBe("New Content");
