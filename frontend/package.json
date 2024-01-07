@@ -20,6 +20,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "vitest",
+    "test:coverage": "vitest --coverage",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -41,11 +42,12 @@
     ]
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^6.2.0",
-    "@vitejs/plugin-react": "^4.2.1",
-    "jsdom": "^23.0.1",
-    "msw": "^2.0.11",
-    "vitest": "^1.1.2",
-    "whatwg-fetch": "^3.6.20"
+    "@testing-library/jest-dom": "6.2.0",
+    "@vitejs/plugin-react": "4.2.1",
+    "@vitest/coverage-v8": "^1.1.3",
+    "jsdom": "23.0.1",
+    "msw": "2.0.11",
+    "vitest": "1.1.2",
+    "whatwg-fetch": "3.6.20"
   }
 }
