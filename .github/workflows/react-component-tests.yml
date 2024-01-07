@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [ "main" ]
 
+defaults:
+  run:
+    working-directory: ./frontend
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -18,8 +22,13 @@ jobs:
       with:
         node-version: 18.x
 
-    - name: Install Packages and Execute Component Tests
-      working-directory: ./frontend
+    - name: Install and Execute Component Tests
       run: |
-        npm install
+        npm ci
         npm run test
+
+    - name: Coverage Report
+      uses: romeovs/lcov-reporter-action@v0.2.16
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        lcov-file: ./coverage/lcov.info
