@@ -18,10 +18,8 @@ jobs:
       with:
         node-version: 18.x
 
-    - name: Change to frontend directory
-      run: cd frontend
-
     - name: Install Packages and Execute Component Tests
+      working-directory: ./frontend
       run: |
         npm install
         npm run test
