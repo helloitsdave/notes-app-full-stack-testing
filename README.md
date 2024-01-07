@@ -1,8 +1,10 @@
 # notes-app
 
-Building a note-app FE + BE + DB with the freecodecamp tutorial
+[![CodeQL](https://github.com/helloitsdave/notes-app/actions/workflows/codeql.yml/badge.svg)](https://github.com/helloitsdave/notes-app/actions/workflows/codeql.yml)
 
-[full-stack-project-tutorial-create-a-notes-app-using-react-and-node-js](https://www.freecodecamp.org/news/full-stack-project-tutorial-create-a-notes-app-using-react-and-node-js/)
+Starting point was building FE + BE + DB with [full-stack-project-tutorial-create-a-notes-app-using-react-and-node-js](https://www.freecodecamp.org/news/full-stack-project-tutorial-create-a-notes-app-using-react-and-node-js/)
+
+Refactored to make more testable
 
 ## Frontend
 
@@ -19,3 +21,8 @@ Building a note-app FE + BE + DB with the freecodecamp tutorial
 ## Database
 
 - Postgres
+
+## Tests
+
+- Playwright
+- React Testing Library with vitest
