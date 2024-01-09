@@ -55,13 +55,16 @@ describe("NoteForm", () => {
     const titleInput: HTMLInputElement = screen.getByPlaceholderText("Content");
     const contentInput: HTMLInputElement = screen.getByPlaceholderText("Title");
 
-    // When user enters text in the title and content inputs
+    // Then the title and content fields should be updated
+
+       // When user enters text in the title and content inputs
     userEvent.type(titleInput, "New Title");
     userEvent.type(contentInput, "New Content");
+      /* fire events that update state */
 
-    // Then the title and content fields should be updated
-    expect(titleInput.value).toBe("New Title");
-    expect(contentInput.value).toBe("New Content");
+        expect(titleInput.value).toBe("New Title");
+        expect(contentInput.value).toBe("New Content");
+
   });
 
   test("Should be able to call the Creation of a new Note", () => {
