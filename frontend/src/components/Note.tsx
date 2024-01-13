@@ -16,7 +16,7 @@ const Note: React.FC<NoteProps> = ({ note, handleEdit, deleteNote }) => {
         deleteNote();
     };
     return (
-        <div className="note-item" onClick={handleEdit}>
+        <div data-testid="note" className="note-item" onClick={handleEdit}>
             <div className="notes-header">
                     <button data-testid='note-delete-button' onClick={handleDeleteMouseDown}>X</button>
             </div>

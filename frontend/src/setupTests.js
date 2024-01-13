@@ -3,19 +3,19 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 
-import { afterEach } from 'vitest';
-import { cleanup } from '@testing-library/react';
-import 'whatwg-fetch';
-import '@testing-library/jest-dom';
-import '@testing-library/jest-dom/vitest';
-import server from './mocks/server';
+import { afterEach } from "vitest";
+import { cleanup } from "@testing-library/react";
+import "@testing-library/jest-dom";
+import "@testing-library/jest-dom/vitest";
+import server from "./mocks/server";
 
-// beforeAll(() => server.listen());
-// afterEach(() => server.resetHandlers());
-// afterAll(() => server.close());
-
+beforeAll(() => server.listen({ onUnhandledRequest: "warn" }));
+afterEach(() => server.resetHandlers());
+afterAll(() => server.close());
 
 // runs a cleanup after each test case (e.g. clearing jsdom)
 afterEach(() => {
   cleanup();
 });
+
+export { server as mswServer };

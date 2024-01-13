@@ -21,7 +21,7 @@ const NoteGrid: React.FC<NotesListProps> = ({
             key={note.id}
             note={note}
             handleEdit={() => handleEdit(note)}
-            deleteNote={() => deleteNote(note.id || 0)}
+            deleteNote={() => deleteNote(Number(note.id))}
           />
         ))}
       </div>
