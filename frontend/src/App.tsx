@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import "./App.css";
 import NoteForm from "./components/NoteForm";
 import NoteGrid from "./components/NoteGrid";
 import type NoteType from "./types/note";
 
-const URL = process.env.REACT_APP_API_BASE_URL || "";
+const URL = process.env.REACT_APP_API_BASE_URL || "http://localhost:5000/api/notes";
 
 function App() {
   const [notes, setNotes] = useState<NoteType[]>([]);
@@ -17,68 +18,69 @@ function App() {
 
   const fetchNotes = async () => {
     try {
-      const response = await fetch(URL);
-      const data: NoteType[] = await response.json();
+      const response = await axios.get(URL);
+      const data: NoteType[] = await response.data;
       setNotes(data);
     } catch (error) {
       console.log(error);
-      setConnectionIssue(true)
+      setConnectionIssue(true);
     }
   };
 
   const addNote = async (newNote: NoteType) => {
     try {
-      const response = await fetch(URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await axios.post(
+        URL,
+        {
+          title: newNote.title,
+          content: newNote.content,
         },
-        body: JSON.stringify({
-            title: newNote.title,
-            content: newNote.content
-        }),
-      });
-      await response.json();
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      await response.data;
       await fetchNotes();
     } catch (error) {
       console.error(error);
+      setConnectionIssue(true);
     }
   };
 
   const updateNote = async (updatedNote: NoteType) => {
-
     try {
-      const response = await fetch(`${URL}/${updatedNote.id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
+      const response = await axios.put(
+        `${URL}/${updatedNote.id}`,
+        {
           title: updatedNote.title,
           content: updatedNote.content,
-        }),
-      });
-      await response.json();
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      await response.data;
       fetchNotes();
     } catch (error) {
       console.error(error);
-      setConnectionIssue(true)
+      setConnectionIssue(true);
     }
   };
 
   const deleteNote = async (noteId: number) => {
-
     try {
-      const response = await fetch(`${URL}/${noteId}`, {
-        method: "DELETE",
-      });
-      await response.json();
+      const response = await axios.delete(`${URL}/${noteId}`);
+      await response.data;
       fetchNotes();
     } catch (error) {
       console.error(error);
-      setConnectionIssue(true)
+      setConnectionIssue(true);
     }
-  }
+  };
 
   const handleEdit = (note: NoteType) => {
     setSelectedNote(note);
@@ -91,9 +93,16 @@ function App() {
   return (
     <div className="AppContainer">
       <h1>Notes App</h1>
-      {connectionIssue && <h3 className='connection-warning'>Warning: API Connection Issue</h3>}
-      <NoteForm onCancel={handleCancel} selectedNote={selectedNote} addNote={addNote} updateNote={updateNote} />
-      <NoteGrid deleteNote={deleteNote} notes={notes} handleEdit={handleEdit}/>
+      {connectionIssue && (
+        <h3 className="connection-warning">Warning: API Connection Issue</h3>
+      )}
+      <NoteForm
+        onCancel={handleCancel}
+        selectedNote={selectedNote}
+        addNote={addNote}
+        updateNote={updateNote}
+      />
+      <NoteGrid deleteNote={deleteNote} notes={notes} handleEdit={handleEdit} />
     </div>
   );
 }
