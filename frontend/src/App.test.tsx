@@ -10,6 +10,8 @@ test("Notes App loads with notes", async () => {
 
     expect(await screen.findByRole("heading", { name: "Notes App" })).toBeInTheDocument();
 
+    expect(screen.queryByTestId('spinner-container')).not.toBeInTheDocument();
+
     expect(await screen.findByText("Test Title Note 1")).toBeInTheDocument();
     expect(await screen.findByText("Test Content 1")).toBeInTheDocument();
     expect(await screen.findByText("Test Title Note 2")).toBeInTheDocument();

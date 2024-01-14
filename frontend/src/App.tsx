@@ -3,14 +3,17 @@ import axios from "axios";
 import "./App.css";
 import NoteForm from "./components/NoteForm";
 import NoteGrid from "./components/NoteGrid";
+import Spinner from "./components/Spinner";
 import type NoteType from "./types/note";
 
-const URL = process.env.REACT_APP_API_BASE_URL || "http://localhost:5000/api/notes";
+const URL =
+  process.env.REACT_APP_API_BASE_URL || "http://localhost:5000/api/notes";
 
 function App() {
   const [notes, setNotes] = useState<NoteType[]>([]);
   const [selectedNote, setSelectedNote] = useState<NoteType | null>(null);
   const [connectionIssue, setConnectionIssue] = useState<boolean>(false);
+  const [isDataLoading, setIsDataLoading] = useState(false);
 
   useEffect(() => {
     fetchNotes();
@@ -18,17 +21,21 @@ function App() {
 
   const fetchNotes = async () => {
     try {
+      setIsDataLoading(true);
       const response = await axios.get(URL);
       const data: NoteType[] = await response.data;
+      setIsDataLoading(false);
       setNotes(data);
     } catch (error) {
       console.log(error);
       setConnectionIssue(true);
+      setIsDataLoading(false);
     }
   };
 
   const addNote = async (newNote: NoteType) => {
     try {
+      setIsDataLoading(true);
       const response = await axios.post(
         URL,
         {
@@ -42,10 +49,12 @@ function App() {
         }
       );
       await response.data;
+      setIsDataLoading(false);
       await fetchNotes();
     } catch (error) {
       console.error(error);
       setConnectionIssue(true);
+      setIsDataLoading(false);
     }
   };
 
@@ -68,6 +77,7 @@ function App() {
     } catch (error) {
       console.error(error);
       setConnectionIssue(true);
+      setIsDataLoading(false);
     }
   };
 
@@ -79,6 +89,7 @@ function App() {
     } catch (error) {
       console.error(error);
       setConnectionIssue(true);
+      setIsDataLoading(false);
     }
   };
 
@@ -91,7 +102,7 @@ function App() {
   };
 
   return (
-    <div className="AppContainer">
+    <div className="app-container">
       <h1>Notes App</h1>
       {connectionIssue && (
         <h3 className="connection-warning">Warning: API Connection Issue</h3>
@@ -102,7 +113,15 @@ function App() {
         addNote={addNote}
         updateNote={updateNote}
       />
-      <NoteGrid deleteNote={deleteNote} notes={notes} handleEdit={handleEdit} />
+      {isDataLoading ? (
+        <Spinner />
+      ) : (
+        <NoteGrid
+          deleteNote={deleteNote}
+          notes={notes}
+          handleEdit={handleEdit}
+        />
+      )}
     </div>
   );
 }

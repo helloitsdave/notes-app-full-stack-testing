@@ -17,12 +17,11 @@ const Note: React.FC<NoteProps> = ({ note, handleEdit, deleteNote }) => {
     };
     return (
         <div data-testid="note" className="note-item" onClick={handleEdit}>
+            <h3 data-testid="note-title">{note.title}</h3>
+            <p className="note-content" data-testid="note-content">{note.content}</p>
             <div className="notes-header">
                     <button data-testid='note-delete-button' onClick={handleDeleteMouseDown}>X</button>
             </div>
-            <h3 data-testid="note-title">{note.title}</h3>
-            <p data-testid="note-content">{note.content}</p>
-
         </div>
     );
 };
