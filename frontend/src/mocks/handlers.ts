@@ -30,7 +30,6 @@ const handlers = [
         // Get the id from the URL path
         const match = url.pathname.match(/\/api\/notes\/(\d+)/);
         const id = match ? match[1] : null;
-        console.log('id', id)
         const updatedNote = await request.json();
         db.note.update({ where: {
             id: { equals: Number(id) }}, 
