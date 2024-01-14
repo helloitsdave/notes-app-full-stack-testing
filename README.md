@@ -8,7 +8,7 @@ Refactored to make more testable
 
 ## Frontend
 
-### Implementation
+### FE Implementation
 
 - React
 - Typescript
@@ -25,6 +25,8 @@ Refactored to make more testable
 - [msw/data](https://github.com/mswjs/data) for data store
 
 ## Backend
+
+### BE Implementation
 
 - Node.js
 - Typescript
