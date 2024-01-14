@@ -8,6 +8,8 @@ Refactored to make more testable
 
 ## Frontend
 
+### Implementation
+
 - React
 - Typescript
 - [Axios](https://axios-http.com/docs/intro)
