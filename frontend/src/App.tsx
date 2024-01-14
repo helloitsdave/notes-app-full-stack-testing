@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import "./App.css";
 import NoteForm from "./components/NoteForm";
 import NoteGrid from "./components/NoteGrid";
 import Spinner from "./components/Spinner";
 import type NoteType from "./types/note";
-
-const URL =
-  process.env.REACT_APP_API_BASE_URL || "http://localhost:5000/api/notes";
+import { postNote, patchNote, getNotes, removeNote } from "./api/apiService";
 
 function App() {
   const [notes, setNotes] = useState<NoteType[]>([]);
@@ -22,7 +19,7 @@ function App() {
   const fetchNotes = async () => {
     try {
       setIsDataLoading(true);
-      const response = await axios.get(URL);
+      const response = await getNotes();
       const data: NoteType[] = await response.data;
       setIsDataLoading(false);
       setNotes(data);
@@ -36,18 +33,7 @@ function App() {
   const addNote = async (newNote: NoteType) => {
     try {
       setIsDataLoading(true);
-      const response = await axios.post(
-        URL,
-        {
-          title: newNote.title,
-          content: newNote.content,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await postNote(newNote);
       await response.data;
       setIsDataLoading(false);
       await fetchNotes();
@@ -60,18 +46,7 @@ function App() {
 
   const updateNote = async (updatedNote: NoteType) => {
     try {
-      const response = await axios.put(
-        `${URL}/${updatedNote.id}`,
-        {
-          title: updatedNote.title,
-          content: updatedNote.content,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await patchNote(updatedNote);
       await response.data;
       fetchNotes();
     } catch (error) {
@@ -83,7 +58,7 @@ function App() {
 
   const deleteNote = async (noteId: number) => {
     try {
-      const response = await axios.delete(`${URL}/${noteId}`);
+      const response = await removeNote(noteId);
       await response.data;
       fetchNotes();
     } catch (error) {
