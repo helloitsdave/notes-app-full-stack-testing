@@ -26,5 +26,3 @@ jobs:
       run: |
         npm ci
         npm run build
-    - name: Run App
-      run: npm run start:local
