@@ -2,11 +2,11 @@
 
 [![CodeQL](https://github.com/helloitsdave/notes-app/actions/workflows/codeql.yml/badge.svg)](https://github.com/helloitsdave/notes-app/actions/workflows/codeql.yml)
 
-My intention is to build a very simple app (FE/BE + DB) which can be used to demonstrate tests for each layer using vitest, react-testing-library and playwright.
+My intention is to build and deploy a very simple app (FE/BE + DB) which can be used to demonstrate tests for each layer using vitest, react-testing-library and playwright.
 
 Starting point for building the app is the nice FreeCodeCamp tutorial [Full Stack Project Tutorial – Create A Notes App Using React and Node.js](https://www.freecodecamp.org/news/full-stack-project-tutorial-create-a-notes-app-using-react-and-node-js/)
 
-Refactored the app for testibility and added a few tweaks such as axios, a loading spinner.
+Refactored the app for testibility and added a few additional tweaks. 
 
 ## Frontend
 
