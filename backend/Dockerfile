@@ -27,6 +27,9 @@ COPY wait-for-it.sh wait-for-it.sh
 # Make the script executable
 RUN chmod +x wait-for-it.sh
 
+# Primsa generate
+RUN npx prisma generate
+
 # Build TypeScript code
 RUN npm run build
 
