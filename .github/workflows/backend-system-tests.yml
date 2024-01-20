@@ -24,10 +24,14 @@ jobs:
     - name: Start service in docker
       run: |
         npm run docker:up
+        curl http://app:5001
 
     - name: Wait for service to start
       run: |
           sleep 30
+
+    - name: Test connectivity
+      run: curl http://app:5001
 
     - name: Run System Tests
       run: |
