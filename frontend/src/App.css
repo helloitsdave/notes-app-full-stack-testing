@@ -21,6 +21,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
   gap: 20px;
 }
 
@@ -33,7 +34,7 @@ body {
   background-color: #f9f9f9;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  min-width: 200px;
+  width: 300px;
   min-height: 100px;
   align-items: center;
 }
