@@ -27,13 +27,13 @@ jobs:
 
     - name: Wait for service to start
       run: |
-          sleep 30
+          sleep 15
 
     - name: Print application logs
       run: docker-compose logs
 
     - name: Test connectivity
-      run: curl http://localhost:5000
+      run: curl ${API_URL}
 
     - name: Run System Tests
       run: |
