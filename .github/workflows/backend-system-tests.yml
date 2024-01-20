@@ -29,8 +29,11 @@ jobs:
       run: |
           sleep 30
 
+    - name: Print application logs
+      run: docker-compose logs
+
     - name: Test connectivity
-      run: curl http://localhost:5001
+      run: curl http://localhost:5000
 
     - name: Run System Tests
       run: |
