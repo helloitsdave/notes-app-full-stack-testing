@@ -25,6 +25,10 @@ jobs:
       run: |
         npm run docker:up
 
+    - name: Wait for service to start
+      run: |
+          sleep 30
+
     - name: Run System Tests
       run: |
         npm ci
