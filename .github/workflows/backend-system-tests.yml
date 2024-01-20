@@ -1,4 +1,4 @@
-name: Build Backend Docker
+name: Backend System Tests with Docker
 
 on:
   push:
@@ -28,6 +28,10 @@ jobs:
     - name: Start service in docker
       run: |
         npm run docker:up
+
+    - name: Run System Tests
+      run: |
+        npm run test:system
 
     - name: Stop service in docker
       run: |
