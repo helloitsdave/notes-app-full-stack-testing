@@ -5,6 +5,7 @@
     "outDir": "./dist",
     "rootDir": "./src",
     "esModuleInterop": true,
+    "skipLibCheck": true // https://github.com/vitejs/vite/discussions/12466
     // Other options as needed
   },
   "include": ["src/**/*.ts"],

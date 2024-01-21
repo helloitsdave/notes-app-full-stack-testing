@@ -40,6 +40,7 @@ Refactored the app for testability and added a few additional tweaks.
 ### BE Service Tests
 
 - Service tests with docker, axios and vitest
+- Unit tests with axios, vitest and vitest-mock-extended
 
 ## Database
 
