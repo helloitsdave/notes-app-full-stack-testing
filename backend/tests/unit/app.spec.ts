@@ -3,7 +3,6 @@ import request from "supertest";
 import app from "../../src/index";
 import prisma from "../../src/__mocks__/prisma";
 import { seed } from "../../prisma/seed";
-import e from "express";
 
 // Mock the prisma client
 vi.mock("../../src/prisma");

@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
     "target": "es6",
-    "module": "es2015",
+    "module": "commonjs",
     "outDir": "./dist",
     "rootDir": "./src",
     "esModuleInterop": true,
-    "moduleResolution": "bundler"
+    "skipLibCheck": true // https://github.com/vitejs/vite/discussions/12466
     // Other options as needed
   },
   "include": ["src/**/*.ts"],
