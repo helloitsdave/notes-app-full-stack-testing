@@ -2,27 +2,38 @@ name: Build Backend
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 defaults:
   run:
     working-directory: ./backend
+
+permissions: write-all
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: Use Node.js 18.x
-      uses: actions/setup-node@v3
-      with:
-        node-version: 18.x
+      - name: Use Node.js 18.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
 
-    - name: Install and build
-      run: |
-        npm ci
-        npm run build
+      - name: Install and build
+        run: |
+          npm ci
+          npm run build
+
+      - name: Unit Tests with Coverage
+        run: npm run test:coverage
+
+      - name: Coverage Report
+        uses: romeovs/lcov-reporter-action@v0.2.19
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          lcov-file: ./backend/coverage/lcov.info
