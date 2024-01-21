@@ -36,6 +36,7 @@ Refactored the app for testability and added a few additional tweaks.
 - Node.js
 - Typescript
 - Express
+- Postgres
 - [Primsa](https://www.prisma.io/) (DB ORM)
 
 ### BE Service Tests
