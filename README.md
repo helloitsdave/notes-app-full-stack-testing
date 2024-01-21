@@ -1,5 +1,6 @@
 # notes-app-full-stack-testing
 
+[![Backend Unit Tests](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/backend-unit-tests.yml/badge.svg)](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/backend-unit-tests.yml)
 [![Backend System Tests with Docker](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/backend-system-tests.yml/badge.svg)](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/backend-system-tests.yml)
 [![React Component Tests](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/react-component-tests.yml/badge.svg)](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/react-component-tests.yml)
 [![CodeQL](https://github.com/helloitsdave/notes-app/actions/workflows/codeql.yml/badge.svg)](https://github.com/helloitsdave/notes-app/actions/workflows/codeql.yml)
