@@ -7,9 +7,6 @@
     "test:system": "npx vitest **/system/*.spec.ts",
     "test:unit": "npx vitest -c ./vitest.config.unit.mts",
     "test:coverage": "npx vitest **/unit/*.spec.ts --coverage",
-    "test:system": "npx vitest **/system/*.spec.ts",
-    "test:unit": "npx vitest -c ./vitest.config.unit.mts",
-    "test:coverage": "npx vitest **/unit/*.spec.ts --coverage",
     "start:local": "npx nodemon",
     "start": "node dist/index.js",
     "build": "tsc",
@@ -17,9 +14,7 @@
     "docker:app:up": "docker run -p 5001:5001 notes-app-be",
     "docker:up": "docker-compose up -d",
     "docker:db:up": "docker-compose up postgres -d",
-    "docker:db:up": "docker-compose up postgres -d",
     "docker:down": "docker-compose down",
-    "prisma": "npx prisma migrate dev --name init",
     "prisma": "npx prisma migrate dev --name init",
     "seed": "npx ts-node prisma/seed.ts"
   },
@@ -36,19 +31,15 @@
     "nodemon": "3.0.2",
     "nyc": "15.1.0",
     "prisma": "5.7.1",
-    "supertest": "^6.3.4",
-    "supertest": "^6.3.4",
+    "supertest": "6.3.4",
     "ts-node": "10.9.2",
     "typescript": "5.3.3",
-    "vitest": "1.2.1",
-    "vitest-mock-extended": "1.3.1"
     "vitest": "1.2.1",
     "vitest-mock-extended": "1.3.1"
   },
   "dependencies": {
     "@prisma/client": "5.7.1",
     "cors": "2.8.5",
-    "dotenv": "16.3.2",
     "dotenv": "16.3.2",
     "express": "4.18.2"
   }
