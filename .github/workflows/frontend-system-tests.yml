@@ -34,12 +34,16 @@ jobs:
     - name: Test connectivity
       run: curl ${API_URL}
 
+    - name: Install Playwright
+      run: |
+        cd ./playwright
+        npm install
+        npx playwright install chromium
+
     - name: Run Playwright Tests
       run: |
         cd ./playwright
-        npm ci
-        npx playwright install-deps chromium
-        npm run test
+          npm run test
 
     - name: Stop service in docker
       run: |
