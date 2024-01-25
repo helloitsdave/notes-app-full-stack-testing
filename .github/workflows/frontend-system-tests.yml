@@ -1,0 +1,47 @@
+name: Frontend System Tests with Docker + Playwright
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      API_URL: http://localhost:5000
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+
+    - name: Use Node.js 18.x
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18.x
+
+    - name: Start service in docker
+      run: |
+        cd ./backend
+        npm run docker:up
+
+    - name: Wait for service to start
+      run: |
+          sleep 15
+
+    - name: Test connectivity
+      run: curl ${API_URL}
+
+    - name: Run Playwright Tests
+      run: |
+        cd ./playwright
+        npm ci
+        npm run install
+        npm run test
+
+    - name: Stop service in docker
+      run: |
+        cd ./backend
+        npm run docker:down
