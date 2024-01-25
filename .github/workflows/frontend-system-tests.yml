@@ -34,6 +34,13 @@ jobs:
     - name: Test connectivity
       run: curl ${API_URL}
 
+    - name: Install and start frontend
+      run: |
+        cd ./frontend
+        npm ci
+        npm run build
+        npm run start
+
     - name: Install Playwright
       run: |
         cd ./playwright
@@ -43,7 +50,7 @@ jobs:
     - name: Run Playwright Tests
       run: |
         cd ./playwright
-          npm run test
+        npm run test
 
     - name: Stop service in docker
       run: |
