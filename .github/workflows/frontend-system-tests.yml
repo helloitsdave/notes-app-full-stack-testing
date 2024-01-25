@@ -39,7 +39,7 @@ jobs:
         cd ./frontend
         npm ci
         npm run build
-        npm run start
+        npm run start &
 
     - name: Install Playwright
       run: |
