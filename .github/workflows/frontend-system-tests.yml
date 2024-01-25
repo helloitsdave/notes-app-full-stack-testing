@@ -38,7 +38,7 @@ jobs:
       run: |
         cd ./playwright
         npm ci
-        npm run install
+        npx playwright install-deps chromium
         npm run test
 
     - name: Stop service in docker
