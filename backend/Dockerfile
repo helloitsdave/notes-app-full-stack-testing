@@ -11,7 +11,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # Install the application dependencies
-RUN npm install
+RUN npm ci
 
 # Required for prisma
 RUN apk add openssl3
@@ -34,7 +34,7 @@ RUN npx prisma generate
 RUN npm run build
 
 # Expose the port that the application will run on
-EXPOSE 5001
+EXPOSE 5000
 
 # Command to run the application
 CMD ["node", "dist/index.js"]

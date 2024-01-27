@@ -1,7 +1,7 @@
 {
-  "name": "note-app-be",
+  "name": "notes-app-be",
   "version": "1.0.0",
-  "description": "",
+  "description": "Notes App Express Backend",
   "main": "dist/index.js",
   "scripts": {
     "test:system": "npx vitest **/system/*.spec.ts",
@@ -18,7 +18,7 @@
     "prisma": "npx prisma migrate dev --name init",
     "seed": "npx ts-node prisma/seed.ts"
   },
-  "author": "",
+  "author": "Dave Gordon<helloitsdave@gmail.com>",
   "license": "ISC",
   "devDependencies": {
     "@types/cors": "2.8.17",

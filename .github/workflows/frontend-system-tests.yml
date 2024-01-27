@@ -44,7 +44,7 @@ jobs:
     - name: Install Playwright
       run: |
         cd ./playwright
-        npm install
+        npm ci
         npx playwright install chromium
 
     - name: Run Playwright Tests
