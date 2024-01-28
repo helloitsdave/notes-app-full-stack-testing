@@ -1,9 +1,9 @@
-name: React Component Tests
+name: Docker Push
 
 on:
   push:
     tags:
-      - "fe.*.*" # Trigger on any tag creation
+      - "fe/*.*" # Trigger on any tag creation
 defaults:
   run:
     working-directory: ./frontend
