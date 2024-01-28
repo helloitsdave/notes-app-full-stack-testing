@@ -13,13 +13,13 @@ test.beforeAll(async ({ browser }) => {
 });
 
 test('Notes App e2e', async () => {
-  await test.step('Should be able to view Notes', async () => {
+  await test.step('Should be able to Add a Note', async () => {
     await page.getByPlaceholder('Title').fill(NOTE_TITLE);
-    await page.getByPlaceholder('Content').fill(NOTE_CONTENT);
+    await page.getByPlaceholder('Content').fill(NOTE_CONTENT);    
     await page.getByRole('button', { name: 'Add Note' }).click();
   });
 
-  await test.step('Should be able to Add a new Note', async () => {
+  await test.step('Should be able to see the new Note', async () => {
     await expect(page.getByTestId('note-title').first()).toHaveText(NOTE_TITLE);
     await expect(page.getByTestId('note-content').first()).toHaveText(NOTE_CONTENT);
   });
