@@ -2,8 +2,12 @@ name: React Component Tests
 
 on:
   pull_request:
+    paths:
+      - "frontend/**"
     branches: [ "main" ]
   push:
+    paths:
+      - "frontend/**"
     branches: [ "main" ]
 
 defaults:
@@ -47,5 +51,5 @@ jobs:
     - name: Build and push Docker image
       run: |
           npm run docker:build
-          docker tag notes-app:latest ${{ secrets.DOCKERHUB_USERNAME }}/notes-app-fe:latest
+          docker tag notes-app-fe:latest ${{ secrets.DOCKERHUB_USERNAME }}/notes-app-fe:latest
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/notes-app-fe:latest
