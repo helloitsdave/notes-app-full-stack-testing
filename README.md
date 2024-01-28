@@ -2,8 +2,9 @@
 
 [![Backend Unit Tests](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/backend-unit-tests.yml/badge.svg)](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/backend-unit-tests.yml)
 [![Backend System Tests with Docker](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/backend-system-tests.yml/badge.svg)](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/backend-system-tests.yml)
-[![React Component Tests](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/react-component-tests.yml/badge.svg)](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/react-component-tests.yml)
+[![Frontend Component Tests](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/react-component-tests.yml/badge.svg)](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/react-component-tests.yml)
 [![CodeQL](https://github.com/helloitsdave/notes-app/actions/workflows/codeql.yml/badge.svg)](https://github.com/helloitsdave/notes-app/actions/workflows/codeql.yml)
+[![Frontend System Tests - Playwright](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/frontend-system-tests.yml/badge.svg)](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/frontend-system-tests.yml)
 
 The intention is to build and deploy a very simple app (FE/BE + DB) which can be used to demonstrate tests for each layer using vitest, react-testing-library and playwright.
 
@@ -28,6 +29,10 @@ Refactored the app for testability and added a few additional tweaks.
 - [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) with [vitest](https://vitest.dev/)
 - [Mock Service Worker(msw)](https://mswjs.io/) to mock the api
 - [msw/data](https://github.com/mswjs/data) for data store
+
+### FE Service Tests
+
+- Service tests with docker and playwright
 
 ## Backend
 
