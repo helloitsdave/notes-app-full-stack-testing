@@ -6,7 +6,7 @@ on:
       - "be/*.*"
 defaults:
   run:
-    working-directory: ./frontend
+    working-directory: ./backend
 
 permissions: write-all
 
