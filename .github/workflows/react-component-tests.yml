@@ -2,8 +2,12 @@ name: React Component Tests
 
 on:
   pull_request:
+    paths:
+      - "frontend/**"
     branches: [ "main" ]
   push:
+    paths:
+      - "frontend/**"
     branches: [ "main" ]
 
 defaults:
