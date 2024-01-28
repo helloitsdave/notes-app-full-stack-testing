@@ -1,4 +1,4 @@
-name: Frontend System Tests with Docker + Playwright
+name: Frontend Service Tests - Playwright
 
 on:
   push:

@@ -1,4 +1,4 @@
-name: Backend System Tests with Docker
+name: Backend Service Tests
 
 on:
   push:

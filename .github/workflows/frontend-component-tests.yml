@@ -1,4 +1,4 @@
-name: React Component Tests
+name: Frontend Component Tests
 
 on:
   pull_request:
