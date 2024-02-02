@@ -33,7 +33,7 @@ Refactored the app for testability and added a few additional tweaks.
 
 ### FE Service Tests
 
-- Service tests with docker and playwright
+- Service tests with docker and [Playwright.io](https://playwright.dev/)
 
 ## Backend
 
@@ -47,8 +47,8 @@ Refactored the app for testability and added a few additional tweaks.
 
 ### BE Service Tests
 
-- Service tests with docker, axios and vitest
-- Unit tests with axios, vitest and vitest-mock-extended
+- Service tests with docker, [supertest](https://github.com/ladjs/supertest) and [vitest](https://vitest.dev/)
+- Unit tests with [supertest](https://github.com/ladjs/supertest), [vitest](https://vitest.dev/) and [vitest-mock-extended](https://github.com/eratio08/vitest-mock-extended)
 
 ## Database
 

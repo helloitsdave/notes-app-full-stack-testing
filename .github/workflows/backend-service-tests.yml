@@ -44,10 +44,10 @@ jobs:
     - name: Test connectivity
       run: curl ${API_URL}
 
-    - name: Run System Tests
+    - name: Run Service Tests
       run: |
         npm ci
-        npm run test:system
+        npm run test:service
 
     - name: Stop service in docker
       run: |

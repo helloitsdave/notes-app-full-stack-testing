@@ -4,7 +4,7 @@
   "description": "Notes App Express Backend",
   "main": "dist/index.js",
   "scripts": {
-    "test:system": "npx vitest **/system/*.spec.ts",
+    "test:service": "npx vitest **/service/*.spec.ts",
     "test:unit": "npx vitest -c ./vitest.config.unit.mts",
     "test:coverage": "npx vitest **/unit/*.spec.ts --coverage",
     "start:local": "npx nodemon",
@@ -24,7 +24,7 @@
     "@types/cors": "2.8.17",
     "@types/express": "4.17.21",
     "@types/node": "20.10.6",
-    "@types/supertest": "^6.0.2",
+    "@types/supertest": "6.0.2",
     "@vitest/coverage-istanbul": "1.2.1",
     "@vitest/coverage-v8": "1.2.1",
     "axios": "1.6.5",
