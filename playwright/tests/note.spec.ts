@@ -3,6 +3,8 @@ import { test, expect, Page } from '@playwright/test';
 const TIMESTAMP = Date.now();
 const NOTE_TITLE = `My note ${TIMESTAMP}`;
 const NOTE_CONTENT = `My note content ${TIMESTAMP}`;
+const EDITED_NOTE_TITLE = `Edited note ${TIMESTAMP}`;
+const EDITED_NOTE_CONTENT = `Edited note content ${TIMESTAMP}`;
 
 let page: Page;
 
@@ -27,6 +29,18 @@ test('Notes App e2e', async () => {
   await test.step('Should be able to Delete a Note', async () => {
     await page.getByTestId('note-delete-button').first().click();
     await expect(page.getByTestId('note-title').first()).not.toHaveText(NOTE_TITLE);
+  });
+
+  await test.step('Should be able to Edit a Note', async () => {
+    await page.getByTestId('note').first().click();
+    expect(page.getByText('Save')).toBeVisible();
+    expect(page.getByText('Cancel')).toBeVisible();
+
+    await page.getByPlaceholder('Title').fill(EDITED_NOTE_TITLE);
+    await page.getByPlaceholder('Content').fill(EDITED_NOTE_CONTENT);
+    await page.getByRole('button', { name: 'Save' }).click();
+    await expect(page.getByTestId('note-title').first()).toHaveText(EDITED_NOTE_TITLE);
+    await expect(page.getByTestId('note-content').first()).toHaveText(EDITED_NOTE_CONTENT);
   });
 
   await test.step('Should not be able to add Note without title', async () => {
