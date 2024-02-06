@@ -10,7 +10,7 @@ app.use(cors())
 
 app.get("/api/notes", async (req, res) => {
   try {
-    const notes = await prisma.note.findMany({ orderBy: { id: "desc" }});
+    const notes = await prisma.note.findMany({ orderBy: { updated_at: "desc" }});
     res.json(notes);
   }
   catch (error) {
@@ -50,7 +50,7 @@ app.put("/api/notes/:id", async (req, res) => {
     try {
       const updatedNote = await prisma.note.update({
         where: { id },
-        data: { title, content },
+        data: { title, content, updated_at: new Date()},
       });
       res.json(updatedNote);
     } catch (error) {
