@@ -14,10 +14,12 @@ test("Get the list of Notes", async () => {
   expect(getNoteResponse.status).toBe(200);
   expect(getNoteResponse.body).toHaveLength(9);
 
-  expect(getNoteResponse.body[getNoteResponse.body.length -1]).toStrictEqual({
-    "content": "Discussed project timelines and goals.",
-    "id": 1,
-    "title": "Meeting Notes",
+  expect(getNoteResponse.body[getNoteResponse.body.length - 1]).toStrictEqual({
+    content: "Discussed project timelines and goals.",
+    created_at: "2024-02-05T23:33:42.252Z",
+    id: 1,
+    title: "Meeting Notes",
+    updated_at: "2024-02-05T23:33:42.252Z",
   });
 });
 
@@ -27,9 +29,13 @@ test("Create a new Note", async () => {
     content: "This is a test note content with special characters: !@#$%^&*()",
   });
   expect(res.status).toBe(200);
-  expect(res.body.title).toBe("This is a test note title with special characters: !@#$%^&*()");
-  expect(res.body.content).toBe("This is a test note content with special characters: !@#$%^&*()");
-  
+  expect(res.body.title).toBe(
+    "This is a test note title with special characters: !@#$%^&*()"
+  );
+  expect(res.body.content).toBe(
+    "This is a test note content with special characters: !@#$%^&*()"
+  );
+
   createdID = res.body.id;
 
   getNoteResponse = await request(URL).get("/");
@@ -49,6 +55,9 @@ test("Update a Note", async () => {
   getNoteResponse = await request(URL).get("/");
   expect(getNoteResponse.status).toBe(200);
   expect(getNoteResponse.body).toHaveLength(10);
+
+  // Updated note should appear first in the list
+  expect(getNoteResponse.body[0].id).toBe(createdID);
 });
 
 test("Delete a Note", async () => {

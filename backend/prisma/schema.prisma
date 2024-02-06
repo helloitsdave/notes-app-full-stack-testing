@@ -12,7 +12,9 @@ datasource db {
 }
 
 model Note {
-  id      Int     @id @default(autoincrement())
-  title   String
-  content String
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
 }
