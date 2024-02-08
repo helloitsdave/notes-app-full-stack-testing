@@ -15,6 +15,6 @@ model Note {
   id        Int      @id @default(autoincrement())
   title     String
   content   String
-  created_at DateTime @default(now())
-  updated_at DateTime @default(now())
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @map("updated_at")
 }

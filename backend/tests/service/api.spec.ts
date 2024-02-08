@@ -16,10 +16,10 @@ test("Get the list of Notes", async () => {
 
   expect(getNoteResponse.body[getNoteResponse.body.length - 1]).toStrictEqual({
     content: "Discussed project timelines and goals.",
-    created_at: "2024-02-05T23:33:42.252Z",
+    createdAt: "2024-02-05T23:33:42.252Z",
     id: 1,
     title: "Meeting Notes",
-    updated_at: "2024-02-05T23:33:42.252Z",
+    updatedAt: "2024-02-05T23:33:42.252Z",
   });
 });
 
