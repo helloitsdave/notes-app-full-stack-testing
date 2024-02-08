@@ -82,6 +82,7 @@ function App() {
       {connectionIssue && (
         <h3 className="connection-warning">Warning: API Connection Issue</h3>
       )}
+       <div className="app-content">
       <NoteForm
         onCancel={handleCancel}
         selectedNote={selectedNote}
@@ -97,6 +98,7 @@ function App() {
           handleEdit={handleEdit}
         />
       )}
+      </div>
     </div>
   );
 }
