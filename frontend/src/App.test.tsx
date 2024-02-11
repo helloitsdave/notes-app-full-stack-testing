@@ -8,9 +8,7 @@ import { errorHandlers } from "./mocks/handlers";
 test("Notes App loads with notes", async () => {
     render(<App />);
 
-    expect(await screen.findByRole("heading", { name: "Notes App" })).toBeInTheDocument();
-
-    expect(screen.queryByTestId('spinner-container')).not.toBeInTheDocument();
+    expect(await screen.findByTestId('spinner-container')).not.toBeInTheDocument();
 
     expect(await screen.findByText("Test Title Note 1")).toBeInTheDocument();
     expect(await screen.findByText("Test Content 1")).toBeInTheDocument();
@@ -20,8 +18,6 @@ test("Notes App loads with notes", async () => {
 
 test('User can select and update note', async () => { 
     render(<App />);
-
-    expect(await screen.findByRole("heading", { name: "Notes App" })).toBeInTheDocument();
 
     expect(await screen.findByText("Test Title Note 1")).toBeInTheDocument();
     // Click on the first note
@@ -48,8 +44,8 @@ test('User can select and update note', async () => {
 test('User can add a new note', async () => {
   render(<App />);
 
-  expect(await screen.findByRole("heading", { name: "Notes App" })).toBeInTheDocument();
-
+  const addButton = await screen.findByRole("button", { name: "New note" });
+  userEvent.click(addButton);
   // Fill in the note form
   const titleInput = await screen.findByPlaceholderText("Title");
   const contentInput = await screen.findByPlaceholderText("Content");
@@ -71,10 +67,9 @@ test('User can add a new note', async () => {
 test('User can delete a note', async () => { 
   render(<App />);
 
-  expect(await screen.findByRole("heading", { name: "Notes App" })).toBeInTheDocument();
-
   // Click on the first note
-  screen.getByText("Test Title Note 2").click();
+  const noteTitle = await screen.findByText("Test Title Note 2");
+  noteTitle.click();
 
   // Check that the note has been selected
   expect(await screen.findByText("Save")).toBeInTheDocument();
@@ -104,8 +99,8 @@ test('Connection Error is displayed on Create Note', async () => {
   // Render the App component
   render(<App />);
 
-  expect(await screen.findByRole("heading", { name: "Notes App" })).toBeInTheDocument();
-
+  const addButton = await screen.findByRole("button", { name: "New note" });
+  userEvent.click(addButton);
   // Fill in the note form
   const titleInput = await screen.findByPlaceholderText("Title");
   const contentInput = await screen.findByPlaceholderText("Content");
@@ -123,8 +118,6 @@ test('Connection Error is displayed on Create Note', async () => {
 test('Connection Error is displayed on Delete Note', async () => { 
   render(<App />);
 
-  expect(await screen.findByRole("heading", { name: "Notes App" })).toBeInTheDocument();
-
   mswServer.use(...errorHandlers);
 
   const deleteButton = await screen.findAllByTestId("note-delete-button");
@@ -135,8 +128,6 @@ test('Connection Error is displayed on Delete Note', async () => {
 
 test('Connection Error is displayed on Update Note', async () => {
   render(<App />);
-
-  expect(await screen.findByRole("heading", { name: "Notes App" })).toBeInTheDocument();
 
   // Click on the first note
   const notes = await screen.findAllByTestId("note");

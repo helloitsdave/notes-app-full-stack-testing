@@ -4,7 +4,7 @@ body {
 
 body {
   margin: 20px;
-  background-color: lightgrey;
+  background-color: white;
 }
 
 @media (min-width: 600px) {
@@ -73,6 +73,12 @@ input {
 
 textarea {
   height: 100px;
+}
+
+.app-logo {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 20px;
 }
 
 .note-form button {
