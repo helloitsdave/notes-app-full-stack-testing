@@ -16,6 +16,7 @@ test.beforeAll(async ({ browser }) => {
 
 test('Notes App e2e', async () => {
   await test.step('Should be able to Add a Note', async () => {
+    await page.getByRole('button', { name: 'New Note' }).click();
     await page.getByPlaceholder('Title').fill(NOTE_TITLE);
     await page.getByPlaceholder('Content').fill(NOTE_CONTENT);    
     await page.getByRole('button', { name: 'Add Note' }).click();
@@ -44,6 +45,7 @@ test('Notes App e2e', async () => {
   });
 
   await test.step('Should not be able to add Note without title', async () => {
+    await page.getByRole('button', { name: 'New Note' }).click();
     await page.getByPlaceholder('Content').fill(NOTE_CONTENT);
     await page.getByRole('button', { name: 'Add Note' }).click();
     await expect(page.getByTestId('note-title').first()).not.toHaveText(NOTE_TITLE);

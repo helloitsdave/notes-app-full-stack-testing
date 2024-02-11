@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Button, Modal } from "antd";
 import "./App.css";
 import NoteForm from "./components/NoteForm";
 import NoteGrid from "./components/NoteGrid";
@@ -11,6 +12,7 @@ function App() {
   const [selectedNote, setSelectedNote] = useState<NoteType | null>(null);
   const [connectionIssue, setConnectionIssue] = useState<boolean>(false);
   const [isDataLoading, setIsDataLoading] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   useEffect(() => {
     fetchNotes();
@@ -70,24 +72,40 @@ function App() {
 
   const handleEdit = (note: NoteType) => {
     setSelectedNote(note);
+    setIsModalVisible(true);
   };
 
   const handleCancel = () => {
     setSelectedNote(null);
+    setIsModalVisible(false);
   };
 
   return (
     <div className="app-container">
-      <h1>Notes App</h1>
+      <img className="app-logo" src="notes.png" alt="note icon" />
       {connectionIssue && (
         <h3 className="connection-warning">Warning: API Connection Issue</h3>
       )}
-      <NoteForm
+      <Button
+        className="add-note-button"
+        type="primary"
+        onClick={() => setIsModalVisible(true)}
+      >
+        New note
+      </Button>
+      <Modal
+        title="Note Form"
+        open={isModalVisible}
         onCancel={handleCancel}
-        selectedNote={selectedNote}
-        addNote={addNote}
-        updateNote={updateNote}
-      />
+        footer={null}
+      >
+        <NoteForm
+          onCancel={handleCancel}
+          selectedNote={selectedNote}
+          addNote={addNote}
+          updateNote={updateNote}
+        />
+      </Modal>
       {isDataLoading ? (
         <Spinner />
       ) : (
