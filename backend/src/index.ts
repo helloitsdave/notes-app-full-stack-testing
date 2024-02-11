@@ -1,6 +1,5 @@
 import prisma from "./prisma";
 import express from 'express'
-import serverless from 'serverless-http'
 import cors from 'cors'
 
 const app = express()
@@ -81,5 +80,3 @@ app.listen(PORT, () => {
   });
 
   export default app;
-
-  module.exports.handler = serverless(app);
