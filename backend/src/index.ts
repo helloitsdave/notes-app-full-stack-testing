@@ -8,6 +8,10 @@ const PORT = 5000
 app.use(express.json())
 app.use(cors())
 
+app.get("/health", (req, res) => {
+    res.json({ status: "ok"});
+  });
+
 app.get("/api/notes", async (req, res) => {
   try {
     const notes = await prisma.note.findMany({ orderBy: { updatedAt: "desc" }});

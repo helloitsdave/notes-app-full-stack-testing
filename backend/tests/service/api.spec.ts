@@ -4,10 +4,16 @@ import request from "supertest";
 
 config();
 
-const URL = `${process.env.API_URL}/api/notes`;
+const BASE_URL = `${process.env.API_URL}`;
+const URL = `${BASE_URL}/api/notes`;
 
 let getNoteResponse: any;
 let createdID: number;
+
+test("Health check", async () => {
+  const response = await request(BASE_URL).get('/health');
+  expect(response.status).toBe(200);
+});
 
 test("Get the list of Notes", async () => {
   getNoteResponse = await request(URL).get("/");
