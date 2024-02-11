@@ -4,3 +4,5 @@
 **/.env
 **/coverage/
 **/dist/
+# Local Netlify folder
+.netlify

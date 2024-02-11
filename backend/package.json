@@ -10,6 +10,7 @@
     "start:local": "npx nodemon",
     "start": "node dist/index.js",
     "build": "tsc",
+    "build:netlify" : "netlify-lambda build express",
     "docker:app:build": "docker build -t notes-app-be .",
     "docker:app:up": "docker run -p 5001:5001 notes-app-be",
     "docker:up": "docker-compose up -d",
@@ -28,6 +29,8 @@
     "@vitest/coverage-istanbul": "1.2.1",
     "@vitest/coverage-v8": "1.2.1",
     "axios": "1.6.5",
+    "netlify-cli": "17.16.1",
+    "netlify-lambda": "2.0.16",
     "nodemon": "3.0.2",
     "nyc": "15.1.0",
     "prisma": "5.7.1",
@@ -41,6 +44,7 @@
     "@prisma/client": "5.7.1",
     "cors": "2.8.5",
     "dotenv": "16.3.2",
-    "express": "4.18.2"
+    "express": "4.18.2",
+    "serverless-http": "3.2.0"
   }
 }
