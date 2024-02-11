@@ -10,7 +10,6 @@
     "start:local": "npx nodemon",
     "start": "node dist/index.js",
     "build": "tsc",
-    "build:netlify" : "netlify-lambda build express",
     "docker:app:build": "docker build -t notes-app-be .",
     "docker:app:up": "docker run -p 5001:5001 notes-app-be",
     "docker:up": "docker-compose up -d",
