@@ -2,7 +2,7 @@
   command = "npm install && npm run build:netlify"
   functions = "src"
 [functions]
-  external_node_modules = ["express"]
+  external_node_modules = ["src"]
   node_bundler = "esbuild"
 [[redirects]]
   force = true
