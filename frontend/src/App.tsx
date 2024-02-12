@@ -84,14 +84,14 @@ function App() {
     <div className="app-container">
       <header className="app-header">
         <img className="app-logo" src="notes.png" alt="note icon" />
-        <Button
+      </header>
+      <Button
           className="add-note-button"
           type="primary"
           onClick={() => setIsModalVisible(true)}
         >
           Add a note
         </Button>
-      </header>
       {connectionIssue && (
         <h3 className="connection-warning">Warning: API Connection Issue</h3>
       )}
