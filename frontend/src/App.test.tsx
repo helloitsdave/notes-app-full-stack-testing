@@ -41,10 +41,10 @@ test('User can select and update note', async () => {
 
 });
 
-test('User can add a new note', async () => {
+test('User can add a Add a note', async () => {
   render(<App />);
 
-  const addButton = await screen.findByRole("button", { name: "New note" });
+  const addButton = await screen.findByRole("button", { name: "Add a note" });
   userEvent.click(addButton);
   // Fill in the note form
   const titleInput = await screen.findByPlaceholderText("Title");
@@ -52,13 +52,13 @@ test('User can add a new note', async () => {
   const saveButton = await screen.findByRole("button", { name: "Add Note" });
 
   userEvent.type(titleInput, "New Added Note Title");
-  userEvent.type(contentInput, "New Note Content");
+  userEvent.type(contentInput, "Add a note Content");
   userEvent.click(saveButton);
 
 
-  // Check that the new note is added to the list
+  // Check that the Add a note is added to the list
   const addedNoteTitle = await screen.findByText("New Added Note Title");
-  const addedNoteContent = await screen.findByText("New Note Content");
+  const addedNoteContent = await screen.findByText("Add a note Content");
 
   expect(addedNoteTitle).toBeInTheDocument();
   expect(addedNoteContent).toBeInTheDocument();
@@ -99,7 +99,7 @@ test('Connection Error is displayed on Create Note', async () => {
   // Render the App component
   render(<App />);
 
-  const addButton = await screen.findByRole("button", { name: "New note" });
+  const addButton = await screen.findByRole("button", { name: "Add a note" });
   userEvent.click(addButton);
   // Fill in the note form
   const titleInput = await screen.findByPlaceholderText("Title");
@@ -109,7 +109,7 @@ test('Connection Error is displayed on Create Note', async () => {
   mswServer.use(...errorHandlers);
 
   userEvent.type(titleInput, "New Added Note Title");
-  userEvent.type(contentInput, "New Note Content");
+  userEvent.type(contentInput, "Add a note Content");
   userEvent.click(saveButton);
 
   expect(await screen.findByRole("heading", { name: "Warning: API Connection Issue"})).toBeInTheDocument();

@@ -14,7 +14,6 @@ const NoteGrid: React.FC<NotesListProps> = ({
 }) => {
   return (
     <div className='notes-list'>
-      <header>{notes.length > 0 && <h2 className="notes-grid-header">Notes</h2>}</header>
       <div className="notes-grid">
         {notes.map((note) => (
           <Note

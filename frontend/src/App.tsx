@@ -82,17 +82,19 @@ function App() {
 
   return (
     <div className="app-container">
-      <img className="app-logo" src="notes.png" alt="note icon" />
+      <header className="app-header">
+        <img className="app-logo" src="notes.png" alt="note icon" />
+        <Button
+          className="add-note-button"
+          type="primary"
+          onClick={() => setIsModalVisible(true)}
+        >
+          Add a note
+        </Button>
+      </header>
       {connectionIssue && (
         <h3 className="connection-warning">Warning: API Connection Issue</h3>
       )}
-      <Button
-        className="add-note-button"
-        type="primary"
-        onClick={() => setIsModalVisible(true)}
-      >
-        New note
-      </Button>
       <Modal
         title="Note Form"
         open={isModalVisible}

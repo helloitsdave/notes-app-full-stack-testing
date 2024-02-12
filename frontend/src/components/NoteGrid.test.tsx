@@ -15,7 +15,6 @@ describe("NoteGrid", () => {
         deleteNote={() => {}}
       />
     );
-    expect(screen.getByRole("heading", { name: "Notes" })).toBeInTheDocument();
     expect(screen.getByText("Test Title")).toBeInTheDocument();
     expect(screen.getByText("Test Content")).toBeInTheDocument();
   });
