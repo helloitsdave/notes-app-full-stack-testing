@@ -4,7 +4,7 @@ body {
 
 body {
   margin: 0px;
-  background-color: white;
+  background: linear-gradient(100deg, #83a4d4, #b6fbff);
 }
 
 @media (min-width: 600px) {
@@ -26,13 +26,22 @@ body {
   gap: 20px;
 }
 
+.note-title {
+  border: solid 1px #89CFF0;
+  background-color: #e0f1f3;
+  text-align: center;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
+}
+
 .note-item {
   display: flex;
   flex-direction: column;
-  border: 1px solid #ccc;
+  border: 1px solid #89CFF0;
   padding: 10px;
   border-radius: 5px;
-  background-color: #f9f9f9;
+  background-color: #f0f9fa;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   width: 300px;
@@ -43,8 +52,15 @@ body {
   height: 100%;
 }
 
+.note-item:hover {
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+}
+
 .notes-header {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 .notes-header button {
@@ -61,7 +77,6 @@ h2 {
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
-  background-color: lightgrey;
   width: 100%;
 }
 
@@ -98,11 +113,16 @@ textarea {
 
 .note-form button {
   border-radius: 5px;
-  background-color: rgb(64, 154, 184);
+  background-color: #1677ff;
   border: none;
   padding: 10px;
   font-size: 16px;
   color: white;
+}
+
+.note-form button:hover {
+  background-color: #3f8df9;
+  cursor: pointer;
 }
 
 .notes-header button{
@@ -114,10 +134,12 @@ textarea {
   color: white;
 }
 
-.note-form button:hover {
-  background-color: rgb(106, 175, 198);
+.notes-header button:hover {
+  background-color:lightcoral;
   cursor: pointer;
 }
+
+
 
 .edit-buttons {
   display: flex;
@@ -146,6 +168,7 @@ textarea {
 .note-content{
   margin-bottom: 30px;
   text-align: center;
+  white-space: pre-line;
 }
 
 .spinner-container {
@@ -156,7 +179,7 @@ textarea {
 }
 
 .note-updated {
-  color: green;
+  color: grey;
     font-size: 14px;
   }
  
