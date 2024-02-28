@@ -13,6 +13,12 @@ Starting point for building the app was the great FreeCodeCamp tutorial [Full St
 
 Refactored the app for testability and added a few additional tweaks.
 
+## Deployed app
+- FE and BE services are deployed using the free tier on [render.com](https://render.com/)
+- Database is deployed using serverless postgres on [neon](https://neon.tech/)
+
+[https://notes-app-full-stack-bjml.onrender.com/](https://notes-app-full-stack-bjml.onrender.com/)
+
 ## Frontend
 
 ### FE Implementation
