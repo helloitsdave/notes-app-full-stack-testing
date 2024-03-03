@@ -60,4 +60,12 @@ jobs:
       with:
         service-id: ${{ secrets.MY_RENDER_SERVICE_ID_FE }}
         api-key: ${{ secrets.MY_RENDER_API_KEY }}
-        wait-for-success: true
+
+    - name: Wait for Render Deployment
+      uses: bounceapp/render-action@0.6.0
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        service-id: ${{ secrets.MY_RENDER_SERVICE_ID_FE }}
+        retries: 20
+        wait: 60000
+        sleep: 30000
