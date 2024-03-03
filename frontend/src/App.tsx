@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Modal } from "antd";
+import { Button } from "antd";
 import "./App.css";
 import NoteFormModal from "./components/NoteFormModal";
 import NoteGrid from "./components/NoteGrid";
