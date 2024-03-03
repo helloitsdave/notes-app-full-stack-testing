@@ -1,5 +1,5 @@
 
-import { Button, Modal } from "antd";
+import { Modal } from "antd";
 import NoteForm from "./NoteForm";
 import type NoteType from "../types/note";
 
