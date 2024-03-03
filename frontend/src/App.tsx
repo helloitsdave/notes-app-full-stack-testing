@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { Button, Modal } from "antd";
+import { Button } from "antd";
 import "./App.css";
-import NoteForm from "./components/NoteForm";
+import NoteFormModal from "./components/NoteFormModal";
 import NoteGrid from "./components/NoteGrid";
 import Spinner from "./components/Spinner";
 import type NoteType from "./types/note";
@@ -97,19 +97,15 @@ function App() {
       {connectionIssue && (
         <h3 className="connection-warning">Warning: API Connection Issue</h3>
       )}
-      <Modal
-        title="Note Form"
-        open={isModalVisible}
-        onCancel={handleCancel}
-        footer={null}
-      >
-        <NoteForm
-          onCancel={handleCancel}
-          selectedNote={selectedNote}
-          addNote={addNote}
-          updateNote={updateNote}
-        />
-      </Modal>
+
+      <NoteFormModal
+        isModalVisible={isModalVisible}
+        handleCancel={handleCancel}
+        selectedNote={selectedNote}
+        addNote={addNote}
+        updateNote={updateNote}
+      />
+
       {isDataLoading ? (
         <Spinner />
       ) : (
