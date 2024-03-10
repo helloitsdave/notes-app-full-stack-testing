@@ -16,6 +16,10 @@ test.beforeAll(async ({ browser }) => {
 
 test('Notes App e2e', async () => {
   await test.step('Should be able to Add a Note', async () => {
+
+    /** Free tier on render.com may take 60 seconds to startup */
+    expect(page.getByTestId('spinner-container')).not.toBeVisible({ timeout: 80 * 1000});
+
     await page.getByRole('button', { name: 'Add a Note' }).click();
     await page.getByPlaceholder('Title').fill(NOTE_TITLE);
     await page.getByPlaceholder('Content').fill(NOTE_CONTENT);    

@@ -1,17 +1,18 @@
 {
   "name": "testing",
   "version": "1.0.0",
-  "description": "",
+  "description": "Playwright tests for the Notes App",
   "main": "index.js",
   "scripts": {
     "install": "playwright install-deps chromium",
-    "test": "playwright test"
+    "test": "playwright test",
+    "test:production": "export URL=https://notes-app-full-stack-bjml.onrender.com && playwright test"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "^1.40.1",
+    "@playwright/test": "1.42.1",
     "@types/node": "^20.10.6"
   }
 }
