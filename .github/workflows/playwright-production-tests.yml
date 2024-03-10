@@ -3,6 +3,10 @@ name: Playwright e2e Production Tests
 on:
   push:
     branches: [ "main" ]
+  
+defaults:
+  run:
+    working-directory: ./playwright
 
 jobs:
   build:
@@ -20,13 +24,11 @@ jobs:
 
     - name: Install Playwright
       run: |
-        cd ./playwright
         npm ci
         npx playwright install chromium
 
     - name: Run Playwright Tests
       run: |
-        cd ./playwright
         npm run test:production
 
     - name: Run Playwright Tests
