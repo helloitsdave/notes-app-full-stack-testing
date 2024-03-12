@@ -10,7 +10,7 @@ let page: Page;
 
 const timeout = 80 * 1000;
 
-test.beforeAll(async ({ browser }) => {
+test.beforeAll(async ({ browser }, { timeout }) => {
   page = await browser.newPage();
 
   /** Free tier on render.com may take 60 seconds to startup */
@@ -63,7 +63,7 @@ test('Notes App e2e', async () => {
     await page.getByRole('button', { name: 'Add a Note' }).click();
     await page.getByPlaceholder('Content').fill(NOTE_CONTENT);
     await page.getByRole('button', { name: 'Add Note' }).click();
-    await expect(page.getByTestId('note-title').first()).not.toHaveText(NOTE_TITLE);
+    await expect(page.getByTestId('note-title').first()).not.toHaveText(NOTE_TITLE, { timeout });
     await expect(page.getByTestId('note-content').first()).not.toHaveText(NOTE_CONTENT);
   });
 });
