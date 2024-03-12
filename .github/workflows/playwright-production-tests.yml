@@ -11,8 +11,6 @@ jobs:
   build:
     timeout-minutes: 10
     runs-on: ubuntu-latest
-    env:
-      API_URL: http://localhost:5000
     steps:
     - uses: actions/checkout@v3
 

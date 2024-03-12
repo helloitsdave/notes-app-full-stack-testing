@@ -10,7 +10,9 @@ let page: Page;
 
 test.beforeAll(async ({ browser }) => {
   page = await browser.newPage();
-  await page.goto('/');
+
+    /** Free tier on render.com may take 60 seconds to startup */
+  await page.goto('/', { timeout: 60 * 1000 });;
   await expect(page).toHaveTitle(/Notes/);
 });
 
