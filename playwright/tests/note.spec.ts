@@ -8,20 +8,29 @@ const EDITED_NOTE_CONTENT = `Edited note content ${TIMESTAMP}`;
 
 let page: Page;
 
+const timeout = 80 * 1000;
+
 test.beforeAll(async ({ browser }) => {
   page = await browser.newPage();
 
-    /** Free tier on render.com may take 60 seconds to startup */
-  await page.goto('/', { timeout: 60 * 1000 });;
-  await expect(page).toHaveTitle(/Notes/);
+  /** Free tier on render.com may take 60 seconds to startup */
+
+  const notesApi = page.waitForResponse((response) => response.url().includes("/api/notes") && response.status() === 200, { timeout });
+
+  await page.goto('/', { timeout });;
+
+  await notesApi;
+
 });
 
 test('Notes App e2e', async () => {
+
+  await test.step('Should have loaded', async () => {
+    expect(page).toHaveTitle(/Notes/);
+    expect(page.getByTestId('spinner-container')).not.toBeVisible({ timeout });
+  });
+
   await test.step('Should be able to Add a Note', async () => {
-
-    /** Free tier on render.com may take 60 seconds to startup */
-    expect(page.getByTestId('spinner-container')).not.toBeVisible({ timeout: 80 * 1000});
-
     await page.getByRole('button', { name: 'Add a Note' }).click();
     await page.getByPlaceholder('Title').fill(NOTE_TITLE);
     await page.getByPlaceholder('Content').fill(NOTE_CONTENT);    
