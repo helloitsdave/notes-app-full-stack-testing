@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+      "target": "es2016",
+      "module": "commonjs",
+      "baseUrl": "./",
+      "paths": {
+        "*": ["./src/*"]
+      },
+      "outDir": "./dist",
+      "esModuleInterop": true,
+      "forceConsistentCasingInFileNames": true,
+      "strict": true,
+      "skipLibCheck": true
+    },
+    "include": ["src", "tests", "./.eslintrc.js", "./playwright.config.ts"],
+    "exclude": ["node_modules", "dist"],
+    "overrides": [
+      {
+        "extends": [
+          "plugin:@typescript-eslint/recommended-requiring-type-checking",
+        ],
+        "files": ["./**/*.{ts,tsx}"],
+      },
+    ],
+  }
