@@ -3,6 +3,8 @@ name: Frontend Service Tests - Deploy to Production
 on:
   push:
     branches: [ "main" ]
+    paths:
+      - "frontend/**"
 
 jobs:
   build:
