@@ -6,13 +6,25 @@
   "scripts": {
     "install": "playwright install-deps chromium",
     "test": "playwright test",
-    "test:production": "export URL=https://notes-app-full-stack-bjml.onrender.com && playwright test"
+    "test:production": "export URL=https://notes-app-full-stack-bjml.onrender.com && playwright test",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
+    "lint:ci": "eslint . --ext .ts --format @microsoft/eslint-formatter-sarif --output-file eslint-results.sarif"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "1.42.1",
-    "@types/node": "^20.10.6"
+    "@types/node": "20.10.6",
+    "@typescript-eslint/eslint-plugin": "6.16.0",
+    "@typescript-eslint/parser": "6.16.0",
+    "eslint": "8.56.0",
+    "eslint-config-airbnb-base": "15.0.0",
+    "eslint-config-prettier": "9.1.0",
+    "eslint-plugin-import": "2.29.1",
+    "eslint-plugin-playwright": "0.20.0",
+    "eslint-plugin-prettier": "5.1.2",
+    "prettier": "3.1.1"
   }
 }
