@@ -1,4 +1,4 @@
-import { test, expect, Page } from '@playwright/test';
+import { test, expect, Page, Response } from '@playwright/test';
 
 const TIMESTAMP = Date.now();
 const NOTE_TITLE = `My note ${TIMESTAMP}`;
@@ -7,6 +7,7 @@ const EDITED_NOTE_TITLE = `Edited note ${TIMESTAMP}`;
 const EDITED_NOTE_CONTENT = `Edited note content ${TIMESTAMP}`;
 
 let page: Page;
+let notesApi: Promise<Response>;
 
 const timeout = 80 * 1000;
 
@@ -14,18 +15,16 @@ test.beforeAll(async ({ browser }, { timeout }) => {
   page = await browser.newPage();
 
   /** Free tier on render.com may take 60 seconds to startup */
-
   const notesApi = page.waitForResponse((response) => response.url().includes("/api/notes") && response.status() === 200, { timeout });
 
-  await page.goto('/', { timeout });;
-
-  await notesApi;
-
+  await page.goto('/', { timeout });
 });
 
 test('Notes App e2e', async () => {
 
   await test.step('Should have loaded', async () => {
+    await notesApi;
+
     expect(page).toHaveTitle(/Notes/);
     expect(page.getByTestId('spinner-container')).not.toBeVisible({ timeout });
   });
