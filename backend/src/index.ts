@@ -79,6 +79,38 @@ app.put("/api/notes/:id", async (req, res) => {
     }
   });
 
+  app.get("/api/users", async (req, res) => {
+    try {
+      const users = await prisma.user.findMany();
+
+      const usersWithPasswordsRemoved = users.map((user) => {
+        delete user.password;
+        return user;
+      }); 
+      res.json(usersWithPasswordsRemoved);
+    } catch (error) {
+      res.status(500).send({ "error": "Oops, something went wrong"});
+    }
+  });
+
+  app.post("/api/users", async (req, res) => {
+    const { email, password, username } = req.body;
+  
+    if (!email || !password || !username) {
+      return res.status(400).send({ "error": "email, password, and username fields required"});
+    }
+  
+    try {
+      const user = await prisma.user.create({
+        data: { email, password, username },
+      });
+      delete user.password;
+      res.json(user);
+    } catch (error) {
+      res.status(500).send({ "error": "Oops, something went wrong"});
+    }
+  });
+
 app.listen(PORT, () => {
     console.log("server running on localhost", PORT);
   });

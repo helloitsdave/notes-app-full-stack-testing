@@ -17,4 +17,16 @@ model Note {
   content   String
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @default(now()) @map("updated_at")
+  userID    String? @map("user_id")
+  author    User? @relation(fields: [userID], references: [id])
+}
+
+model User {
+  id        String      @id @default(uuid())
+  username  String  @unique
+  password  String
+  email     String?  @unique
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @map("updated_at")
+  notes     Note[]
 }

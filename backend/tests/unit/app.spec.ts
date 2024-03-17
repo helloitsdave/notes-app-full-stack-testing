@@ -2,75 +2,11 @@ import { test, describe, expect, vi } from "vitest";
 import request from "supertest";
 import app from "../../src/index";
 import prisma from "../../src/__mocks__/prisma";
+import { noteSeed } from "./mocks/notes.mock";
+import { userSeed } from "./mocks/users.mock"
 
 // Mock the prisma client
 vi.mock("../../src/prisma");
-
-const seed = [
-  {
-    id: 1,
-    title: "Meeting Notes",
-    content: "Discussed project timelines and goals.",
-    updatedAt: new Date("2024-02-05T23:33:42.252Z"),
-    createdAt: new Date("2024-02-05T23:43:42.252Z")
-  },
-  {
-    id: 2,
-    title: "Shopping List",
-    content: "Milk, eggs, bread, and fruits.",
-    updatedAt: new Date("2024-02-05T23:33:42.252Z"),
-    createdAt: new Date("2024-02-05T23:43:42.252Z")
-  },
-  {
-    id: 3,
-    title: "Recipe",
-    content: "Ingredients: Chicken, tomatoes, onions, garlic.",
-    updatedAt: new Date("2024-02-05T23:33:42.252Z"),
-    createdAt: new Date("2024-02-05T23:43:42.252Z")
-  },
-  {
-    id: 4,
-    title: "Ideas",
-    content: "Brainstorming ideas for the next feature release. 🚀",
-    updatedAt: new Date("2024-02-05T23:33:42.252Z"),
-    createdAt: new Date("2024-02-05T23:43:42.252Z")
-  },
-  {
-    id: 5,
-    title: "Personal Goals",
-    content: "Exercise for 30 minutes daily. Read a book every week.",
-    updatedAt: new Date("2024-02-05T23:33:42.252Z"),
-    createdAt: new Date("2024-02-05T23:43:42.252Z")
-  },
-  {
-    id: 6,
-    title: "Fête d'anniversaire",
-    content: "Préparer une surprise pour la fête d'anniversaire.",
-    updatedAt: new Date("2024-02-05T23:33:42.252Z"),
-    createdAt: new Date("2024-02-05T23:43:42.252Z")
-  },
-  {
-    id: 7,
-    title: "日本旅行",
-    content: "計画: 東京、京都、大阪を訪れる。",
-    updatedAt: new Date("2024-02-05T23:33:42.252Z"),
-    createdAt: new Date("2024-02-05T23:43:42.252Z")
-  },
-  {
-    id: 8,
-    title: "Семейный ужин",
-    content: "Приготовить вкусный ужин для всей семьи.",
-    updatedAt: new Date("2024-02-05T23:33:42.252Z"),
-    createdAt: new Date("2024-02-05T23:43:42.252Z")
-  },
-  {
-    id: 9,
-    title: "Coding Project",
-    content: "Implement new features using React and Express.",
-    updatedAt: new Date("2024-02-05T23:33:42.252Z"),
-    createdAt: new Date("2024-02-05T23:43:42.252Z")
-  },
-];
 
 describe("View notes", () => {
   test("No notes returned - success", async ({}) => {
@@ -80,7 +16,7 @@ describe("View notes", () => {
     expect(response.body).toStrictEqual([]);
   });
   test("Single note returned - success", async ({}) => {
-    prisma.note.findMany.mockResolvedValue([seed[0]]);
+    prisma.note.findMany.mockResolvedValue([noteSeed[0]]);
     const response = await request(app).get("/api/notes");
     expect(response.status).toBe(200);
     expect(response.body).toEqual([
@@ -90,21 +26,22 @@ describe("View notes", () => {
         content: "Discussed project timelines and goals.",
         createdAt: "2024-02-05T23:43:42.252Z",
         updatedAt: "2024-02-05T23:33:42.252Z",
+        userID: "ccf89a7e-b941-4f17-bbe0-4e0c8b2cd272",
       },
     ]);
   });
   test("Many notes returned - success", async ({}) => {
-    
-    prisma.note.findMany.mockResolvedValue(seed);
+    prisma.note.findMany.mockResolvedValue(noteSeed);
     const response = await request(app).get("/api/notes");
     expect(response.status).toBe(200);
 
-    const expectedResult = seed.map(item => ({
+    const expectedResult = noteSeed.map((item) => ({
       ...item,
       createdAt: new Date(item.createdAt).toISOString(),
-      updatedAt: new Date(item.updatedAt).toISOString()
+      updatedAt: new Date(item.updatedAt).toISOString(),
+      userID: "ccf89a7e-b941-4f17-bbe0-4e0c8b2cd272",
     }));
-    
+
     expect(response.body).toEqual(expectedResult);
   });
   test("500 error - failure", async ({}) => {
@@ -124,6 +61,7 @@ describe("Create a note", () => {
       id: 1,
       updatedAt: new Date("2024-02-05T23:33:42.252Z"),
       createdAt: new Date("2024-02-05T23:33:42.252Z"),
+      userID: "ccf89a7e-b941-4f17-bbe0-4e0c8b2cd272",
     });
     const response = await request(app)
       .post("/api/notes")
@@ -173,6 +111,7 @@ describe("Update a note", () => {
       id: 1,
       updatedAt: new Date("2024-02-05T23:33:42.252Z"),
       createdAt: new Date("2024-02-05T23:33:42.252Z"),
+      userID: "ccf89a7e-b941-4f17-bbe0-4e0c8b2cd272",
     });
     const response = await request(app)
       .put("/api/notes/1")
@@ -183,7 +122,8 @@ describe("Update a note", () => {
       content: "Test",
       createdAt: "2024-02-05T23:33:42.252Z",
       id: 1,
-      updatedAt: "2024-02-05T23:33:42.252Z"
+      updatedAt: "2024-02-05T23:33:42.252Z",
+      userID: "ccf89a7e-b941-4f17-bbe0-4e0c8b2cd272",
     });
   });
   test("PUT without title - failure", async ({}) => {
@@ -258,10 +198,103 @@ describe("Delete a note", () => {
   });
 });
 
-describe("Health check", () => {  
+describe("Health check", () => {
   test("GET /health", async ({}) => {
     const response = await request(app).get("/health");
     expect(response.status).toBe(200);
     expect(response.body).toStrictEqual({ status: "ok" });
+  });
+});
+
+describe("Get Users", () => {
+  test("No Users returned", async ({}) => {
+    prisma.user.findMany.mockResolvedValue([]);
+    const response = await request(app).get("/api/users");
+    expect(response.status).toBe(200);
+    expect(response.body).toStrictEqual([]);
+  });
+
+  test("Should get many users returned", async () => {
+    prisma.user.findMany.mockResolvedValue(userSeed);
+
+    const response = await request(app).get("/api/users");
+    expect(response.status).toBe(200);
+
+    const expectedResult = userSeed.map((item) => ({
+      ...item,
+      createdAt: new Date(item.createdAt).toISOString(),
+      updatedAt: new Date(item.updatedAt).toISOString(),
+    }));
+
+    expect(response.body[0]).not.toHaveProperty('password')
+
+    expect(response.body).toEqual(expectedResult);
+  });
+
+  test("Network Error", async ({}) => {
+    prisma.user.findMany.mockImplementation(() => {
+      throw new Error("Test error");
+    });
+    const response = await request(app).get("/api/users");
+    expect(response.status).toBe(500);
+    expect(response.body).toStrictEqual({ error: "Oops, something went wrong"});
+  });
+});
+
+describe("Create User", () => {
+  test("POST with email, username and password", async ({}) => {
+    prisma.user.create.mockResolvedValue({
+      id: "gcf89a7e-b941-4f17-bbe0-4e0c8b2cd272",
+      email: 'test@email.com',
+      username: 'Dave',
+      password: 'check',
+      updatedAt: new Date("2024-02-05T23:33:42.252Z"),
+      createdAt: new Date("2024-02-05T23:33:42.252Z"),
+    });
+    const response = await request(app)
+      .post("/api/users")
+      .send({ email: "email", username: "Dave", password: 'check' });
+    expect(response.status).toBe(200);
+  });
+
+  test("POST without email", async ({}) => {
+    const response = await request(app)
+      .post("/api/users")
+      .send({ username: "Dave", password: 'check' });
+    expect(response.status).toBe(400);
+    expect(response.body).toStrictEqual({
+      error: "email, password, and username fields required",
+    });
+  });
+
+  test("POST without username", async ({}) => {
+    const response = await request(app)
+      .post("/api/users")
+      .send({ email: "Dave@hotmail.com", password: 'check' });
+    expect(response.status).toBe(400);
+    expect(response.body).toStrictEqual({
+      error: "email, password, and username fields required",
+    });
+  });
+
+  test("POST without password", async ({}) => {
+    const response = await request(app)
+      .post("/api/users")
+      .send({ email: "Dave@hotmail.com", username: 'check' });
+    expect(response.status).toBe(400);
+    expect(response.body).toStrictEqual({
+      error: "email, password, and username fields required",
+    });
+  });
+
+  test("POST with error", async ({}) => {
+    prisma.user.create.mockImplementation(() => {
+      throw new Error("Test error");
+    });
+    const response = await request(app)
+      .post("/api/users")
+      .send({ email: "email", username: "Dave", password: 'check' });
+    expect(response.status).toBe(500);
+    expect(response.body).toStrictEqual({ error: "Oops, something went wrong"});
   });
 });

@@ -26,6 +26,7 @@ test("Get the list of Notes", async () => {
     id: 1,
     title: "Meeting Notes",
     updatedAt: "2024-02-05T23:33:42.252Z",
+    userID: "ccf89a7e-b941-4f17-bbe0-4e0c8b2cd272",
   });
 });
 
