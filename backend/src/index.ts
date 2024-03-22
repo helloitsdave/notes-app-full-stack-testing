@@ -146,16 +146,16 @@ app.post("/api/users", authenticateToken, async (req, res) => {
     where: { OR: [{ email }, { username }] },
   });
 
-  if (existingUser) {
-    return res.status(400).send({ error: "Username or email already exists" });
-  }
-
   try {
+    if (existingUser) {
+      return res.status(400).send({ error: "Username or email already exists" });
+    }
+
     const user = await prisma.user.create({
       data: { email, password, username },
     });
-    delete user.password;
-    res.json(user);
+    const userWithoutPassword = { ...user, password: undefined };
+    res.json(userWithoutPassword);
   } catch (error) {
     res.status(500).send({ error: "Oops, something went wrong" });
   }

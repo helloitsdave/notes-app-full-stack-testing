@@ -49,7 +49,7 @@ describe("Authenticated Flows", () => {
         email: "helloitsdave@hotmail.com" 
       });
     expect(response.status).toBe(400);
-    expect(response.body.error).toBe("Username already exists");
+    expect(response.body.error).toBe("Username or email already exists");
   });
 
   test('Create a new User', async () => {
