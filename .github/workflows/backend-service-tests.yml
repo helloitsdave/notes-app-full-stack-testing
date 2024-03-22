@@ -48,6 +48,8 @@ jobs:
       run: |
         npm ci
         npm run test:service
+      env:
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
 
     - name: Stop service in docker
       run: |
