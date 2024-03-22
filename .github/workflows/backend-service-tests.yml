@@ -30,6 +30,9 @@ jobs:
       with:
         node-version: 18.x
 
+    - name: Create .env file
+      run: echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" > .env
+
     - name: Start service in docker
       run: |
         npm run docker:up
@@ -48,8 +51,6 @@ jobs:
       run: |
         npm ci
         npm run test:service
-      env:
-          JWT_SECRET: ${{ secrets.JWT_SECRET }}
 
     - name: Stop service in docker
       run: |
