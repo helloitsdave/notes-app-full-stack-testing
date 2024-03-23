@@ -18,7 +18,7 @@ function App() {
       <Header />
     <Routes>
       <Route path="/" element={loggedIn ? <Navigate to="/notes" /> : <Login onLogin={handleLogin} />} />
-      <Route path="/notes" element={loggedIn ? <NoteApp /> : <Navigate to="/login" replace />} />
+      <Route path="/notes" element={loggedIn ? <NoteApp /> : <Navigate to="/" replace />} />
     </Routes>
   </Router>
   );
