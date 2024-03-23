@@ -7,4 +7,9 @@ export const db = factory({
       title: (String),
       content: (String),
     },
+    user: {
+      id: primaryKey(Number),
+      username: (String),
+      password: (String),
+    }
   })
