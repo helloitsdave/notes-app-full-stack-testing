@@ -6,6 +6,7 @@ const BASE_URL = "http://localhost:5000/api";
 
 db.note.create({ id: 1, title: "Test Title Note 1", content: "Test Content 1" });
 db.note.create({ id: 2, title: "Test Title Note 2", content: "Test Content 2" });
+db.user.create({ id: 1, username: "test", password: "pass" });
 
 type Note = {
     id: number;
@@ -13,7 +14,27 @@ type Note = {
     content: string;
     };
 
+type LoginRequestBody = {
+    username: string;
+    password: string;
+  };
+
 const handlers = [
+    http.post(`${BASE_URL}/login`, async ({ request }) => {
+        const { username, password } = await request.json() as LoginRequestBody;
+        const user = db.user.findFirst({
+            where: {
+                username: { equals: username },
+                password: { equals: password },
+            },
+        });
+        if (user) {
+            return HttpResponse.json({ token: "test" });
+        } else {
+            return HttpResponse.error();
+        }
+    }),
+
     http.get(`${BASE_URL}/notes`, () => {
         return HttpResponse.json(db.note.getAll());
     }),

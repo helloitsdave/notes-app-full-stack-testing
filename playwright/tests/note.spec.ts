@@ -14,17 +14,27 @@ const timeout = 60 * 1000;
 test.beforeAll(async ({ browser }, { timeout }) => {
   page = await browser.newPage();
 
-  /** Free tier on render.com may take 60 seconds to startup */
-  notesApi = page.waitForResponse(
-    (response) =>
-      response.url().includes('/api/notes') && response.status() === 200,
-    { timeout }
-  );
-
   await page.goto('/', { timeout });
 });
 
 test('Notes App e2e flow', async () => {
+  await test.step('Should see the login form', async () => {
+    await expect(page.getByPlaceholder('Username')).toBeVisible();
+    await expect(page.getByPlaceholder('Password')).toBeVisible();
+
+    await page.fill('[data-testid=username]', 'Test User');
+    await page.fill('[data-testid=password]', 'n0te$App!23');
+
+    /** Free tier on render.com may take 60 seconds to startup */
+    notesApi = page.waitForResponse(
+      (response) =>
+        response.url().includes('/api/notes') && response.status() === 200,
+      { timeout }
+    );
+
+    await page.click('button[type="submit"]');
+  });
+
   await test.step('Should have loaded', async () => {
     /** Wait for api response to complete */
     const notesApiResponse = await notesApi;
