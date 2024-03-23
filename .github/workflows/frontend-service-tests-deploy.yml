@@ -23,7 +23,9 @@ jobs:
         node-version: 18.x
 
     - name: Create .env file
-      run: echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" > .env
+      run: | 
+        cd ./backend
+        echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" > .env
 
     - name: Start service in docker
       run: |
