@@ -70,15 +70,22 @@ export const seed = [
 
 async function main() {
     // Seed user data
-    await prisma.user.create({
-        data: {
+    await prisma.user.createMany({
+        data: [{
             id : 'ccf89a7e-b941-4f17-bbe0-4e0c8b2cd272',
             email: 'helloitsdave@hotmail.com',
             password: 'n0te$App!23',
             username: 'Test User',
             createdAt: "2024-02-05T23:33:42.260Z",
             updatedAt: "2024-02-05T23:33:42.260Z",
-        }
+        }, {
+          id : 'dcf89a7e-b941-4f17-bbe0-4e0c8b2cd272',
+          email: 'testing@anemailtest.com',
+          password: 'test',
+          username: 'dave',
+          createdAt: "2024-02-05T23:34:42.260Z",
+          updatedAt: "2024-02-05T23:34:42.260Z",
+      }]
     });
 
     // Seed note data 

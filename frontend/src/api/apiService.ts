@@ -3,7 +3,7 @@ import axios from "axios";
 import type NoteType from "../types/note";
 
 const URL =
-  process.env.REACT_APP_API_BASE_URL || "http://localhost:5000/api/notes";
+  process.env.REACT_APP_API_BASE_URL || "http://localhost:5000/api/";
 
 const api = axios.create({
   baseURL: URL,
@@ -21,7 +21,7 @@ api.interceptors.request.use((config) => {
 
 export const postNote = async (newNote: NoteType) => {
   const response = await api.post(
-    URL,
+    'notes',
     {
       title: newNote.title,
       content: newNote.content,
@@ -32,7 +32,7 @@ export const postNote = async (newNote: NoteType) => {
 
 export const patchNote = async (updatedNote: NoteType) => {
   const response = await api.put(
-    `${URL}/${updatedNote.id}`,
+    `notes/${updatedNote.id}`,
     {
       title: updatedNote.title,
       content: updatedNote.content,
@@ -42,18 +42,18 @@ export const patchNote = async (updatedNote: NoteType) => {
 };
 
 export const removeNote = async (id: number) => {
-  const response = await api.delete(`${URL}/${id}`);
+  const response = await api.delete(`notes/${id}`);
   return response;
 };
 
 export const getNotes = async () => {
-  const response = await api.get(URL);
+  const response = await api.get('notes');
   return response;
 };
 
 export const login = async (username: string, password: string) => {
-  const response = await axios.post(
-    "http://localhost:5000/api/login",
+  const response = await api.post(
+    'login',
     {
       username,
       password,
