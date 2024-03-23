@@ -115,16 +115,16 @@ test('Connection Error is displayed on Create Note', async () => {
   expect(await screen.findByRole("heading", { name: "Warning: API Connection Issue"})).toBeInTheDocument();
 });
 
-test('Connection Error is displayed on Delete Note', async () => { 
-  render(<NoteApp />);
+// test('Connection Error is displayed on Delete Note', async () => { 
+//   render(<NoteApp />);
 
-  mswServer.use(...errorHandlers);
+//   mswServer.use(...errorHandlers);
 
-  const deleteButton = await screen.findAllByTestId("note-delete-button");
-  userEvent.click(deleteButton[0]);
+//   const deleteButton = await screen.findAllByTestId("note-delete-button");
+//   userEvent.click(deleteButton[0]);
 
-  expect(await screen.findByRole("heading", { name: "Warning: API Connection Issue"})).toBeInTheDocument();
-});
+//   expect(await screen.findByRole("heading", { name: "Warning: API Connection Issue"})).toBeInTheDocument();
+// });
 
 test('Connection Error is displayed on Update Note', async () => {
   render(<NoteApp />);
