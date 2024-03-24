@@ -21,6 +21,39 @@ body {
   }
 }
 
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  border: 2px solid white;
+  border-radius: 20px;
+  width: 260px;
+  height: 200px;
+  padding: 20px;
+}
+
+.login-page form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.login-page button{
+  border-radius: 5px;
+  background-color: #1677ff;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  color: white;
+}
+
+.login-page button:hover {
+  background-color: #3f8df9;
+  cursor: pointer;
+}
+
+
 .notes-grid {
   display: flex;
   flex-wrap: wrap;
@@ -186,35 +219,4 @@ textarea {
     font-size: 14px;
   }
  
-.login-page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px;
-  border: 2px solid white;
-  border-radius: 20px;
-  width: 400px;
-  height: 300px;
-  padding: 20px;
-}
-
-.login-page form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.login-page button{
-  border-radius: 5px;
-  background-color: #1677ff;
-  border: none;
-  padding: 10px;
-  font-size: 16px;
-  color: white;
-}
-
-.login-page button:hover {
-  background-color: #3f8df9;
-  cursor: pointer;
-}
 
