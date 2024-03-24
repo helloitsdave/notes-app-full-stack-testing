@@ -7,7 +7,11 @@ import Spinner from "./components/Spinner";
 import type NoteType from "./types/note";
 import { postNote, patchNote, getNotes, removeNote } from "./api/apiService";
 
-function NoteApp() {
+export interface LogoutProps {
+  onLogout: () => void;
+}
+
+const NoteApp: React.FC<LogoutProps> = ({ onLogout }) => {
   const [notes, setNotes] = useState<NoteType[]>([]);
   const [selectedNote, setSelectedNote] = useState<NoteType | null>(null);
   const [connectionIssue, setConnectionIssue] = useState<boolean>(false);
@@ -81,8 +85,8 @@ function NoteApp() {
   };
 
   return (
-    <div className="app-container">
-      <div className="app-header">
+    <div className="app-container" data-testid="note-app">
+      <div className="action-header">
         <Button
           className="add-note-button"
           type="primary"
@@ -90,6 +94,14 @@ function NoteApp() {
           onClick={() => setIsModalVisible(true)}
         >
           Add a note
+        </Button>
+        <Button
+          className="logout-button"
+          type="primary"
+          style={{ marginBottom: "20px" }}
+          onClick={() => onLogout()}
+        >
+          Logout
         </Button>
       </div>
 

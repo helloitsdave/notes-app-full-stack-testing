@@ -6,7 +6,7 @@ import { errorHandlers } from "./mocks/handlers";
 
 
 test("Notes NoteApp loads with notes", async () => {
-    render(<NoteApp />);
+    render(<NoteApp onLogout={() => {}} />);
 
     expect(await screen.findByTestId('spinner-container')).not.toBeInTheDocument();
 
@@ -17,7 +17,7 @@ test("Notes NoteApp loads with notes", async () => {
 });
 
 test('User can select and update note', async () => { 
-    render(<NoteApp />);
+    render(<NoteApp onLogout={() => {}} />);
 
     expect(await screen.findByText("Test Title Note 1")).toBeInTheDocument();
     // Click on the first note
@@ -42,7 +42,7 @@ test('User can select and update note', async () => {
 });
 
 test('User can add a Add a note', async () => {
-  render(<NoteApp />);
+  render(<NoteApp onLogout={() => {}}  />);
 
   const addButton = await screen.findByRole("button", { name: "Add a note" });
   userEvent.click(addButton);
@@ -65,7 +65,7 @@ test('User can add a Add a note', async () => {
 });
 
 test('User can delete a note', async () => { 
-  render(<NoteApp />);
+  render(<NoteApp onLogout={() => {}} />);
 
   // Click on the first note
   const noteTitle = await screen.findByText("Test Title Note 2");
@@ -90,14 +90,14 @@ test('User can delete a note', async () => {
 test('Connection Error is displayed on Notes fetch', async () => { 
   mswServer.use(...errorHandlers);
 
-  render(<NoteApp />);
+  render(<NoteApp onLogout={() => {}} />);
 
   expect(await screen.findByRole("heading", { name: "Warning: API Connection Issue"})).toBeInTheDocument();
 });
 
 test('Connection Error is displayed on Create Note', async () => { 
   // Render the NoteApp component
-  render(<NoteApp />);
+  render(<NoteApp onLogout={() => {}}/>);
 
   const addButton = await screen.findByRole("button", { name: "Add a note" });
   userEvent.click(addButton);
@@ -127,7 +127,7 @@ test('Connection Error is displayed on Create Note', async () => {
 // });
 
 test('Connection Error is displayed on Update Note', async () => {
-  render(<NoteApp />);
+  render(<NoteApp onLogout={() => {}}/>);
 
   // Click on the first note
   const notes = await screen.findAllByTestId("note");
@@ -143,4 +143,14 @@ test('Connection Error is displayed on Update Note', async () => {
   userEvent.click(saveButton);
 
   expect(await screen.findByRole("heading", { name: "Warning: API Connection Issue"})).toBeInTheDocument();
+});
+
+test('User can logout', async () => {
+  const onLogout = vitest.fn();
+  render(<NoteApp onLogout={onLogout} />);
+
+  const logoutButton = await screen.findByRole("button", { name: "Logout" });
+  userEvent.click(logoutButton);
+
+  expect(onLogout).toHaveBeenCalledTimes(1);
 });

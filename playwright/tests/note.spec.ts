@@ -18,7 +18,7 @@ test.beforeAll(async ({ browser }, { timeout }) => {
 });
 
 test('Notes App e2e flow', async () => {
-  await test.step('Should see the login form', async () => {
+  await test.step('Should be able to login with valid user credentials', async () => {
     await expect(page.getByPlaceholder('Username')).toBeVisible();
     await expect(page.getByPlaceholder('Password')).toBeVisible();
 
@@ -96,5 +96,12 @@ test('Notes App e2e flow', async () => {
     await expect(page.getByTestId('note-content').first()).not.toHaveText(
       NOTE_CONTENT
     );
+    // Close the modal
+    await page.locator('button[class*="modal-close"]').click();
+  });
+
+  await test.step('Should be able to logout', async () => {
+    await page.getByRole('button', { name: 'Logout' }).click();
+    await expect(page.getByPlaceholder('Username')).toBeVisible();
   });
 });
