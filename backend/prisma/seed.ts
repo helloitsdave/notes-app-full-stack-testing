@@ -11,11 +11,11 @@ export const seed = [
     "userID": "ccf89a7e-b941-4f17-bbe0-4e0c8b2cd272"
   },
   {
-    "title": "Shopping List",
-    "content": "Milk, eggs, bread, and fruits.",
+    "title": "Different User - scoping check",
+    "content": "Should not see this note with Test User",
     "createdAt": "2024-02-05T23:33:42.253Z",
     "updatedAt": "2024-02-05T23:33:42.253Z",
-    "userID": "ccf89a7e-b941-4f17-bbe0-4e0c8b2cd272"
+    "userID": "dcf89a7e-b941-4f17-bbe0-4e0c8b2cd272"
   },
   {
     "title": "Recipe",

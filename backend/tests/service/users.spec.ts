@@ -39,7 +39,7 @@ describe("Authenticated Flows", () => {
     expect(getUsersResponse.body.length).toBeGreaterThan(0);
   });
 
-  test("Usernames should be unique", async () => {
+  test("Username's should be unique", async () => {
     const response = await request(USERS_URL)
       .post("/")
       .set("Authorization", `Bearer ${token}`)

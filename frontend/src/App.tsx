@@ -13,12 +13,17 @@ function App() {
     setLoggedIn(true);
   };
 
+  const handleLogout = () => {
+    setLoggedIn(false);
+    localStorage.removeItem("token");
+  };
+
   return (
     <Router>
       <Header />
     <Routes>
       <Route path="/" element={loggedIn ? <Navigate to="/notes" /> : <Login onLogin={handleLogin} />} />
-      <Route path="/notes" element={loggedIn ? <NoteApp /> : <Navigate to="/" replace />} />
+      <Route path="/notes" element={loggedIn ? <NoteApp onLogout={handleLogout}/> : <Navigate to="/" replace />} />
     </Routes>
   </Router>
   );

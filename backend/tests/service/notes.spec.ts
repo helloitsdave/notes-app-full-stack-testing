@@ -54,12 +54,15 @@ describe("Authenticated Flows", () => {
     token = response.body.token;
   });
 
-  test("Get the list of Notes", async () => {
+  test("Should only see notes for the given user ", async () => {
     getNoteResponse = await request(NOTES_URL)
       .get("/")
       .set("Authorization", `Bearer ${token}`);
+
     expect(getNoteResponse.status).toBe(200);
-    expect(getNoteResponse.body).toHaveLength(9);
+
+    /** Should see 8 notes instead of all 9 in the database */
+    expect(getNoteResponse.body).toHaveLength(8);
 
     expect(getNoteResponse.body[getNoteResponse.body.length - 1]).toStrictEqual(
       {
@@ -71,6 +74,9 @@ describe("Authenticated Flows", () => {
         userID: "ccf89a7e-b941-4f17-bbe0-4e0c8b2cd272",
       }
     );
+
+    /** Should not see notes for a different user */
+    expect(getNoteResponse.body.find((note: any) => note.title === "Different User - scoping check")).toBeUndefined();
   });
 
   test("Create a new Note", async () => {
@@ -96,7 +102,7 @@ describe("Authenticated Flows", () => {
       .get("/")
       .set("Authorization", `Bearer ${token}`);
     expect(getNoteResponse.status).toBe(200);
-    expect(getNoteResponse.body).toHaveLength(10);
+    expect(getNoteResponse.body).toHaveLength(9);
   });
 
   test("Update a Note", async () => {
@@ -115,7 +121,7 @@ describe("Authenticated Flows", () => {
       .get("/")
       .set("Authorization", `Bearer ${token}`);
     expect(getNoteResponse.status).toBe(200);
-    expect(getNoteResponse.body).toHaveLength(10);
+    expect(getNoteResponse.body).toHaveLength(9);
 
     // Updated note should appear first in the list
     expect(getNoteResponse.body[0].id).toBe(createdID);
@@ -131,7 +137,7 @@ describe("Authenticated Flows", () => {
       .get("/")
       .set("Authorization", `Bearer ${token}`);
     expect(getNoteResponse.status).toBe(200);
-    expect(getNoteResponse.body).toHaveLength(9);
+    expect(getNoteResponse.body).toHaveLength(8);
   });
 
   test("Error handling: Attempt to Delete a Note with invalid ID", async () => {
