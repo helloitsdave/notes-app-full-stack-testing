@@ -8,6 +8,7 @@ body {
   height: 100vh;
   margin: 0px;
   background: linear-gradient(100deg, #83a4d4, #b6fbff);
+  background-attachment: fixed;
 }
 
 @media (min-width: 600px) {
@@ -29,7 +30,7 @@ body {
   border: 2px solid white;
   border-radius: 20px;
   width: 260px;
-  height: 200px;
+  height: 280px;
   padding: 20px;
 }
 

@@ -15,6 +15,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
 
 
   const handleSubmit = async (e: React.FormEvent) => {
+    setErrorText("");
     setIsDataLoading(true);
     e.preventDefault();
     try {
@@ -24,7 +25,6 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
       // Store the token in local storage as a temp solution
       localStorage.setItem("token", data.token);
       onLogin();
-      setErrorText("");
     } catch (error) {
       const errors = error as Error | AxiosError;
        // Check if the error is an AxiosError
@@ -61,7 +61,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
         />
         <button type="submit">Login</button>
         { isDataLoading && <Spinner /> }
-        {errorText && <span>{errorText}</span>}
+        {errorText !== "" && <span>{errorText}</span>}
       </form>
     </div>
   );
