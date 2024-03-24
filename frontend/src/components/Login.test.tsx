@@ -31,4 +31,14 @@ describe("Login", () => {
       expect(localStorage.getItem("token")).toBe("test");
     });
   });
+  test('Should show error message on failed login', async () => {
+    render(<Login {...props}/>);
+    userEvent.type(screen.getByPlaceholderText("Username"), "wronguser");
+    userEvent.type(screen.getByPlaceholderText("Password"), "wrongpassword");
+    userEvent.click(screen.getByText("Login"));
+
+    await waitFor(() => {
+      expect(screen.getByText("An error occurred. Please retry")).toBeInTheDocument();
+    });
+  });
 });
