@@ -74,14 +74,14 @@ async function main() {
         data: [{
             id : 'ccf89a7e-b941-4f17-bbe0-4e0c8b2cd272',
             email: 'helloitsdave@hotmail.com',
-            password: 'n0te$App!23',
+            password: '$2y$10$12dKPJq7kynM4JnI.X.l6evnYqC7zFWHcAGNU4efLbtcS0ndHD23.', // n0te$App!23
             username: 'Test User',
             createdAt: "2024-02-05T23:33:42.260Z",
             updatedAt: "2024-02-05T23:33:42.260Z",
         }, {
           id : 'dcf89a7e-b941-4f17-bbe0-4e0c8b2cd272',
           email: 'testing@anemailtest.com',
-          password: 'test',
+          password: '$2y$10$U1Py3XYLbDjYC5fmktUWG.JGIfaTwu0wxdFxNKg7vFrzCuywopFYq', // test
           username: 'dave',
           createdAt: "2024-02-05T23:34:42.260Z",
           updatedAt: "2024-02-05T23:34:42.260Z",
@@ -92,8 +92,6 @@ async function main() {
     await prisma.note.createMany({
         data: seed,
     });
-    // Reset the auto-incrementing counter
-   //  await prisma.$executeRaw`SELECT setval(pg_get_serial_sequence('notes', 'id'), coalesce(max(id),0) + 1, false) FROM notes;`
 }
 
 main()
