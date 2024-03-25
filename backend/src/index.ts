@@ -4,6 +4,14 @@ import noteRoutes from "./routes/noteRoutes";
 import userRoutes from "./routes/userRoutes";
 import loginRoutes from "./routes/loginRoutes";
 
+declare global {
+  namespace Express {
+    interface Request {
+      user: { userId: string };
+    }
+  }
+}
+
 const app = express();
 const PORT = 5000;
 
@@ -17,6 +25,7 @@ app.use("/", loginRoutes);
 app.get("/health", (req, res) => {
   res.json({ status: "ok" });
 });
+
 
 /* istanbul ignore next */
 if (process.env.NODE_ENV !== "test") {
