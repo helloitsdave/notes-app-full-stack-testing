@@ -27,6 +27,7 @@
     "build": "react-scripts build",
     "test": "vitest",
     "lint": "eslint src --ext .ts,.tsx",
+    "lint:ci": "eslint src --ext .ts,.tsx --format @microsoft/eslint-formatter-sarif --output-file eslint-results.sarif",
     "test:coverage": "vitest --coverage",
     "eject": "react-scripts eject",
     "docker:build": "docker build -t notes-app-fe .",
