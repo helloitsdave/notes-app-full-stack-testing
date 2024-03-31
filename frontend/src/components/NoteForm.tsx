@@ -32,7 +32,7 @@ const NoteForm: React.FC<NoteFormProps> = (props) => {
       props.updateNote({ ...props.selectedNote, ...newNote });
     } else {
       // Add new note
-      props.addNote(newNote);
+      props.addNote({ ...newNote });
     }
 
     setTitle('');

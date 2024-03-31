@@ -26,6 +26,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "vitest",
+    "lint": "eslint src --ext .ts,.tsx",
     "test:coverage": "vitest --coverage",
     "eject": "react-scripts eject",
     "docker:build": "docker build -t notes-app-fe .",
@@ -53,12 +54,17 @@
   "devDependencies": {
     "@mswjs/data": "0.16.1",
     "@testing-library/jest-dom": "6.2.0",
+    "@typescript-eslint/parser": "^5.62.0",
     "@vitejs/plugin-react": "4.2.1",
     "@vitest/coverage-v8": "1.1.3",
     "axios-mock-adapter": "1.22.0",
+    "eslint": "^8.57.0",
     "jsdom": "23.0.1",
     "msw": "2.0.11",
     "vitest": "1.1.2",
     "whatwg-fetch": "3.6.20"
+  },
+  "overrides": {
+    "react-refresh": "0.11.0"
   }
 }

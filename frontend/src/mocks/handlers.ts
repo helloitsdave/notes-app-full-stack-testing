@@ -40,7 +40,7 @@ const handlers = [
     }),
     http.post(`${BASE_URL}/notes`, async ({ request }) => {
         // Read the intercepted request body as JSON.
-        let newPost = await request.json()
+        const newPost = await request.json()
 
         db.note.create({...newPost as Note, id: db.note.count() + 1});
 
