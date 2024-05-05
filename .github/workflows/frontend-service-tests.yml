@@ -3,6 +3,9 @@ name: Frontend Service Tests - Playwright
 on:
   pull_request:
     branches: [ "main" ]
+    paths:
+      - "playwright/**"
+      - "frontend/**"
 
 jobs:
   build:
