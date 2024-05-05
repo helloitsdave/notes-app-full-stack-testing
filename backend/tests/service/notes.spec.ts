@@ -77,7 +77,8 @@ describe('Authenticated Flows', () => {
     /** Should not see notes for a different user */
     expect(
       getNoteResponse.body.find(
-        (note: any) => note.title === 'Different User - scoping check'
+        (note: { title: string }) =>
+          note.title === 'Different User - scoping check'
       )
     ).toBeUndefined();
   });
