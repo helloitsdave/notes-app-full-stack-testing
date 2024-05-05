@@ -8,7 +8,6 @@ config();
 const BASE_URL = `${process.env.API_URL}`;
 const NOTES_URL = `${BASE_URL}/api/notes`;
 
-let getNoteResponse: any;
 let createdID: number;
 let token: string;
 
@@ -19,7 +18,7 @@ test('Health check', async () => {
 
 describe('Unauthenticated Flows', () => {
   test('Unauthenticated - Try to get the list of Notes', async () => {
-    getNoteResponse = await request(NOTES_URL).get('/');
+    const getNoteResponse = await request(NOTES_URL).get('/');
     expect(getNoteResponse.status).toBe(401);
   });
 
@@ -55,7 +54,7 @@ describe('Authenticated Flows', () => {
   });
 
   test('Should only see notes for the given user ', async () => {
-    getNoteResponse = await request(NOTES_URL)
+    const getNoteResponse = await request(NOTES_URL)
       .get('/')
       .set('Authorization', `Bearer ${token}`);
 
@@ -102,7 +101,7 @@ describe('Authenticated Flows', () => {
 
     createdID = res.body.id;
 
-    getNoteResponse = await request(NOTES_URL)
+    const getNoteResponse = await request(NOTES_URL)
       .get('/')
       .set('Authorization', `Bearer ${token}`);
     expect(getNoteResponse.status).toBe(200);
@@ -121,7 +120,7 @@ describe('Authenticated Flows', () => {
     expect(updateRes.body.title).toBe('This is an updated test note title');
     expect(updateRes.body.content).toBe('This is an updated test note content');
 
-    getNoteResponse = await request(NOTES_URL)
+    const getNoteResponse = await request(NOTES_URL)
       .get('/')
       .set('Authorization', `Bearer ${token}`);
     expect(getNoteResponse.status).toBe(200);
@@ -137,7 +136,7 @@ describe('Authenticated Flows', () => {
       .set('Authorization', `Bearer ${token}`);
     expect(deleteRes.status).toBe(200);
 
-    getNoteResponse = await request(NOTES_URL)
+    const getNoteResponse = await request(NOTES_URL)
       .get('/')
       .set('Authorization', `Bearer ${token}`);
     expect(getNoteResponse.status).toBe(200);

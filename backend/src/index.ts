@@ -3,10 +3,14 @@ import cors from 'cors';
 import noteRoutes from './routes/noteRoutes';
 import userRoutes from './routes/userRoutes';
 import loginRoutes from './routes/loginRoutes';
-import { Request } from 'express';
 
-interface CustomRequest extends Request {
-  user: { userId: string };
+declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
+  namespace Express {
+    interface Request {
+      user: { userId: string };
+    }
+  }
 }
 
 const app = express();
@@ -19,7 +23,7 @@ app.use('/', noteRoutes);
 app.use('/', userRoutes);
 app.use('/', loginRoutes);
 
-app.get('/health', (req: CustomRequest, res) => {
+app.get('/health', (req, res) => {
   res.json({ status: 'ok' });
 });
 
