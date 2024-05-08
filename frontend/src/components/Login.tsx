@@ -13,7 +13,6 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
   const [errorText, setErrorText] = useState("");
   const [isDataLoading, setIsDataLoading] = useState(false);
 
-
   const handleSubmit = async (e: React.FormEvent) => {
     setErrorText("");
     setIsDataLoading(true);
@@ -27,7 +26,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
       onLogin();
     } catch (error) {
       const errors = error as Error | AxiosError;
-       // Check if the error is an AxiosError
+      // Check if the error is an AxiosError
       if (errors instanceof AxiosError) {
         const axiosError = errors as AxiosError;
         if (axiosError.response?.status === 401) {
@@ -35,34 +34,37 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
         } else {
           setErrorText("An error occurred. Please retry");
         }
+      }
+      setIsDataLoading(false);
     }
-    setIsDataLoading(false);
-  } 
-};
+  };
 
   return (
     <div className="login-page">
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          data-testid="username"
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          data-testid="password"
-          required
-        />
-        <button type="submit">Login</button>
-        { isDataLoading && <Spinner /> }
-        {errorText !== "" && <span>{errorText}</span>}
-      </form>
+      <div className="login-page-form">
+        <form onSubmit={handleSubmit}>
+          <h3>Existing users</h3>
+          <input
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            data-testid="username"
+            required
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            data-testid="password"
+            required
+          />
+          <button type="submit">Login</button>
+          {isDataLoading && <Spinner />}
+          {errorText !== "" && <span>{errorText}</span>}
+        </form>
+      </div>
     </div>
   );
 };

@@ -8,8 +8,9 @@ export const db = factory({
       content: (String),
     },
     user: {
-      id: primaryKey(Number),
+      id: primaryKey(String),
       username: (String),
       password: (String),
+      email: (String),
     }
   })
