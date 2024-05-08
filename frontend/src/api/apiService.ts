@@ -66,3 +66,20 @@ export const login = async (username: string, password: string) => {
   );
   return response;
 };
+
+export const createUser = async ( user: 
+  { username: string,
+  email: string,
+  password: string }
+) => {
+  const response = await api.post(
+    'users',
+    user,
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  return response;
+}

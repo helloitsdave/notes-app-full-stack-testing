@@ -20,7 +20,7 @@ router.get('/api/users', authenticateToken, async (req, res) => {
   }
 });
 
-router.post('/api/users', authenticateToken, async (req, res) => {
+router.post('/api/users', async (req, res) => {
   const { email, password, username } = req.body;
 
   if (!email || !password || !username) {
