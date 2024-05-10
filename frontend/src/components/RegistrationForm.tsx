@@ -21,6 +21,10 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ onRegister }) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  const handleChangeUsername = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setForm({ ...form, username: e.target.value.toLowerCase() });
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     setForm({ ...form, errorText: "" });
     e.preventDefault();
@@ -45,9 +49,15 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ onRegister }) => {
       if (errors instanceof AxiosError) {
         const axiosError = errors as AxiosError;
         if (axiosError.response?.status === 400) {
-          setForm({ ...form, errorText: "Error: Invalid username or password" });
+          setForm({
+            ...form,
+            errorText: "Error: Invalid username or password",
+          });
         } else {
-          setForm({ ...form, errorText: "Error: An error occurred. Please retry" });
+          setForm({
+            ...form,
+            errorText: "Error: An error occurred. Please retry",
+          });
         }
       }
     }
@@ -70,7 +80,7 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ onRegister }) => {
             type="text"
             name="username"
             value={form.username}
-            onChange={handleChange}
+            onChange={handleChangeUsername}
             placeholder="Username"
             required
           />
@@ -98,10 +108,13 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ onRegister }) => {
             placeholder="Confirm Password"
             required
           />
-          <button type="submit">Register</button>
-          <a className="nav-link" href="/">
-            Close
-          </a>
+                      <button type="submit">Register</button>
+
+          <div className='registration-form-buttons'>
+            <a className="nav-link" href="/">
+              Close
+            </a>
+          </div>
         </form>
       )}
     </div>

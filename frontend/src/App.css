@@ -1,5 +1,5 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
@@ -9,6 +9,7 @@ body {
   margin: 0px;
   background: linear-gradient(100deg, #83a4d4, #b6fbff);
   background-attachment: fixed;
+
 }
 
 @media (min-width: 600px) {
@@ -59,7 +60,7 @@ body {
   border: 2px solid white;
   border-radius: 20px;
   width: 260px;
-  height: 260px;
+  height: 350px;
   padding: 10px;
 }
 
@@ -170,6 +171,11 @@ input {
   font-size: 16px;
 }
 
+.registration-form-buttons {
+  display: flex;
+  justify-content: center;
+}
+
 textarea {
   height: 100px;
 }
@@ -209,7 +215,7 @@ textarea {
  color: white;
  text-decoration: none;
  margin: 10px;
-
+ max-width: 100px;
 }
 
 .note-form button {
@@ -294,7 +300,7 @@ textarea {
 .registration-form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+gap: 20px;
 }
 
 .registration-form button {

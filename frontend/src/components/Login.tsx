@@ -44,11 +44,12 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
       <div className="login-page-form">
         <form onSubmit={handleSubmit}>
           <h3>Existing users</h3>
+          {errorText !== "" && <span>{errorText}</span>}
           <input
             type="text"
             placeholder="Username"
             value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={(e) => setUsername(e.target.value.toLowerCase())}
             data-testid="username"
             required
           />
@@ -60,9 +61,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
             data-testid="password"
             required
           />
-          <button type="submit">Login</button>
-          {isDataLoading && <Spinner />}
-          {errorText !== "" && <span>{errorText}</span>}
+          {isDataLoading ? <Spinner /> : <button type="submit">Login</button>}
         </form>
       </div>
     </div>
