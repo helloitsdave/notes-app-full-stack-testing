@@ -17,13 +17,13 @@ test.beforeAll(async ({ browser }, { timeout }) => {
   await page.goto('/', { timeout });
 });
 
-test('Notes App e2e flow', async () => {
+test('Notes App e2e flow', { tag: ['@PRODUCTION'] }, async () => {
   await test.step('Should be able to login with valid user credentials', async () => {
     await expect(page.getByPlaceholder('Username')).toBeVisible();
     await expect(page.getByPlaceholder('Password')).toBeVisible();
 
-    await page.fill('[data-testid=username]', 'Test User');
-    await page.fill('[data-testid=password]', 'n0te$App!23');
+    await page.fill('[data-testid=username]', 'dave');
+    await page.fill('[data-testid=password]', 'test');
 
     /** Free tier on render.com may take 60 seconds to startup */
     notesApi = page.waitForResponse(

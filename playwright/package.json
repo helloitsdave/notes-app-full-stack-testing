@@ -6,7 +6,7 @@
   "scripts": {
     "install": "playwright install-deps chromium",
     "test": "playwright test",
-    "test:production": "export URL=https://notes-app-full-stack-bjml.onrender.com && playwright test",
+    "test:production": "export URL=https://notes-app-full-stack-bjml.onrender.com && playwright test --grep @PRODUCTION",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
     "lint:ci": "eslint . --ext .ts --format @microsoft/eslint-formatter-sarif --output-file eslint-results.sarif"
