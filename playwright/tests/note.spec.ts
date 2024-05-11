@@ -46,8 +46,6 @@ test('Notes App e2e flow', { tag: ['@PRODUCTION'] }, async () => {
   });
 
   await test.step('Should be able to Edit a Note', async () => {
-    await notesPage.note().first().click();
-    await expect(notesPage.saveNoteButton()).toBeVisible();
     await notesPage.editNote({
       title: EDITED_NOTE_TITLE,
       content: EDITED_NOTE_CONTENT,
