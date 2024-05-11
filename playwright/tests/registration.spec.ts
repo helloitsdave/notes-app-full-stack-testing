@@ -1,31 +1,43 @@
 import { test, expect, Page } from '@playwright/test';
+import RegistrationPage from '../pages/RegistrationPage';
+import { faker } from '@faker-js/faker';
 
 let page: Page;
-const timeout = 60 * 1000;
-const TIMESTAMP = Date.now();
+let registrationPage: RegistrationPage;
+const timeout = 60 * 1000; // Render.com free tier may take 60 seconds to startup
 
-test.beforeAll(async ({ browser }, { timeout }) => {
+const username = faker.internet.userName().toLowerCase();
+const email = faker.internet.email();
+const password = faker.internet.password();
+
+test.beforeAll(async ({ browser }) => {
   page = await browser.newPage();
-  await page.goto('/', { timeout });
+  registrationPage = new RegistrationPage(page);
+  await registrationPage.goto();
 });
 
-test('User Registration', async () => {
-  await page.getByRole('link', { name: 'Sign up' }).click();
+test.describe('User Registration', async () => {
+  test('Should be able to register new user', async () => {
+    await expect(registrationPage.accountHeader()).toBeVisible();
 
-  await expect(
-    page.getByRole('heading', { name: 'Register new account' })
-  ).toBeVisible();
+    await registrationPage.register({
+      username,
+      email,
+      password,
+    });
 
-  await page.fill('input[name="username"]', `user${TIMESTAMP}`);
-  await page.fill('input[name="email"]', `user${TIMESTAMP}@mail.com`);
-  await page.fill('input[name="password"]', 'auto');
-  await page.fill('input[name="confirmPassword"]', 'auto');
+    await expect(registrationPage.successMessage()).toBeVisible({ timeout });
+  });
+  test('Should not be able to register with existing username', async () => {
+    await registrationPage.register({
+      username: 'dave',
+      email: faker.internet.email(),
+      password,
+      expectFailure: true,
+    });
 
-  await page.getByRole('button', { name: 'Register' }).click();
-
-  /** Free tier on render.com may take 60 seconds to startup */
-
-  await expect(page.getByText('Account created successfully!')).toBeVisible({
-    timeout,
+    await expect(registrationPage.errorMessage()).toHaveText(
+      'Error: Invalid username or password'
+    );
   });
 });

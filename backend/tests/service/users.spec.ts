@@ -1,14 +1,19 @@
 import { config } from 'dotenv';
-import { test, expect, beforeAll } from 'vitest';
+import { test, expect, beforeAll, describe } from 'vitest';
 import request from 'supertest';
-import { describe } from 'node:test';
+import { faker } from '@faker-js/faker';
 
 config();
 
 const BASE_URL = `${process.env.API_URL}`;
 const USERS_URL = `${BASE_URL}/api/users`;
 
+const username = faker.internet.userName().toLowerCase();
+const email = faker.internet.email();
+const password = faker.internet.password();
+
 let token: string;
+let createdID: string;
 
 describe('Unauthenticated Flows', () => {
   test('Should not be able to get the list of Users', async () => {
@@ -51,16 +56,23 @@ describe('Authenticated Flows', () => {
   });
 
   test('Create a new User', async () => {
-    const randomUsername = Math.random().toString(36).substring(7);
     const response = await request(USERS_URL)
       .post('/')
       .set('Authorization', `Bearer ${token}`)
       .send({
-        username: randomUsername,
-        password: 'n0te$App!23',
-        email: `${randomUsername}@testing.com`,
+        username,
+        password,
+        email,
       });
     expect(response.status).toBe(200);
     expect(response.body.id).toBeDefined();
+    createdID = response.body.id;
+  });
+
+  test('Delete a User', async () => {
+    const response = await request(USERS_URL)
+      .delete(`/${createdID}`)
+      .set('Authorization', `Bearer ${token}`);
+    expect(response.status).toBe(204);
   });
 });

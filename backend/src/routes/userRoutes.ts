@@ -52,4 +52,15 @@ router.post('/api/users', async (req, res) => {
   }
 });
 
+router.delete('/api/users/:id', authenticateToken, async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    await prisma.user.delete({ where: { id } });
+    res.status(204).send({ deleted: true });
+  } catch (error) {
+    res.status(500).send({ error: 'Oops, something went wrong' });
+  }
+});
+
 export default router;
