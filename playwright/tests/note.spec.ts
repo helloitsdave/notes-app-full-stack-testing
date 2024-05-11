@@ -1,18 +1,17 @@
 import { test, expect, Page } from '@playwright/test';
+import { faker } from '@faker-js/faker';
 import LoginPage from '../pages/LoginPage';
 import NotesPage from '../pages/NotesPage';
-
-const TIMESTAMP = Date.now();
-const NOTE_TITLE = `My note ${TIMESTAMP}`;
-const NOTE_CONTENT = `My note content ${TIMESTAMP}`;
-const EDITED_NOTE_TITLE = `Edited note ${TIMESTAMP}`;
-const EDITED_NOTE_CONTENT = `Edited note content ${TIMESTAMP}`;
 
 let page: Page;
 let loginPage: LoginPage;
 let notesPage: NotesPage;
 
 const timeout = 60 * 1000;
+const NOTE_TITLE = faker.lorem.sentence();
+const NOTE_CONTENT = faker.lorem.lines({ min: 1, max: 5 });
+const EDITED_NOTE_TITLE = faker.lorem.sentence();
+const EDITED_NOTE_CONTENT = faker.lorem.lines({ min: 1, max: 5 });
 
 test.beforeAll(async ({ browser }) => {
   page = await browser.newPage();
