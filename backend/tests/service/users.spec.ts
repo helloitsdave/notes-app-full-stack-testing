@@ -56,7 +56,6 @@ describe('Authenticated Flows', () => {
   });
 
   test('Create a new User', async () => {
-    const randomUsername = Math.random().toString(36).substring(7);
     const response = await request(USERS_URL)
       .post('/')
       .set('Authorization', `Bearer ${token}`)

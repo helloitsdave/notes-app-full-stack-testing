@@ -136,7 +136,7 @@ describe('Create User', () => {
 
 describe('Delete User', () => {
   test('DELETE with id', async ({}) => {
-    prisma.user.delete.mockResolvedValue({ 
+    prisma.user.delete.mockResolvedValue({
       id: 'gcf89a7e-b941-4f17-bbe0-4e0c8b2cd272',
       username: 'Dave',
       password: 'check',
