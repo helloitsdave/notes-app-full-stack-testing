@@ -133,3 +133,33 @@ describe('Create User', () => {
     });
   });
 });
+
+describe('Delete User', () => {
+  test('DELETE with id', async ({}) => {
+    prisma.user.delete.mockResolvedValue({ 
+      id: 'gcf89a7e-b941-4f17-bbe0-4e0c8b2cd272',
+      username: 'Dave',
+      password: 'check',
+      email: null,
+      createdAt: new Date('2024-02-05T23:33:42.252Z'),
+      updatedAt: new Date('2024-02-05T23:33:42.252Z'),
+    });
+    const response = await request(app).delete(
+      '/api/users/gcf89a7e-b941-4f17-bbe0-4e0c8b2cd272'
+    );
+    expect(response.status).toBe(204);
+  });
+
+  test('DELETE with error', async ({}) => {
+    prisma.user.delete.mockImplementation(() => {
+      throw new Error('Test error');
+    });
+    const response = await request(app).delete(
+      '/api/users/gcf89a7e-b941-4f17-bbe0-4e0c8b2cd272'
+    );
+    expect(response.status).toBe(500);
+    expect(response.body).toStrictEqual({
+      error: 'Oops, something went wrong',
+    });
+  });
+});

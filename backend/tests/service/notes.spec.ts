@@ -1,7 +1,6 @@
 import { config } from 'dotenv';
-import { test, expect, beforeAll } from 'vitest';
+import { test, expect, beforeAll, describe } from 'vitest';
 import request from 'supertest';
-import { describe } from 'node:test';
 
 config();
 
