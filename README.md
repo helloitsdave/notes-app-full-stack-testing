@@ -27,6 +27,7 @@ Refactored the app for testability and added a few additional tweaks.
 [![Playwright e2e Production Tests](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/playwright-production-tests.yml/badge.svg)](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/playwright-production-tests.yml)
 
 - [Playwright.io](https://playwright.dev/) with typescript
+- [Allure Production Test Report](https://helloitsdave.github.io/notes-app-full-stack-testing) with history
 
 ### Component Tests
 [![Frontend Component Tests](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/frontend-component-tests.yml/badge.svg)](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/frontend-component-tests.yml)

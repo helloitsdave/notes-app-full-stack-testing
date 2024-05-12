@@ -30,7 +30,7 @@ jobs:
       run: |
         npm run test:production
 
-    - name: Run Playwright Tests
+    - name: Upload Playwright Report to Artifacts
       uses: actions/upload-artifact@v2
       if: always()
       with:
