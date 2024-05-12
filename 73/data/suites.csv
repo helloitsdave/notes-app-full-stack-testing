@@ -1,0 +1,7 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Sun May 12 13:40:51 GMT 2024","Sun May 12 13:40:57 GMT 2024","5310","chromium","note.spec.ts","Notes App e2e flow","","","Should see notes page login",""
+"passed","Sun May 12 13:41:01 GMT 2024","Sun May 12 13:41:02 GMT 2024","268","chromium","note.spec.ts","Notes App e2e flow","","","Should be able to logout",""
+"passed","Sun May 12 13:40:57 GMT 2024","Sun May 12 13:40:58 GMT 2024","1339","chromium","note.spec.ts","Notes App e2e flow","","","Should be able to Add a Note",""
+"passed","Sun May 12 13:41:01 GMT 2024","Sun May 12 13:41:01 GMT 2024","496","chromium","note.spec.ts","Notes App e2e flow","","","Should not be able to add Note without title",""
+"passed","Sun May 12 13:40:58 GMT 2024","Sun May 12 13:41:00 GMT 2024","1901","chromium","note.spec.ts","Notes App e2e flow","","","Should be able to Delete a Note",""
+"passed","Sun May 12 13:41:00 GMT 2024","Sun May 12 13:41:01 GMT 2024","952","chromium","note.spec.ts","Notes App e2e flow","","","Should be able to Edit a Note",""
