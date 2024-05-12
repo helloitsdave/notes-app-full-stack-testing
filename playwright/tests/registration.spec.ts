@@ -1,6 +1,7 @@
 import { test, expect, Page } from '@playwright/test';
-import RegistrationPage from '../pages/RegistrationPage';
 import { faker } from '@faker-js/faker';
+import { allure } from 'allure-playwright';
+import RegistrationPage from '../pages/RegistrationPage';
 
 let page: Page;
 let registrationPage: RegistrationPage;
@@ -11,6 +12,8 @@ const email = faker.internet.email();
 const password = faker.internet.password();
 
 test.beforeAll(async ({ browser }) => {
+  await allure.feature('User Registration');
+
   page = await browser.newPage();
   registrationPage = new RegistrationPage(page);
   await registrationPage.goto();
@@ -29,6 +32,8 @@ test.describe('User Registration', async () => {
     await expect(registrationPage.successMessage()).toBeVisible({ timeout });
   });
   test('Should not be able to register with existing username', async () => {
+    await registrationPage.goto();
+
     await registrationPage.register({
       username: 'dave',
       email: faker.internet.email(),
