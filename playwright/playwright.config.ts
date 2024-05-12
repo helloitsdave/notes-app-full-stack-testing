@@ -34,7 +34,7 @@ export default defineConfig({
       'allure-playwright',
       {
         detail: true,
-        suiteTitle: true,
+        suiteTitle: false,
         environmentInfo: {
           os_platform: os.platform(),
           os_release: os.release(),
