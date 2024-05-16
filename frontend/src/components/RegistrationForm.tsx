@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { AxiosError } from "axios";
 import { createUser } from "../api/apiService";
+import Spinner from "./Spinner";
 
 export interface RegistrationFormProps {
   onRegister: () => void;
@@ -14,6 +15,7 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ onRegister }) => {
     confirmPassword: "",
     errorText: "",
   });
+  const [isDataLoading, setIsDataLoading] = useState(false);
 
   const [registered, setRegistered] = useState(false);
 
@@ -36,16 +38,20 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ onRegister }) => {
     }
 
     try {
+      setIsDataLoading(true);
       await createUser({
         username: form.username,
         email: form.email,
         password: form.password,
       });
       setRegistered(true);
+      setIsDataLoading(false);
       onRegister();
     } catch (error) {
       const errors = error as Error | AxiosError;
       // Check if the error is an AxiosError
+      setIsDataLoading(false);
+
       if (errors instanceof AxiosError) {
         const axiosError = errors as AxiosError;
         if (axiosError.response?.status === 400) {
@@ -108,9 +114,14 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ onRegister }) => {
             placeholder="Confirm Password"
             required
           />
-                      <button type="submit">Register</button>
 
-          <div className='registration-form-buttons'>
+          {isDataLoading ? (
+            <Spinner />
+          ) : (
+            <button type="submit">Register</button>
+          )}
+
+          <div className="registration-form-buttons">
             <a className="nav-link" href="/">
               Close
             </a>
