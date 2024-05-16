@@ -13,8 +13,14 @@ const NoteGrid: React.FC<NotesListProps> = ({
   deleteNote,
 }) => {
   return (
-    <div className='notes-list'>
+    <div className="notes-list">
       <div className="notes-grid">
+        {notes.length === 0 && (
+          <div className="notes-grid-welcome">
+            <h2>Welcome to e-notes!</h2>
+            <p>Click above to add your first note</p>
+          </div>
+        )}
         {notes.map((note) => (
           <Note
             key={note.id}

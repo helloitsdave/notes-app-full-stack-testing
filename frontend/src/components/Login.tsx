@@ -43,8 +43,8 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
     <div className="login-page">
       <div className="login-page-form">
         <form onSubmit={handleSubmit}>
-          <h3>Existing users</h3>
-          {errorText !== "" && <span>{errorText}</span>}
+          <h3>Existing user login</h3>
+          {errorText !== "" && <span className='registration-form-error'>{errorText}</span>}
           <input
             type="text"
             placeholder="Username"

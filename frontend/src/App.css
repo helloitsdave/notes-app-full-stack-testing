@@ -11,6 +11,7 @@ body {
   background-image: url('../public/hero.jpg');
   background-size: cover;
   background-position: center;
+  background-attachment: fixed  ;
 }
 
 @media (min-width: 600px) {
@@ -40,6 +41,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 20px;
 }
 
 .login-register {
@@ -207,8 +209,7 @@ textarea {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: auto;
-
+  margin: 10px;
 }
 
 .nav-link {
@@ -249,6 +250,17 @@ textarea {
 .notes-header button:hover {
   background-color:lightcoral;
   cursor: pointer;
+}
+
+.notes-grid-welcome {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  border: 2px solid white;
+  padding: 30px;
+  backdrop-filter: blur(10px);
 }
 
 .edit-buttons {
