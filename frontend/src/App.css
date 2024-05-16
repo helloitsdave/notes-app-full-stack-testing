@@ -11,7 +11,20 @@ body {
   background-image: url('../public/hero.jpg');
   background-size: cover;
   background-position: center;
-  background-attachment: fixed  ;
+  background-attachment: fixed;
+}
+
+body::before {
+  content: "";
+  position: fixed; /* This makes it stay in place on scroll */
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1; /* Keep it behind the content */
+  background-image: url('../public/hero.jpg');
+  background-size: cover;
+  background-position: center;
 }
 
 @media (min-width: 600px) {
