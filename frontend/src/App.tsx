@@ -18,6 +18,7 @@ function App() {
 
   const handleLogin = () => {
     setLoggedIn(true);
+    setRegistered(false);
   };
 
   const handleLogout = () => {

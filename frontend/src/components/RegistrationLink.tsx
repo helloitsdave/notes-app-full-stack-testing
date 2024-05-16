@@ -4,7 +4,6 @@ const RegistrationLink = (props: { onRegister: boolean }) => {
       <div className="registration-link">
         <h1>e-notes</h1>
       </div>
-      <div className="registration-link-container">
         {!props.onRegister ? (
           <div className="registration-link-container">
             <p>Welcome to the e-notes app</p>
@@ -20,7 +19,6 @@ const RegistrationLink = (props: { onRegister: boolean }) => {
             </div>
          
         )}
-      </div>
     </div>
   );
 };
