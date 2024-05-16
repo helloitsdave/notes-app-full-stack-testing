@@ -1,0 +1,7 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"failed","Thu May 16 12:04:58 GMT 2024","Thu May 16 12:05:09 GMT 2024","10851","chromium","","Notes App e2e flow","","","Should be able to Add a Note",""
+"failed","Thu May 16 12:03:31 GMT 2024","Thu May 16 12:04:32 GMT 2024","60979","chromium","","Notes App e2e flow","","","Should see notes page login",""
+"failed","Thu May 16 12:07:28 GMT 2024","Thu May 16 12:07:39 GMT 2024","10913","chromium","","Notes App e2e flow","","","Should be able to logout",""
+"failed","Thu May 16 12:05:36 GMT 2024","Thu May 16 12:05:47 GMT 2024","10895","chromium","","Notes App e2e flow","","","Should be able to Delete a Note",""
+"failed","Thu May 16 12:06:51 GMT 2024","Thu May 16 12:07:02 GMT 2024","10894","chromium","","Notes App e2e flow","","","Should not be able to add Note without title",""
+"failed","Thu May 16 12:06:13 GMT 2024","Thu May 16 12:06:24 GMT 2024","10956","chromium","","Notes App e2e flow","","","Should be able to Edit a Note",""
