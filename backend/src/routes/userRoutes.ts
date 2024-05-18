@@ -52,8 +52,9 @@ router.post('/api/users', async (req, res) => {
   }
 });
 
-router.delete('/api/users/:id', authenticateToken, async (req, res) => {
-  const { id } = req.params;
+router.delete('/api/users/', authenticateToken, async (req, res) => {
+  // get id from decoded jwt token
+  const id = req.user.userId;
 
   try {
     await prisma.user.delete({ where: { id } });

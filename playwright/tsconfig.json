@@ -12,7 +12,7 @@
       "strict": true,
       "skipLibCheck": true
     },
-    "include": ["src", "tests", "pages", "./.eslintrc.js", "./playwright.config.ts"],
+    "include": ["src", "tests", "pages", "helpers", "./.eslintrc.js", "./playwright.config.ts", "cleanup/Cleanup.ts"],
     "exclude": ["node_modules", "dist"],
     "overrides": [
       {

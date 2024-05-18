@@ -1,11 +1,14 @@
-import { test, expect, Page } from '@playwright/test';
+import { test, expect, Page, APIResponse } from '@playwright/test';
 import { faker } from '@faker-js/faker';
 import { allure } from 'allure-playwright';
 import RegistrationPage from '../pages/RegistrationPage';
+import deleteUser from '../helpers/deleteUser';
+import apiLogin from '../helpers/apiLogin';
 
 let page: Page;
 let registrationPage: RegistrationPage;
 const timeout = 60 * 1000; // Render.com free tier may take 60 seconds to startup
+let token: string;
 
 const username = faker.internet.userName().toLowerCase();
 const email = faker.internet.email();
@@ -19,7 +22,7 @@ test.beforeAll(async ({ browser }) => {
   await registrationPage.goto();
 });
 
-test.describe('User Registration', async () => {
+test.describe('User Registration', { tag: ['@PRODUCTION'] }, async () => {
   test('Should be able to register new user', async () => {
     await expect(registrationPage.accountHeader()).toBeVisible();
 
@@ -30,7 +33,24 @@ test.describe('User Registration', async () => {
     });
 
     await expect(registrationPage.successMessage()).toBeVisible({ timeout });
+
+    await test.step('Should be able to login with newly registered user', async () => {
+      const loginResponse: APIResponse = await apiLogin({ username, password });
+
+      expect(loginResponse.ok()).toBeTruthy();
+
+      const json = await loginResponse.json();
+      token = json.token;
+
+      expect(json.token).toBeTruthy();
+    });
+
+    await test.step('Cleanup: Delete User', async () => {
+      const deleteUserResponse = await deleteUser(token);
+      expect(deleteUserResponse.ok()).toBeTruthy();
+    });
   });
+
   test('Should not be able to register with existing username', async () => {
     await registrationPage.goto();
 

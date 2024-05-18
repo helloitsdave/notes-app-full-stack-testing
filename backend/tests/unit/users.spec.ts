@@ -145,7 +145,7 @@ describe('Delete User', () => {
       updatedAt: new Date('2024-02-05T23:33:42.252Z'),
     });
     const response = await request(app).delete(
-      '/api/users/gcf89a7e-b941-4f17-bbe0-4e0c8b2cd272'
+      '/api/users/'
     );
     expect(response.status).toBe(204);
   });
@@ -155,7 +155,7 @@ describe('Delete User', () => {
       throw new Error('Test error');
     });
     const response = await request(app).delete(
-      '/api/users/gcf89a7e-b941-4f17-bbe0-4e0c8b2cd272'
+      '/api/users/'
     );
     expect(response.status).toBe(500);
     expect(response.body).toStrictEqual({
