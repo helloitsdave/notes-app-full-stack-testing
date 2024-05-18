@@ -13,7 +13,6 @@ const email = faker.internet.email();
 const password = faker.internet.password();
 
 let token: string;
-let createdID: string;
 
 describe('Unauthenticated Flows', () => {
   test('Should not be able to get the list of Users', async () => {
@@ -66,12 +65,11 @@ describe('Authenticated Flows', () => {
       });
     expect(response.status).toBe(200);
     expect(response.body.id).toBeDefined();
-    createdID = response.body.id;
   });
 
   test('Delete a User', async () => {
     const response = await request(USERS_URL)
-      .delete('/')
+      .delete('q/')
       .set('Authorization', `Bearer ${token}`);
     expect(response.status).toBe(204);
   });
