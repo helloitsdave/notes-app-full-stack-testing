@@ -71,7 +71,7 @@ describe('Authenticated Flows', () => {
 
   test('Delete a User', async () => {
     const response = await request(USERS_URL)
-      .delete(`/${createdID}`)
+      .delete('/')
       .set('Authorization', `Bearer ${token}`);
     expect(response.status).toBe(204);
   });
