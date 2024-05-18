@@ -22,6 +22,7 @@ class RegistrationPage {
   accountHeader = () =>
     this.page.getByRole('heading', { name: 'Register new account' });
   errorMessage = () => this.page.locator('.registration-form-error');
+  spinnerContainer = () => this.page.getByTestId('spinner-container');
 
   goto = async () => {
     await this.page.goto('/register');
@@ -55,6 +56,10 @@ class RegistrationPage {
         timeout: options.timeout || this.defaultTimeout,
       });
     }
+  };
+
+  getLocalStorage = async () => {
+    return await this.page.evaluate(() => JSON.stringify(window.localStorage));
   };
 }
 
