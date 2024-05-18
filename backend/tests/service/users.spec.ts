@@ -68,6 +68,15 @@ describe('Authenticated Flows', () => {
   });
 
   test('Delete a User', async () => {
+    const newUserLogin = await request(BASE_URL).post('/api/login').send({
+      password,
+      username,
+    });
+    expect(newUserLogin.status).toBe(200);
+    expect(newUserLogin.body.token).toBeDefined();
+    // Set Token for future requests
+    token = newUserLogin.body.token;
+
     const response = await request(USERS_URL)
       .delete('/')
       .set('Authorization', `Bearer ${token}`);
