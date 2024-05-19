@@ -22,6 +22,16 @@ test.beforeAll(async ({ browser }) => {
   await registrationPage.goto();
 });
 
+test.afterAll(async () => {
+  /**
+   * Delete the user if it was created
+   */
+  if (token) {
+    const deleteUserResponse = await deleteUser(token);
+    expect(deleteUserResponse.ok()).toBeTruthy();
+  }
+});
+
 test.describe('User Registration', { tag: ['@PRODUCTION'] }, async () => {
   test('Should be able to register new user', async () => {
     await expect(registrationPage.accountHeader()).toBeVisible();
@@ -43,11 +53,6 @@ test.describe('User Registration', { tag: ['@PRODUCTION'] }, async () => {
       token = json.token;
 
       expect(json.token).toBeTruthy();
-    });
-
-    await test.step('Cleanup: Delete User', async () => {
-      const deleteUserResponse = await deleteUser(token);
-      expect(deleteUserResponse.ok()).toBeTruthy();
     });
   });
 
