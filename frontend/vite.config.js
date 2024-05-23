@@ -6,9 +6,10 @@ const isCI = process.env.CI === "true";
 export default defineConfig({
   plugins: [react()],
   test: {
+    include: ["**/src/**/*.test.ts", "**/src/**/*.test.tsx"],
     globals: true,
     environment: "jsdom",
-    setupFiles: "./src/setupTests.js",
+    setupFiles:  "./src/setupTests.js",
     coverage: {
       provider: "v8",
       reporter: isCI ? ["lcov", "text-summary"] : "text",
