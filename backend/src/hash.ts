@@ -1,5 +1,7 @@
 import bcrypt from 'bcryptjs';
 
+const notUs = 'Band!';
+
 export async function hashPassword(password: string): Promise<string> {
   return bcrypt.hash(password, 10);
 }
