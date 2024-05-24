@@ -38,40 +38,6 @@
       }
     },
     {
-      "description": "a request to update a note",
-      "providerState": "note is added",
-      "request": {
-        "body": {
-          "content": "New Note Content",
-          "title": "New Note Title"
-        },
-        "headers": {
-          "Content-Type": "application/json"
-        },
-        "method": "POST",
-        "path": "/api/notes"
-      },
-      "response": {
-        "body": {
-          "content": "New Note Content",
-          "createdAt": "2021-01-01T00:00:00.000Z",
-          "id": 1,
-          "title": "New Note Title",
-          "updatedAt": "2021-01-01T00:00:00.000Z",
-          "userID": "618005a7-bbca-4d1f-83cd-1fb1d5511d06"
-        },
-        "headers": {
-          "Content-Type": "application/json"
-        },
-        "matchingRules": {
-          "$.body": {
-            "match": "type"
-          }
-        },
-        "status": 200
-      }
-    },
-    {
       "description": "a request to get notes",
       "providerState": "notes are returned",
       "request": {
