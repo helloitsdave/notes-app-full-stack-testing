@@ -27,6 +27,7 @@
     "build": "react-scripts build",
     "test": "vitest",
     "test:coverage": "vitest --coverage",
+    "test:contract" : "vitest --config vite.config.pact.js",
     "eject": "react-scripts eject",
     "docker:build": "docker build -t notes-app-fe .",
     "docker:up": "docker run -p 3000:3000 notes-app-fe",
@@ -52,6 +53,7 @@
   },
   "devDependencies": {
     "@mswjs/data": "0.16.1",
+    "@pact-foundation/pact": "^12.5.0",
     "@testing-library/jest-dom": "6.2.0",
     "@vitejs/plugin-react": "4.2.1",
     "@vitest/coverage-v8": "1.1.3",
