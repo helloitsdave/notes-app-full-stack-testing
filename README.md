@@ -58,6 +58,11 @@ Refactored the app for testability and added a few additional tweaks.
 - Service tests with docker, [supertest](https://github.com/ladjs/supertest) and [vitest](https://vitest.dev/)
 - Unit tests with [supertest](https://github.com/ladjs/supertest), [vitest](https://vitest.dev/) and [vitest-mock-extended](https://github.com/eratio08/vitest-mock-extended)
 
+### Contract Tests
+[![Backend Contract Tests](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/backend-contract-tests.yml/badge.svg)](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/backend-contract-tests.yml)
+
+- Contract tests with [pact](https://docs.pact.io/)
+
 ## Database
 
 - [Postgres](https://www.postgresql.org/) with Serverless hosting on [Neon](https://neon.tech/)
