@@ -19,6 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       API_URL: http://localhost:5000
+      CONTRACT_TEST_AUTH_TOKEN: ${{ secrets.CONTRACT_TEST_AUTH_TOKEN }}
     steps:
     - uses: actions/checkout@v3
 
@@ -33,7 +34,6 @@ jobs:
     - name: Create .env file
       run: |
         echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" > .env
-        echo "CONTRACT_TEST_AUTH_TOKEN=${{ secrets.CONTRACT_TEST_AUTH_TOKEN }}" >> .env
 
     - name: Start service in docker
       run: |
