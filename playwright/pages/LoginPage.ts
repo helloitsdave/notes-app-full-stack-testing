@@ -12,6 +12,7 @@ class LoginPage {
   passwordInput = () => this.page.getByTestId('password');
   loginButton = () => this.page.getByRole('button', { name: 'Login' });
   signupLink = () => this.page.getByRole('link', { name: 'Sign up' });
+  loginErrorText = () => this.page.getByTestId('login-error-text');
 
   async goto() {
     await this.page.goto('/');
