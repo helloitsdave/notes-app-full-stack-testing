@@ -62,7 +62,7 @@ const NoteApp: React.FC<LogoutProps> = ({ onLogout }) => {
     }
   };
 
-  const deleteNote = async (noteId: number) => {
+  const deleteNote = async (noteId: string) => {
     try {
       const response = await removeNote(noteId);
       await response.data;

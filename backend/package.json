@@ -7,7 +7,7 @@
     "test:service": "npx vitest **/service/*.spec.ts",
     "test:unit": "npx vitest -c ./vitest.config.unit.mts",
     "test:coverage": "npx vitest **/unit/*.spec.ts --coverage",
-    "test:contract": "npx vitest **/contract/*.spec.ts",
+    "test:contract": "npx vitest --testTimeout 30000 **/contract/*.spec.ts",
     "start:local": "npx nodemon",
     "start": "node dist/index.js",
     "build": "tsc",

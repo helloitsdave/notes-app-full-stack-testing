@@ -41,7 +41,7 @@ export const patchNote = async (updatedNote: NoteType) => {
   return response;
 };
 
-export const removeNote = async (id: number) => {
+export const removeNote = async (id: string) => {
   const response = await api.delete(`notes/${id}`);
   return response;
 };

@@ -21,10 +21,44 @@
         "body": {
           "content": "New Note Content",
           "createdAt": "2021-01-01T00:00:00.000Z",
-          "id": 1,
+          "id": "0a97f1c3-294e-43e8-b78f-60209e972ee9",
           "title": "New Note Title",
           "updatedAt": "2021-01-01T00:00:00.000Z",
           "userID": "618005a7-bbca-4d1f-83cd-1fb1d5511d06"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "matchingRules": {
+          "$.body": {
+            "match": "type"
+          }
+        },
+        "status": 200
+      }
+    },
+    {
+      "description": "a request to update a note",
+      "providerState": "note is updated",
+      "request": {
+        "body": {
+          "content": "Updated Note Content",
+          "title": "Updated Note Title"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "method": "PUT",
+        "path": "/api/notes/a37f39bc-9e4f-45f2-b1d6-fe668bba2b55"
+      },
+      "response": {
+        "body": {
+          "content": "Updated Note Content",
+          "createdAt": "2024-05-21T22:58:55.743Z",
+          "id": "a37f39bc-9e4f-45f2-b1d6-fe668bba2b55",
+          "title": "Updated Note Title",
+          "updatedAt": "2024-05-26T19:43:58.742Z",
+          "userID": "ccf89a7e-b941-4f17-bbe0-4e0c8b2cd272"
         },
         "headers": {
           "Content-Type": "application/json"
@@ -49,7 +83,7 @@
           {
             "content": "Note Content",
             "createdAt": "2021-01-01T00:00:00.000Z",
-            "id": 1,
+            "id": "0a97f1c3-294e-43e8-b78f-60209e972ee9",
             "title": "Note Title",
             "updatedAt": "2021-01-01T00:00:00.000Z",
             "userID": "618005a7-bbca-4d1f-83cd-1fb1d5511d06"

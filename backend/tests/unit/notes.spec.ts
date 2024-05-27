@@ -33,7 +33,7 @@ describe('View notes', () => {
     expect(response.status).toBe(200);
     expect(response.body).toEqual([
       {
-        id: 1,
+        id: 'a1b2c3d4-1234-5678-9abc-abcdef123456',
         title: 'Meeting Notes',
         content: 'Discussed project timelines and goals.',
         createdAt: '2024-02-05T23:43:42.252Z',
@@ -70,7 +70,7 @@ describe('Create a note', () => {
     prisma.note.create.mockResolvedValue({
       content: 'Test',
       title: 'Test',
-      id: 1,
+      id: 'a1b2c3d4-1234-5678-9abc-abcdef123456',
       updatedAt: new Date('2024-02-05T23:33:42.252Z'),
       createdAt: new Date('2024-02-05T23:33:42.252Z'),
       userID: 'ccf89a7e-b941-4f17-bbe0-4e0c8b2cd272',
@@ -120,55 +120,48 @@ describe('Update a note', () => {
     prisma.note.update.mockResolvedValue({
       title: 'Test update',
       content: 'Test',
-      id: 1,
+      id: 'a1b2c3d4-1234-5678-9abc-abcdef123457',
       updatedAt: new Date('2024-02-05T23:33:42.252Z'),
       createdAt: new Date('2024-02-05T23:33:42.252Z'),
       userID: 'ccf89a7e-b941-4f17-bbe0-4e0c8b2cd272',
     });
     const response = await request(app)
-      .put('/api/notes/1')
+      .put('/api/notes/a1b2c3d4-1234-5678-9abc-abcdef123457')
       .send({ title: 'Test update', content: 'Test', id: 1 });
     expect(response.status).toBe(200);
     expect(response.body).toStrictEqual({
       title: 'Test update',
       content: 'Test',
       createdAt: '2024-02-05T23:33:42.252Z',
-      id: 1,
+      id: 'a1b2c3d4-1234-5678-9abc-abcdef123457',
       updatedAt: '2024-02-05T23:33:42.252Z',
       userID: 'ccf89a7e-b941-4f17-bbe0-4e0c8b2cd272',
     });
   });
   test('PUT without title - failure', async ({}) => {
     const response = await request(app)
-      .put('/api/notes/1')
+      .put('/api/notes/a1b2c3d4-1234-5678-9abc-abcdef123457')
       .send({ content: 'Test', id: 1 });
     expect(response.status).toBe(400);
   });
   test('PUT without content - failure', async ({}) => {
     const response = await request(app)
-      .put('/api/notes/1')
+      .put('/api/notes/a1b2c3d4-1234-5678-9abc-abcdef123457')
       .send({ title: 'Test' });
     expect(response.status).toBe(400);
   });
   test('PUT without id in url - failure', async ({}) => {
     const response = await request(app)
       .put('/api/notes/')
-      .send({ title: 'Test' });
-    expect(response.status).toBe(404);
-  });
-  test('PUT with not string in url - failure', async ({}) => {
-    const response = await request(app)
-      .put('/api/notes/blah')
       .send({ title: 'Test', content: 'Test', id: 1 });
-    expect(response.status).toBe(400);
-    expect(response.body).toStrictEqual({ error: 'ID must be a valid number' });
+    expect(response.status).toBe(404);
   });
   test('PUT with a 500 error - failure', async ({}) => {
     prisma.note.update.mockImplementation(() => {
       throw new Error('Test error');
     });
     const response = await request(app)
-      .put('/api/notes/1')
+      .put('/api/notes/a1b2c3d4-1234-5678-9abc-abcdef123457')
       .send({ title: 'Test update', content: 'Test', id: 1 });
     expect(response.status).toBe(500);
     expect(response.body).toStrictEqual({
@@ -198,15 +191,6 @@ describe('Delete a note', () => {
     expect(response.body).toStrictEqual({
       error: 'Oops, something went wrong',
     });
-  });
-  test('DELETE with id error', async ({}) => {
-    prisma.note.delete.mockImplementation(() => {
-      throw new Error('Test error');
-    });
-    const response = await request(app).delete('/api/notes/string');
-
-    expect(response.status).toBe(400);
-    expect(response.body).toStrictEqual({ error: 'ID field required' });
   });
 });
 
