@@ -18,7 +18,6 @@ describe('Pact Verification', () => {
       ],
       log: 'INFO', // Set to "DEBUG" to see output
     };
-
     return new Verifier(opts).verifyProvider().then((output) => {
       console.log(output);
     });

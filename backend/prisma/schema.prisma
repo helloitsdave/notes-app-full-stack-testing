@@ -12,7 +12,7 @@ datasource db {
 }
 
 model Note {
-  id        Int      @id @default(autoincrement())
+  id        String      @id @default(uuid())
   title     String
   content   String
   createdAt DateTime @default(now()) @map("created_at")

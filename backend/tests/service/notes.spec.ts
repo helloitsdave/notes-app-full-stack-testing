@@ -66,7 +66,7 @@ describe('Authenticated Flows', () => {
       {
         content: 'Discussed project timelines and goals.',
         createdAt: '2024-02-05T23:33:42.252Z',
-        id: 1,
+        id: '328baf25-3cb5-46a8-a66e-d86ac9bd46d5',
         title: 'Meeting Notes',
         updatedAt: '2024-02-05T23:33:42.252Z',
         userID: 'ccf89a7e-b941-4f17-bbe0-4e0c8b2cd272',
@@ -147,7 +147,7 @@ describe('Authenticated Flows', () => {
     const deleteRes = await request(NOTES_URL)
       .delete(`/invalid-id`)
       .set('Authorization', `Bearer ${token}`);
-    expect(deleteRes.status).toBe(400);
-    expect(deleteRes.body.error).toBe('ID field required');
+    expect(deleteRes.status).toBe(500);
+    expect(deleteRes.body.error).toBe('Oops, something went wrong');
   });
 });

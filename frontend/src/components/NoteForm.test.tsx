@@ -29,7 +29,7 @@ describe("NoteForm", () => {
         addNote={() => {}}
         updateNote={() => {}}
         selectedNote={{
-          id: 1,
+          id: "0a97f1c3-294e-43e8-b78f-60209e972ee9",
           title: "Selected Title",
           content: "Selected Test Content",
         }}
@@ -103,7 +103,7 @@ describe("NoteForm", () => {
         addNote={() => {}}
         updateNote={updateNoteMock}
         selectedNote={{
-          id: 1,
+          id: "0a97f1c3-294e-43e8-b78f-60209e972ee9",
           title: "Selected Test Title",
           content: "Selected Test Content",
         }}
@@ -125,7 +125,7 @@ describe("NoteForm", () => {
 
     // Then the addNote function should be called with the new note
     expect(updateNoteMock).toHaveBeenCalledWith({
-      id: 1,
+      id: "0a97f1c3-294e-43e8-b78f-60209e972ee9",
       title: "Selected Test Title Updated",
       content: "Selected Test Content Updated",
     });
@@ -138,7 +138,7 @@ describe("NoteForm", () => {
         addNote={() => {}}
         updateNote={() => {}}
         selectedNote={{
-          id: 1,
+          id: "0a97f1c3-294e-43e8-b78f-60209e972ee9",
           title: "Selected Test Title",
           content: "Selected Test Content",
         }}

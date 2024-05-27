@@ -9,6 +9,7 @@ export const seed = [
     createdAt: '2024-02-05T23:33:42.252Z',
     updatedAt: '2024-02-05T23:33:42.252Z',
     userID: 'ccf89a7e-b941-4f17-bbe0-4e0c8b2cd272',
+    id: '328baf25-3cb5-46a8-a66e-d86ac9bd46d5',
   },
   {
     title: 'Different User - scoping check',
@@ -16,6 +17,7 @@ export const seed = [
     createdAt: '2024-02-05T23:33:42.253Z',
     updatedAt: '2024-02-05T23:33:42.253Z',
     userID: 'dcf89a7e-b941-4f17-bbe0-4e0c8b2cd272',
+    id: '7b981062-92dc-40a5-b7e2-bda7fc9d5cd2',
   },
   {
     title: 'Recipe',
@@ -23,6 +25,7 @@ export const seed = [
     createdAt: '2024-02-05T23:33:42.254Z',
     updatedAt: '2024-02-05T23:33:42.254Z',
     userID: 'ccf89a7e-b941-4f17-bbe0-4e0c8b2cd272',
+    id: 'a37f39bc-9e4f-45f2-b1d6-fe668bba2b55',
   },
   {
     title: 'Ideas',
@@ -30,6 +33,7 @@ export const seed = [
     createdAt: '2024-02-05T23:33:42.255Z',
     updatedAt: '2024-02-05T23:33:42.255Z',
     userID: 'ccf89a7e-b941-4f17-bbe0-4e0c8b2cd272',
+    id: '1e69b2a9-15dd-4d59-872a-b6830d0a2f92',
   },
   {
     title: 'Personal Goals',
@@ -37,6 +41,7 @@ export const seed = [
     createdAt: '2024-02-05T23:33:42.256Z',
     updatedAt: '2024-02-05T23:33:42.256Z',
     userID: 'ccf89a7e-b941-4f17-bbe0-4e0c8b2cd272',
+    id: 'dd05d471-3f71-4616-8372-a399f496cb39',
   },
   {
     title: "Fête d'anniversaire",
@@ -44,6 +49,7 @@ export const seed = [
     createdAt: '2024-02-05T23:33:42.257Z',
     updatedAt: '2024-02-05T23:33:42.257Z',
     userID: 'ccf89a7e-b941-4f17-bbe0-4e0c8b2cd272',
+    id: '13ee0bfc-5510-43d7-b58b-d714a1f26aea',
   },
   {
     title: '日本旅行',
@@ -51,6 +57,7 @@ export const seed = [
     createdAt: '2024-02-05T23:33:42.258Z',
     updatedAt: '2024-02-05T23:33:42.258Z',
     userID: 'ccf89a7e-b941-4f17-bbe0-4e0c8b2cd272',
+    id: '75e5e48d-4ea8-4609-8b57-732eea9b628e',
   },
   {
     title: 'Семейный ужин',
@@ -58,6 +65,7 @@ export const seed = [
     createdAt: '2024-02-05T23:33:42.259Z',
     updatedAt: '2024-02-05T23:33:42.259Z',
     userID: 'ccf89a7e-b941-4f17-bbe0-4e0c8b2cd272',
+    id: 'a9392144-54c0-44a4-8f51-1dd06ebfe5d5',
   },
   {
     title: 'Coding Project',
@@ -65,6 +73,7 @@ export const seed = [
     createdAt: '2024-02-05T23:33:42.260Z',
     updatedAt: '2024-02-05T23:33:42.260Z',
     userID: 'ccf89a7e-b941-4f17-bbe0-4e0c8b2cd272',
+    id: 'dcbdc92f-f04c-4a84-8631-57e1943acfc7',
   },
 ];
 

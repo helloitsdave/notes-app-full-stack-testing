@@ -32,7 +32,7 @@ describe("Pact with NotesBEService", () => {
           "Content-Type": "application/json"
         },
         body: eachLike({
-          id: 1,
+          id: "0a97f1c3-294e-43e8-b78f-60209e972ee9",
           title: "Note Title",
           content: "Note Content",
           createdAt: "2021-01-01T00:00:00.000Z",
@@ -47,7 +47,7 @@ describe("Pact with NotesBEService", () => {
 
       expect(response.data).toStrictEqual([
         {
-          id: 1,
+          id: "0a97f1c3-294e-43e8-b78f-60209e972ee9",
           title: "Note Title",
           content: "Note Content",
           createdAt: "2021-01-01T00:00:00.000Z",
@@ -57,6 +57,7 @@ describe("Pact with NotesBEService", () => {
       ]);
     });
   });
+
   it("add a note", async () => {
     provider.addInteraction({
       states: [{ description: "note is added" }],
@@ -75,7 +76,7 @@ describe("Pact with NotesBEService", () => {
           "Content-Type": "application/json"
         },
         body: like ({
-          id: 1,
+          id: "0a97f1c3-294e-43e8-b78f-60209e972ee9",
           title: "New Note Title",
           content: "New Note Content",
           createdAt: "2021-01-01T00:00:00.000Z",
@@ -93,13 +94,61 @@ describe("Pact with NotesBEService", () => {
 
       expect(response.data).toStrictEqual(
         {
-          id: 1,
+          id: "0a97f1c3-294e-43e8-b78f-60209e972ee9",
           title: "New Note Title",
           content: "New Note Content",
           createdAt: "2021-01-01T00:00:00.000Z",
           updatedAt: "2021-01-01T00:00:00.000Z",
           userID: "618005a7-bbca-4d1f-83cd-1fb1d5511d06",
         },
+      );
+    });
+  });
+
+  it("update a note", async () => {
+    provider.addInteraction({
+      states: [{ description: "note is updated" }],
+      uponReceiving: "a request to update a note",
+      withRequest: {
+        method: "PUT",
+        path: "/api/notes/a37f39bc-9e4f-45f2-b1d6-fe668bba2b55",
+        body: {
+          title: "Updated Note Title",
+          content: "Updated Note Content",
+        },
+      },
+      willRespondWith: {
+        status: 200,
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: like ( {
+          "id": "a37f39bc-9e4f-45f2-b1d6-fe668bba2b55",
+          "title": "Updated Note Title",
+          "content": "Updated Note Content",
+          "createdAt": "2024-05-21T22:58:55.743Z",
+          "updatedAt": "2024-05-26T19:43:58.742Z",
+          "userID": "ccf89a7e-b941-4f17-bbe0-4e0c8b2cd272"
+      }),
+      },
+    });
+
+    await provider.executeTest(async (mockService) => {
+      const response = await API.patchNote({
+        id: "a37f39bc-9e4f-45f2-b1d6-fe668bba2b55",
+        title: "Updated Note Title",
+        content: "Updated Note Content",
+      });
+
+      expect(response.data).toStrictEqual(
+        {
+          "id": "a37f39bc-9e4f-45f2-b1d6-fe668bba2b55",
+          "title": "Updated Note Title",
+          "content": "Updated Note Content",
+          "createdAt": "2024-05-21T22:58:55.743Z",
+          "updatedAt": "2024-05-26T19:43:58.742Z",
+          "userID": "ccf89a7e-b941-4f17-bbe0-4e0c8b2cd272"
+      },
       );
     });
   });

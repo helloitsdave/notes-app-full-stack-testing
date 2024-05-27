@@ -37,14 +37,10 @@ router.post('/api/notes', authenticateToken, async (req, res) => {
 
 router.put('/api/notes/:id', authenticateToken, async (req, res) => {
   const { title, content } = req.body;
-  const id = parseInt(req.params.id);
+  const id = req.params.id;
 
   if (!title || !content) {
     return res.status(400).send({ error: 'title and content fields required' });
-  }
-
-  if (!id || isNaN(id)) {
-    return res.status(400).send({ error: 'ID must be a valid number' });
   }
 
   try {
@@ -59,11 +55,7 @@ router.put('/api/notes/:id', authenticateToken, async (req, res) => {
 });
 
 router.delete('/api/notes/:id', authenticateToken, async (req, res) => {
-  const id = parseInt(req.params.id);
-
-  if (!id || isNaN(id)) {
-    return res.status(400).send({ error: 'ID field required' });
-  }
+  const id = req.params.id;
 
   try {
     await prisma.note.delete({

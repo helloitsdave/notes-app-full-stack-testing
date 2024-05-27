@@ -6,7 +6,7 @@ describe("NoteGrid", () => {
       <NoteGrid
         notes={[
           {
-            id: 1,
+            id: "0a97f1c3-294e-43e8-b78f-60209e972ee9",
             title: "Test Title",
             content: "Test Content",
           },

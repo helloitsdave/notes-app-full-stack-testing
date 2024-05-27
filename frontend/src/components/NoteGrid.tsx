@@ -4,7 +4,7 @@ import type NoteType from "../types/note";
 interface NotesListProps {
   notes: NoteType[];
   handleEdit: (note: NoteType) => void;
-  deleteNote: (noteId: number) => void;
+  deleteNote: (noteId: string) => void;
 }
 
 const NoteGrid: React.FC<NotesListProps> = ({
@@ -26,7 +26,7 @@ const NoteGrid: React.FC<NotesListProps> = ({
             key={note.id}
             note={note}
             handleEdit={() => handleEdit(note)}
-            deleteNote={() => deleteNote(Number(note.id))}
+            deleteNote={() => deleteNote(note.id as string)}
           />
         ))}
       </div>
