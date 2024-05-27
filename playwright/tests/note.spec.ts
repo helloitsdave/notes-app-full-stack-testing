@@ -20,11 +20,11 @@ test.beforeAll(async ({ browser }) => {
   loginPage = new LoginPage(page);
   notesPage = new NotesPage(page);
   await loginPage.goto();
+  await loginPage.login('dave', 'test');
 });
 
 test.describe('Notes App e2e flow', { tag: ['@PRODUCTION'] }, async () => {
   test('Should see notes page login', async () => {
-    await loginPage.login('dave', 'test');
     await expect(page).toHaveTitle(/Notes/, { timeout });
     await expect(notesPage.spinnerContainer()).toBeHidden({ timeout });
   });
@@ -38,11 +38,6 @@ test.describe('Notes App e2e flow', { tag: ['@PRODUCTION'] }, async () => {
     await expect(notesPage.noteContent().first()).toHaveText(NOTE_CONTENT);
   });
 
-  test('Should be able to Delete a Note', async () => {
-    await notesPage.deleteNote();
-    await expect(notesPage.noteTitle().first()).not.toHaveText(NOTE_TITLE);
-  });
-
   test('Should be able to Edit a Note', async () => {
     await notesPage.editNote({
       title: EDITED_NOTE_TITLE,
@@ -52,6 +47,11 @@ test.describe('Notes App e2e flow', { tag: ['@PRODUCTION'] }, async () => {
     await expect(notesPage.noteContent().first()).toHaveText(
       EDITED_NOTE_CONTENT
     );
+  });
+
+  test('Should be able to Delete a Note', async () => {
+    await notesPage.deleteNote();
+    await expect(notesPage.noteTitle().first()).not.toHaveText(NOTE_TITLE);
   });
 
   test('Should not be able to add Note without title', async () => {
