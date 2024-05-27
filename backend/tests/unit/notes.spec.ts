@@ -117,6 +117,14 @@ describe('Create a note', () => {
 
 describe('Update a note', () => {
   test('PUT update note - success', async ({}) => {
+    prisma.note.findUnique.mockResolvedValue({
+      title: 'Test',
+      content: 'Test',
+      id: 'a1b2c3d4-1234-5678-9abc-abcdef123457',
+      updatedAt: new Date('2024-02-05T23:33:42.252Z'),
+      createdAt: new Date('2024-02-05T23:33:42.252Z'),
+      userID: 'ccf89a7e-b941-4f17-bbe0-4e0c8b2cd272',
+    });
     prisma.note.update.mockResolvedValue({
       title: 'Test update',
       content: 'Test',
@@ -156,7 +164,27 @@ describe('Update a note', () => {
       .send({ title: 'Test', content: 'Test', id: 1 });
     expect(response.status).toBe(404);
   });
+  test('PUT with a 404 error - failure', async ({}) => {
+    prisma.note.update.mockImplementation(() => {
+      throw new Error('Test error');
+    });
+    const response = await request(app)
+      .put('/api/notes/a1b2c3d4-1234-5678-9abc-abcdef123457')
+      .send({ title: 'Test update', content: 'Test', id: 1 });
+    expect(response.status).toBe(404);
+    expect(response.body).toStrictEqual({
+      error: 'Note not found',
+    });
+  });
   test('PUT with a 500 error - failure', async ({}) => {
+    prisma.note.findUnique.mockResolvedValue({
+      title: 'Test',
+      content: 'Test',
+      id: 'a1b2c3d4-1234-5678-9abc-abcdef123457',
+      updatedAt: new Date('2024-02-05T23:33:42.252Z'),
+      createdAt: new Date('2024-02-05T23:33:42.252Z'),
+      userID: 'ccf89a7e-b941-4f17-bbe0-4e0c8b2cd272',
+    });
     prisma.note.update.mockImplementation(() => {
       throw new Error('Test error');
     });

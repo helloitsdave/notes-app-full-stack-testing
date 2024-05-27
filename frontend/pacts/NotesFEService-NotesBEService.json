@@ -4,6 +4,35 @@
   },
   "interactions": [
     {
+      "description": "a request to update a non-existant note",
+      "providerState": "note does not exist",
+      "request": {
+        "body": {
+          "content": "Updated Note Content",
+          "title": "Updated Note Title"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "method": "PUT",
+        "path": "/api/notes/b37f39bc-9e4f-45f2-b1d6-fe668bba2b55"
+      },
+      "response": {
+        "body": {
+          "error": "Note not found"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "matchingRules": {
+          "$.body": {
+            "match": "type"
+          }
+        },
+        "status": 404
+      }
+    },
+    {
       "description": "a request to create a note",
       "providerState": "note is added",
       "request": {

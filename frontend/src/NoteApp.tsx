@@ -53,7 +53,9 @@ const NoteApp: React.FC<LogoutProps> = ({ onLogout }) => {
   const updateNote = async (updatedNote: NoteType) => {
     try {
       const response = await patchNote(updatedNote);
-      await response.data;
+      if ('data' in response) {
+        await response.data;
+      }
       fetchNotes();
     } catch (error) {
       console.error(error);
