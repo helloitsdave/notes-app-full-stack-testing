@@ -4,7 +4,8 @@ import {
   MatchersV3,
   SpecificationVersion,
 } from "@pact-foundation/pact";
-import * as API from "../api/apiService";
+import * as API from "../src/api/apiService";
+import { AxiosResponse } from "axios";
 const { eachLike, like } = MatchersV3;
 
 const provider = new PactV3({
@@ -140,7 +141,7 @@ describe("Pact with NotesBEService", () => {
         content: "Updated Note Content",
       });
 
-      expect(response.data).toStrictEqual(
+      expect((response as AxiosResponse<any>).data).toStrictEqual(
         {
           "id": "a37f39bc-9e4f-45f2-b1d6-fe668bba2b55",
           "title": "Updated Note Title",
@@ -148,7 +149,45 @@ describe("Pact with NotesBEService", () => {
           "createdAt": "2024-05-21T22:58:55.743Z",
           "updatedAt": "2024-05-26T19:43:58.742Z",
           "userID": "ccf89a7e-b941-4f17-bbe0-4e0c8b2cd272"
+        },
+      );
+    });
+  });
+  it("update non-existant note", async () => {
+    provider.addInteraction({
+      states: [{ description: "note does not exist" }],
+      uponReceiving: "a request to update a non-existant note",
+      withRequest: {
+        method: "PUT",
+        path: "/api/notes/b37f39bc-9e4f-45f2-b1d6-fe668bba2b55",
+        body: {
+          title: "Updated Note Title",
+          content: "Updated Note Content",
+        },
       },
+      willRespondWith: {
+        status: 404,
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: like ( { error: "Note not found" }),
+      },
+    });
+
+    await provider.executeTest(async (mockService) => {
+      const response = await API.patchNote({
+        id: "b37f39bc-9e4f-45f2-b1d6-fe668bba2b55",
+        title: "Updated Note Title",
+        content: "Updated Note Content",
+      });
+
+      expect(response.status).toBe(404);
+
+      expect(response).toStrictEqual(
+        {
+          error: "Note not found",
+          status: 404,
+        },
       );
     });
   });

@@ -43,6 +43,11 @@ router.put('/api/notes/:id', authenticateToken, async (req, res) => {
     return res.status(400).send({ error: 'title and content fields required' });
   }
 
+  const note = await prisma.note.findUnique({ where: { id } });
+  if (!note) {
+    return res.status(404).send({ error: 'Note not found' });
+  }
+
   try {
     const updatedNote = await prisma.note.update({
       where: { id },
