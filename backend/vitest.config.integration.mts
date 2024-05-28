@@ -4,7 +4,7 @@ const isCI = process.env.CI === "true";
 
 export default defineConfig({
   test: {
-    include: ['tests/unit/*.spec.ts'],
+    include: ['tests/integration/*.spec.ts'],
     coverage: {
         provider: 'istanbul', // or 'v8'
         reporter: isCI ? ["lcov", "text-summary"] : ["text","text-summary"],

@@ -5,8 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "test:service": "npx vitest **/service/*.spec.ts",
-    "test:unit": "npx vitest -c ./vitest.config.unit.mts",
-    "test:coverage": "npx vitest **/unit/*.spec.ts --coverage",
+    "test:integration": "npx vitest -c ./vitest.config.integration.mts",
+    "test:coverage": "npx vitest **/integration/*.spec.ts --coverage",
     "test:contract": "npx vitest --testTimeout 30000 **/contract/*.spec.ts",
     "start:local": "npx nodemon",
     "start": "node dist/index.js",

@@ -53,10 +53,10 @@ Refactored the app for testability and added a few additional tweaks.
 
 ### BE Tests
 [![Backend Service Tests](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/backend-service-tests.yml/badge.svg)](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/backend-service-tests.yml)
-[![Backend Unit Tests](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/backend-unit-tests.yml/badge.svg)](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/backend-unit-tests.yml)
+[![Backend Integration Tests](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/backend-integration-tests.yml/badge.svg)](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/backend-integration-tests.yml)
 
 - Service tests with docker, [supertest](https://github.com/ladjs/supertest) and [vitest](https://vitest.dev/)
-- Unit tests with [supertest](https://github.com/ladjs/supertest), [vitest](https://vitest.dev/) and [vitest-mock-extended](https://github.com/eratio08/vitest-mock-extended)
+- Integration tests with [supertest](https://github.com/ladjs/supertest), [vitest](https://vitest.dev/) and [vitest-mock-extended](https://github.com/eratio08/vitest-mock-extended)
 
 ### Contract Tests
 [![Backend Contract Tests](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/backend-contract-tests.yml/badge.svg)](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/backend-contract-tests.yml)
