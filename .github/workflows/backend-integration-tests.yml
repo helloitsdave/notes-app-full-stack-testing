@@ -1,4 +1,4 @@
-name: Backend Unit Tests
+name: Backend Integration Tests
 
 on:
   push:
@@ -33,7 +33,7 @@ jobs:
           npm ci
           npm run build
 
-      - name: Unit Tests with Coverage
+      - name: Integration Tests with Coverage
         run: npm run test:coverage
 
       - name: Coverage Report

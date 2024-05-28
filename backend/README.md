@@ -26,17 +26,17 @@ npm run docker:down
 
 ## Test Execution
 
-### Unit Tests
+### Integration Tests
 
-Execute the unit tests
+Execute the integration tests
 
 ```bash
 npm run test
 ```
 
-### Unit Tests with Coverage
+### Integration Tests with Coverage
 
-Execute the unit tests with coverage
+Execute the integration tests with coverage
 
 ```bash
 npm run test:coverage
