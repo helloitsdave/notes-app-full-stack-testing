@@ -42,9 +42,9 @@ jobs:
     - name: Install and start frontend
       run: |
         cd ./frontend
-        npm ci
-        npm run build
-        npm run start &
+        yarn
+        yarn build
+        yarn start &
 
     - name: Install Playwright
       run: |

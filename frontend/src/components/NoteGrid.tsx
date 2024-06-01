@@ -1,5 +1,5 @@
-import Note from "./Note";
-import type NoteType from "../types/note";
+import Note from './Note';
+import type NoteType from '../types/note';
 
 interface NotesListProps {
   notes: NoteType[];

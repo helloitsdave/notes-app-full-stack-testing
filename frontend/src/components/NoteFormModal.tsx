@@ -1,7 +1,6 @@
-
-import { Modal } from "antd";
-import NoteForm from "./NoteForm";
-import type NoteType from "../types/note";
+import { Modal } from 'antd';
+import NoteForm from './NoteForm';
+import type NoteType from '../types/note';
 
 interface ModalNoteFormProps {
   addNote: (newNote: NoteType) => void;
@@ -11,7 +10,7 @@ interface ModalNoteFormProps {
   isModalVisible: boolean;
 }
 
- const ModalNoteForm: React.FC<ModalNoteFormProps>  = (props) => {
+const ModalNoteForm: React.FC<ModalNoteFormProps> = (props) => {
   return (
     <Modal
       title="Note Form"
@@ -27,6 +26,6 @@ interface ModalNoteFormProps {
       />
     </Modal>
   );
-}
+};
 
 export default ModalNoteForm;

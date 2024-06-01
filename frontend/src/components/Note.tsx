@@ -1,4 +1,4 @@
-import type NoteType from "../types/note";
+import type NoteType from '../types/note';
 
 interface NoteProps {
   note: NoteType;
@@ -24,7 +24,7 @@ const Note: React.FC<NoteProps> = ({ note, handleEdit, deleteNote }) => {
       </p>
       <div className="notes-header">
         <p className="note-updated" data-testid="note-updated">
-          Updated {new Date(note.updatedAt ?? "").toLocaleDateString()}
+          Updated {new Date(note.updatedAt ?? '').toLocaleDateString()}
         </p>
         <button
           data-testid="note-delete-button"
