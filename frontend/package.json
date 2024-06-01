@@ -60,7 +60,6 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@mswjs/data": "0.16.1",
     "@pact-foundation/pact": "^12.5.0",
     "@testing-library/jest-dom": "6.2.0",
