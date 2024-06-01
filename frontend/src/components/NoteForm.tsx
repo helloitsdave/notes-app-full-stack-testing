@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import type NoteType from "../types/note";
+import React, { useEffect, useState } from 'react';
+import type NoteType from '../types/note';
 
 interface NoteFormProps {
   addNote: (newNote: NoteType) => void;
@@ -9,16 +9,16 @@ interface NoteFormProps {
 }
 
 const NoteForm: React.FC<NoteFormProps> = (props) => {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
 
   useEffect(() => {
     if (props.selectedNote) {
       setTitle(props.selectedNote.title);
       setContent(props.selectedNote.content);
     } else {
-      setTitle("");
-      setContent("");
+      setTitle('');
+      setContent('');
     }
   }, [props.selectedNote]);
 
@@ -40,13 +40,9 @@ const NoteForm: React.FC<NoteFormProps> = (props) => {
     props.onCancel(); // Reset selectedNote and switch back to add mode
   };
 
-
   return (
     <div>
-      <form
-        className="note-form"
-        onSubmit={handleSubmit}
-      >
+      <form className="note-form" onSubmit={handleSubmit}>
         <input
           type="text"
           onChange={(event) => setTitle(event?.target?.value)}
@@ -61,8 +57,14 @@ const NoteForm: React.FC<NoteFormProps> = (props) => {
           rows={10}
           value={content}
         />
-        <button type="submit">{props.selectedNote ? 'Save' : 'Add Note'}</button>
-        {props.selectedNote && <button type="button" onClick={props.onCancel}>Cancel</button>}
+        <button type="submit">
+          {props.selectedNote ? 'Save' : 'Add Note'}
+        </button>
+        {props.selectedNote && (
+          <button type="button" onClick={props.onCancel}>
+            Cancel
+          </button>
+        )}
       </form>
     </div>
   );

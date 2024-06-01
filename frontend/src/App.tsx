@@ -1,16 +1,16 @@
-import "./App.css";
-import { useState } from "react";
+import './App.css';
+import { useState } from 'react';
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   Navigate,
-} from "react-router-dom";
-import NoteApp from "./NoteApp";
-import Header from "./components/Header";
-import Login from "./components/Login";
-import RegistrationForm from "./components/RegistrationForm";
-import RegistrationLink from "./components/RegistrationLink";
+} from 'react-router-dom';
+import NoteApp from './NoteApp';
+import Header from './components/Header';
+import Login from './components/Login';
+import RegistrationForm from './components/RegistrationForm';
+import RegistrationLink from './components/RegistrationLink';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -23,7 +23,7 @@ function App() {
 
   const handleLogout = () => {
     setLoggedIn(false);
-    localStorage.removeItem("token");
+    localStorage.removeItem('token');
   };
 
   const handleRegistered = () => {
@@ -51,8 +51,8 @@ function App() {
               <Navigate to="/notes" />
             ) : (
               <div className="login-container">
-              <RegistrationLink onRegister={isRegistered}/>
-              <Login onLogin={handleLogin} />
+                <RegistrationLink onRegister={isRegistered} />
+                <Login onLogin={handleLogin} />
               </div>
             )
           }

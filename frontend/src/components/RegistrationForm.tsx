@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { AxiosError } from "axios";
-import { createUser } from "../api/apiService";
-import Spinner from "./Spinner";
+import React, { useState } from 'react';
+import { AxiosError } from 'axios';
+import { createUser } from '../api/apiService';
+import Spinner from './Spinner';
 
 export interface RegistrationFormProps {
   onRegister: () => void;
@@ -9,11 +9,11 @@ export interface RegistrationFormProps {
 
 const RegistrationForm: React.FC<RegistrationFormProps> = ({ onRegister }) => {
   const [form, setForm] = useState({
-    username: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-    errorText: "",
+    username: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    errorText: '',
   });
   const [isDataLoading, setIsDataLoading] = useState(false);
 
@@ -28,12 +28,12 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ onRegister }) => {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    setForm({ ...form, errorText: "" });
+    setForm({ ...form, errorText: '' });
     e.preventDefault();
 
     // Check if passwords match
     if (form.password !== form.confirmPassword) {
-      setForm({ ...form, errorText: "Error: Passwords do not match" });
+      setForm({ ...form, errorText: 'Error: Passwords do not match' });
       return;
     }
 
@@ -57,12 +57,12 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ onRegister }) => {
         if (axiosError.response?.status === 400) {
           setForm({
             ...form,
-            errorText: "Error: Invalid username or password",
+            errorText: 'Error: Invalid username or password',
           });
         } else {
           setForm({
             ...form,
-            errorText: "Error: An error occurred. Please retry",
+            errorText: 'Error: An error occurred. Please retry',
           });
         }
       }

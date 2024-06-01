@@ -1,20 +1,20 @@
-import React, { useState } from "react";
-import { login } from "../api/apiService";
-import { AxiosError } from "axios";
-import Spinner from "./Spinner";
+import React, { useState } from 'react';
+import { login } from '../api/apiService';
+import { AxiosError } from 'axios';
+import Spinner from './Spinner';
 
 export interface LoginProps {
   onLogin: () => void;
 }
 
 const Login: React.FC<LoginProps> = ({ onLogin }) => {
-  const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
-  const [errorText, setErrorText] = useState("");
+  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('');
+  const [errorText, setErrorText] = useState('');
   const [isDataLoading, setIsDataLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    setErrorText("");
+    setErrorText('');
     setIsDataLoading(true);
     e.preventDefault();
     try {
@@ -22,7 +22,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
       const response = await login(username, password);
       const data = await response.data;
       // Store the token in local storage as a temp solution
-      localStorage.setItem("token", data.token);
+      localStorage.setItem('token', data.token);
       onLogin();
     } catch (error) {
       const errors = error as Error | AxiosError;
@@ -30,9 +30,9 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
       if (errors instanceof AxiosError) {
         const axiosError = errors as AxiosError;
         if (axiosError.response?.status === 401) {
-          setErrorText("Invalid username or password");
+          setErrorText('Invalid username or password');
         } else {
-          setErrorText("An error occurred. Please retry");
+          setErrorText('An error occurred. Please retry');
         }
       }
       setIsDataLoading(false);
@@ -44,7 +44,14 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
       <div className="login-page-form">
         <form onSubmit={handleSubmit}>
           <h3>Existing user login</h3>
-          {errorText !== "" && <span data-testid="login-error-text" className='registration-form-error'>{errorText}</span>}
+          {errorText !== '' && (
+            <span
+              data-testid="login-error-text"
+              className="registration-form-error"
+            >
+              {errorText}
+            </span>
+          )}
           <input
             type="text"
             placeholder="Username"

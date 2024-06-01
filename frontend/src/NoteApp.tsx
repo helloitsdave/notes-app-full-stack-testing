@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
-import { Button } from "antd";
-import "./App.css";
-import NoteFormModal from "./components/NoteFormModal";
-import NoteGrid from "./components/NoteGrid";
-import Spinner from "./components/Spinner";
-import type NoteType from "./types/note";
-import { postNote, patchNote, getNotes, removeNote } from "./api/apiService";
+import { useEffect, useState } from 'react';
+import { Button } from 'antd';
+import './App.css';
+import NoteFormModal from './components/NoteFormModal';
+import NoteGrid from './components/NoteGrid';
+import Spinner from './components/Spinner';
+import type NoteType from './types/note';
+import { postNote, patchNote, getNotes, removeNote } from './api/apiService';
 
 export interface LogoutProps {
   onLogout: () => void;
@@ -92,7 +92,7 @@ const NoteApp: React.FC<LogoutProps> = ({ onLogout }) => {
         <Button
           className="add-note-button"
           type="primary"
-          style={{ marginBottom: "20px" }}
+          style={{ marginBottom: '20px' }}
           onClick={() => setIsModalVisible(true)}
         >
           Add a note
@@ -100,7 +100,7 @@ const NoteApp: React.FC<LogoutProps> = ({ onLogout }) => {
         <Button
           className="logout-button"
           type="primary"
-          style={{ marginBottom: "20px" }}
+          style={{ marginBottom: '20px' }}
           onClick={() => onLogout()}
         >
           Logout
@@ -130,6 +130,6 @@ const NoteApp: React.FC<LogoutProps> = ({ onLogout }) => {
       )}
     </div>
   );
-}
+};
 
 export default NoteApp;

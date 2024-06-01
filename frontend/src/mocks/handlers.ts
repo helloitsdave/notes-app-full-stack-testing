@@ -1,19 +1,23 @@
-import { http, HttpResponse } from "msw";
-import { db } from "./db";
+import { http, HttpResponse } from 'msw';
+import { db } from './db';
 
-const BASE_URL = "http://localhost:5000/api";
+const BASE_URL = 'http://localhost:5000/api';
 
 db.note.create({
   id: 1,
-  title: "Test Title Note 1",
-  content: "Test Content 1",
+  title: 'Test Title Note 1',
+  content: 'Test Content 1',
 });
 db.note.create({
   id: 2,
-  title: "Test Title Note 2",
-  content: "Test Content 2",
+  title: 'Test Title Note 2',
+  content: 'Test Content 2',
 });
-db.user.create({ id: '5d0efc58-1692-4a4f-94c7-82f1cddf3db9', username: "test", password: "pass" });
+db.user.create({
+  id: '5d0efc58-1692-4a4f-94c7-82f1cddf3db9',
+  username: 'test',
+  password: 'pass',
+});
 
 type Note = {
   id: number;
@@ -42,7 +46,7 @@ const handlers = [
       },
     });
     if (user) {
-      return HttpResponse.json({ token: "test" });
+      return HttpResponse.json({ token: 'test' });
     } else {
       return HttpResponse.error();
     }
@@ -53,25 +57,25 @@ const handlers = [
       (await request.json()) as UsersRequestBody;
 
     const user = db.user.findFirst({
-        where: {
-          username: { equals: username },
-          password: { equals: password },
-        },
-      });
+      where: {
+        username: { equals: username },
+        password: { equals: password },
+      },
+    });
 
-      if (user) {
-        return HttpResponse.error();
-      } else {
-        const id =  "83ebf8ec-fba5-451f-aece-011c4be5593e";
-        db.user.create({ username, password, email, id});
-        return HttpResponse.json({
-          id,
-          username,
-          email,
-          createdAt: "2024-05-08T17:09:55.028Z",
-          updatedAt: "2024-05-08T17:09:55.028Z",
-        });
-      }
+    if (user) {
+      return HttpResponse.error();
+    } else {
+      const id = '83ebf8ec-fba5-451f-aece-011c4be5593e';
+      db.user.create({ username, password, email, id });
+      return HttpResponse.json({
+        id,
+        username,
+        email,
+        createdAt: '2024-05-08T17:09:55.028Z',
+        updatedAt: '2024-05-08T17:09:55.028Z',
+      });
+    }
   }),
 
   http.get(`${BASE_URL}/notes`, () => {
@@ -109,7 +113,7 @@ const handlers = [
         id: { equals: Number(id) },
       },
     });
-    return HttpResponse.json({ status: "ok" });
+    return HttpResponse.json({ status: 'ok' });
   }),
 ];
 
