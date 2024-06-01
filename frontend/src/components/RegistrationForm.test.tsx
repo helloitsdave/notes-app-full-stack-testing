@@ -21,7 +21,7 @@ describe('RegistrationForm', () => {
     userEvent.type(screen.getByPlaceholderText('Confirm Password'), 'passwor');
     userEvent.click(screen.getByText('Register'));
     expect(
-      screen.getByText('Error: Passwords do not match'),
+      await screen.findByText('Error: Passwords do not match')
     ).toBeInTheDocument();
   });
   it('should throw error message on failed registration', async () => {
@@ -34,7 +34,7 @@ describe('RegistrationForm', () => {
 
     await waitFor(() => {
       expect(
-        screen.getByText('Error: An error occurred. Please retry'),
+        screen.getByText('Error: An error occurred. Please retry')
       ).toBeInTheDocument();
     });
   });
@@ -42,18 +42,18 @@ describe('RegistrationForm', () => {
     render(<RegistrationForm {...props} />);
     userEvent.type(
       screen.getByPlaceholderText('Username'),
-      `test${Date.now()}`,
+      `test${Date.now()}`
     );
     userEvent.type(
       screen.getByPlaceholderText('Email'),
-      `test${Date.now()}@email.com`,
+      `test${Date.now()}@email.com`
     );
     userEvent.type(screen.getByPlaceholderText('Password'), 'pass');
     userEvent.type(screen.getByPlaceholderText('Confirm Password'), 'pass');
     userEvent.click(screen.getByText('Register'));
     await waitFor(() => {
       expect(
-        screen.getByText('Account created successfully!'),
+        screen.getByText('Account created successfully!')
       ).toBeInTheDocument();
     });
   });

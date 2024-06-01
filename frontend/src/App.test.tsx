@@ -53,8 +53,8 @@ describe('App', () => {
 
     expect(localStorage.getItem('token')).toBeNull();
 
-    expect(screen.queryByTestId('note-app')).not.toBeInTheDocument();
+    expect(await screen.findByTestId('note-app')).not.toBeInTheDocument();
 
-    expect(screen.getByText('Login')).toBeInTheDocument();
+    expect(await screen.findByText('Login')).toBeInTheDocument();
   });
 });
