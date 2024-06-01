@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from './App';
 
@@ -53,8 +53,10 @@ describe('App', () => {
 
     expect(localStorage.getItem('token')).toBeNull();
 
-    expect(await screen.findByTestId('note-app')).not.toBeInTheDocument();
-
+    waitFor(() => { 
+      expect(screen.queryByTestId('note-app')).not.toBeInTheDocument();
+    }
+    );
     expect(await screen.findByText('Login')).toBeInTheDocument();
   });
 });

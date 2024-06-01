@@ -18,7 +18,7 @@ ARG REACT_APP_API_BASE_URL
 ENV REACT_APP_API_BASE_URL=$REACT_APP_API_BASE_URL
 
 # Build the app
-RUN npm run build
+RUN yarn build
 
 # Use an official lightweight Node.js runtime as the final base image
 FROM node:14-alpine
@@ -27,7 +27,7 @@ FROM node:14-alpine
 WORKDIR /usr/src/app
 
 # Install serve to serve the app
-RUN npm install -g serve
+RUN yarn global add serve
 
 # Copy the build output from the previous stage
 COPY --from=0 /usr/src/app/build .

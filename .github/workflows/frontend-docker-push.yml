@@ -34,6 +34,6 @@ jobs:
         env:
             IMAGE_TAG: ${{ steps.extract_version.outputs.VERSION }}
         run: |
-          npm run docker:build
+          yarn docker:build
           docker tag notes-app-fe:latest ${{ secrets.DOCKERHUB_USERNAME }}/notes-app-fe:$IMAGE_TAG
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/notes-app-fe:$IMAGE_TAG
