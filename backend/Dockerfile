@@ -8,7 +8,7 @@ RUN apk add --no-cache bash
 WORKDIR /usr/src/app
 
 # Copy package.json and package-lock.json to the working directory
-COPY package*.json ./
+COPY package.json yarn.lock ./
 
 # Install the application dependencies
 RUN yarn
