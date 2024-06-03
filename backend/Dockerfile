@@ -11,7 +11,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # Install the application dependencies
-RUN npm ci
+RUN yarn
 
 # Required for prisma
 RUN apk add openssl3
@@ -28,10 +28,10 @@ COPY wait-for-it.sh wait-for-it.sh
 RUN chmod +x wait-for-it.sh
 
 # Primsa generate
-RUN npx prisma generate
+RUN yarn prisma generate
 
 # Build TypeScript code
-RUN npm run build
+RUN yarn build
 
 # Expose the port that the application will run on
 EXPOSE 5000

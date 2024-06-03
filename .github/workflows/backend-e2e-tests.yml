@@ -1,4 +1,4 @@
-name: Backend Service Tests
+name: Backend e2e Tests
 
 on:
   push:
@@ -35,7 +35,7 @@ jobs:
 
     - name: Start service in docker
       run: |
-        npm run docker:up
+        yarn docker:up
 
     - name: Wait for service to start
       run: |
@@ -49,9 +49,9 @@ jobs:
 
     - name: Run Service Tests
       run: |
-        npm ci
-        npm run test:service
+        yarn
+        yarn test:e2e
 
     - name: Stop service in docker
       run: |
-        npm run docker:down
+        yarn docker:down
