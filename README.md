@@ -35,33 +35,33 @@ Refactored the app for testability and added a few additional tweaks.
 
 ## Test Layers
 
-### FE End to End Tests (e2e)
+### [FE End to End Tests (e2e)](playwright/tests)
 [![Playwright e2e Production Tests](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/playwright-production-tests.yml/badge.svg)](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/playwright-production-tests.yml)
 
 - [Playwright.io](https://playwright.dev/) with typescript
 - [Allure Production Test Report](https://helloitsdave.github.io/notes-app-full-stack-testing) with history
 
-### FE Component Tests
+### [FE Component Tests](frontend/src/)
 [![Frontend Component Tests](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/frontend-component-tests.yml/badge.svg)](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/frontend-component-tests.yml)
 
 - [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) with [vitest](https://vitest.dev/)
 - [Mock Service Worker(msw)](https://mswjs.io/) to mock the api
 - [msw/data](https://github.com/mswjs/data) for data store
 
-### FE Service Tests
+### [FE Service Tests](playwright/tests)
 [![Frontend Service Tests - Playwright](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/frontend-service-tests.yml/badge.svg)](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/frontend-service-tests.yml)
 
 - docker and [Playwright.io](https://playwright.dev/)
 
-### BE e2e Tests
+### [BE e2e Tests](backend/tests/e2e)
 [![Backend e2e Tests](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/backend-e2e-tests.yml/badge.svg)](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/backend-e2e-tests.yml)
 - docker, [supertest](https://github.com/ladjs/supertest) and [vitest](https://vitest.dev/)
 
-### BE Integration Tests
+### [BE Integration Tests](backend/tests/integration)
 [![Backend Integration Tests](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/backend-integration-tests.yml/badge.svg)](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/backend-integration-tests.yml)
 - [supertest](https://github.com/ladjs/supertest), [vitest](https://vitest.dev/) and [vitest-mock-extended](https://github.com/eratio08/vitest-mock-extended)
 
-### API Contract Tests
+### [API Contract Tests](backend/tests/contract)
 [![Backend Contract Tests](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/backend-contract-tests.yml/badge.svg)](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/backend-contract-tests.yml)
 
 - Contract tests with [pact](https://docs.pact.io/)
