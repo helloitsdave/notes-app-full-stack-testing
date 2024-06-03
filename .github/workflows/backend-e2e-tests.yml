@@ -49,7 +49,7 @@ jobs:
     - name: Test connectivity
       run: curl ${API_URL}
 
-    - name: Run Service Tests
+    - name: Run e2e Tests
       run: |
         yarn
         yarn test:e2e
