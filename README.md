@@ -15,6 +15,8 @@ Refactored the app for testability and added a few additional tweaks.
 
 [https://notes-app-full-stack-bjml.onrender.com/](https://notes-app-full-stack-bjml.onrender.com/)
 
+*Note: Free tier services sleep after inactivity and may take up to 60 seconds to wake up.*
+
 ## FE Implementation
 
 - React
@@ -38,30 +40,44 @@ Refactored the app for testability and added a few additional tweaks.
 ### [FE End to End Tests (e2e)](playwright/tests)
 [![Playwright e2e Production Tests](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/playwright-production-tests.yml/badge.svg)](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/playwright-production-tests.yml)
 
+Executes against the deployed app in real environment
+
 - [Playwright.io](https://playwright.dev/) with typescript
 - [Allure Production Test Report](https://helloitsdave.github.io/notes-app-full-stack-testing) with history
 
+### [FE Service Tests](playwright/tests)
+[![Frontend Service Tests - Playwright](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/frontend-service-tests.yml/badge.svg)](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/frontend-service-tests.yml)
+
+Executes using frontend service running with local backend + db
+
+- docker and [Playwright.io](https://playwright.dev/)
+
 ### [FE Component Tests](frontend/src/)
 [![Frontend Component Tests](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/frontend-component-tests.yml/badge.svg)](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/frontend-component-tests.yml)
+
+Executes against virtual DOM and mocked backend
 
 - [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) with [vitest](https://vitest.dev/)
 - [Mock Service Worker(msw)](https://mswjs.io/) to mock the api
 - [msw/data](https://github.com/mswjs/data) for data store
 
-### [FE Service Tests](playwright/tests)
-[![Frontend Service Tests - Playwright](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/frontend-service-tests.yml/badge.svg)](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/frontend-service-tests.yml)
-
-- docker and [Playwright.io](https://playwright.dev/)
-
 ### [BE e2e Tests](backend/tests/e2e)
 [![Backend e2e Tests](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/backend-e2e-tests.yml/badge.svg)](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/backend-e2e-tests.yml)
+
+Executes api tests against dockerised App and Seeded DB
+
 - docker, [supertest](https://github.com/ladjs/supertest) and [vitest](https://vitest.dev/)
 
 ### [BE Integration Tests](backend/tests/integration)
 [![Backend Integration Tests](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/backend-integration-tests.yml/badge.svg)](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/backend-integration-tests.yml)
+
+Executes tests using mocked dependencies
+
 - [supertest](https://github.com/ladjs/supertest), [vitest](https://vitest.dev/) and [vitest-mock-extended](https://github.com/eratio08/vitest-mock-extended)
 
 ### [API Contract Tests](backend/tests/contract)
 [![Backend Contract Tests](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/backend-contract-tests.yml/badge.svg)](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/backend-contract-tests.yml)
+
+Executes against dockerised BE App and Seeded DB
 
 - Contract tests with [pact](https://docs.pact.io/)
