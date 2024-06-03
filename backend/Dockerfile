@@ -1,5 +1,5 @@
 # Use an official Node.js runtime based on Alpine Linux as the base image
-FROM node:18-alpine
+FROM node:20-alpine
 
 # Install bash
 RUN apk add --no-cache bash
@@ -8,10 +8,10 @@ RUN apk add --no-cache bash
 WORKDIR /usr/src/app
 
 # Copy package.json and package-lock.json to the working directory
-COPY package*.json ./
+COPY package.json yarn.lock ./
 
 # Install the application dependencies
-RUN npm ci
+RUN yarn
 
 # Required for prisma
 RUN apk add openssl3
@@ -31,7 +31,7 @@ RUN chmod +x wait-for-it.sh
 RUN npx prisma generate
 
 # Build TypeScript code
-RUN npm run build
+RUN yarn build
 
 # Expose the port that the application will run on
 EXPOSE 5000

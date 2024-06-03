@@ -52,10 +52,10 @@ Refactored the app for testability and added a few additional tweaks.
 - [Primsa](https://www.prisma.io/) (DB ORM)
 
 ### BE Tests
-[![Backend Service Tests](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/backend-service-tests.yml/badge.svg)](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/backend-service-tests.yml)
+[![Backend e2e Tests](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/backend-e2e-tests.yml/badge.svg)](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/backend-e2e-tests.yml)
 [![Backend Integration Tests](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/backend-integration-tests.yml/badge.svg)](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/backend-integration-tests.yml)
 
-- Service tests with docker, [supertest](https://github.com/ladjs/supertest) and [vitest](https://vitest.dev/)
+- e2e tests with docker, [supertest](https://github.com/ladjs/supertest) and [vitest](https://vitest.dev/)
 - Integration tests with [supertest](https://github.com/ladjs/supertest), [vitest](https://vitest.dev/) and [vitest-mock-extended](https://github.com/eratio08/vitest-mock-extended)
 
 ### Contract Tests
