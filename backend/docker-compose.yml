@@ -7,6 +7,7 @@ services:
       POSTGRES_USER: test
       POSTGRES_PASSWORD: test
       POSTGRES_DB: test
+      DATABASE_URL: "postgresql://test:test@postgres:5432/test"
     env_file:
       - .env
     ports:
