@@ -15,21 +15,33 @@ Refactored the app for testability and added a few additional tweaks.
 
 [https://notes-app-full-stack-bjml.onrender.com/](https://notes-app-full-stack-bjml.onrender.com/)
 
-## Frontend
-
-### FE Implementation
+## FE Implementation
 
 - React
 - Typescript
 - [Axios](https://axios-http.com/docs/intro)
 
-### End to End Tests (e2e)
+## BE Implementation
+
+- Node.js
+- Typescript
+- Express
+- Postgres
+- [Primsa](https://www.prisma.io/) (DB ORM)
+
+### Database
+
+- [Postgres](https://www.postgresql.org/) with Serverless hosting on [Neon](https://neon.tech/)
+
+## Test Layers
+
+### FE End to End Tests (e2e)
 [![Playwright e2e Production Tests](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/playwright-production-tests.yml/badge.svg)](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/playwright-production-tests.yml)
 
 - [Playwright.io](https://playwright.dev/) with typescript
 - [Allure Production Test Report](https://helloitsdave.github.io/notes-app-full-stack-testing) with history
 
-### Component Tests
+### FE Component Tests
 [![Frontend Component Tests](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/frontend-component-tests.yml/badge.svg)](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/frontend-component-tests.yml)
 
 - [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) with [vitest](https://vitest.dev/)
@@ -39,30 +51,17 @@ Refactored the app for testability and added a few additional tweaks.
 ### FE Service Tests
 [![Frontend Service Tests - Playwright](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/frontend-service-tests.yml/badge.svg)](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/frontend-service-tests.yml)
 
-- Service tests with docker and [Playwright.io](https://playwright.dev/)
+- docker and [Playwright.io](https://playwright.dev/)
 
-## Backend
-
-### BE Implementation
-
-- Node.js
-- Typescript
-- Express
-- Postgres
-- [Primsa](https://www.prisma.io/) (DB ORM)
-
-### BE Tests
+### BE e2e Tests
 [![Backend e2e Tests](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/backend-e2e-tests.yml/badge.svg)](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/backend-e2e-tests.yml)
+- docker, [supertest](https://github.com/ladjs/supertest) and [vitest](https://vitest.dev/)
+
+### BE Integration Tests
 [![Backend Integration Tests](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/backend-integration-tests.yml/badge.svg)](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/backend-integration-tests.yml)
+- [supertest](https://github.com/ladjs/supertest), [vitest](https://vitest.dev/) and [vitest-mock-extended](https://github.com/eratio08/vitest-mock-extended)
 
-- e2e tests with docker, [supertest](https://github.com/ladjs/supertest) and [vitest](https://vitest.dev/)
-- Integration tests with [supertest](https://github.com/ladjs/supertest), [vitest](https://vitest.dev/) and [vitest-mock-extended](https://github.com/eratio08/vitest-mock-extended)
-
-### Contract Tests
+### API Contract Tests
 [![Backend Contract Tests](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/backend-contract-tests.yml/badge.svg)](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/backend-contract-tests.yml)
 
 - Contract tests with [pact](https://docs.pact.io/)
-
-## Database
-
-- [Postgres](https://www.postgresql.org/) with Serverless hosting on [Neon](https://neon.tech/)

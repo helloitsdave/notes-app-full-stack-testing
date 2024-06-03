@@ -18,8 +18,8 @@ To use the tests in this folder, you need to have Playwright installed.
 
 ```bash
 cd ./playwright
-npm ci
-npx playwright install
+yarn
+yarn playwright install
 ```
 
 ## Test Execution
@@ -29,27 +29,27 @@ npx playwright install
 Start the backend server:
 ```bash
 cd ./backend
-npm run docker:up
+yarn docker:up
 ```
 
 Start the frontend server:
 ```bash
 cd ./frontend
-npm run start
+yarn start
 ```
 
 Executing tests against the local server:
 
 ```bash
 cd ./playwright
-npm run test
+yarn test
 ```
 
 ### Running tests in production
 
 ```bash
 cd ./playwright
-npm run test:production
+yarn test:production
 ```
 
 ### Headed mode
@@ -58,7 +58,7 @@ By default, tests are executed in headless mode. To run tests in headed mode, pa
 
 ```bash
 cd ./playwright
-npm run test -- --headed
+yarn test -- --headed
 ```
 
 ### Debug mode
@@ -67,7 +67,7 @@ To run tests in debug mode, pass the `--debug` flag:
 
 ```bash
 cd ./playwright
-npm run test -- --debug
+yarn test -- --debug
 ```
 
 ## Page Object Model

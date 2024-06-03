@@ -9,19 +9,19 @@ Running the backend db and express server in a docker container
 ### Build
 
 ```bash
-npm run docker:build
+yarn docker:build
 ```
 
 ### Run
 
 ```bash
-npm run docker:up
+yarn docker:up
 ```
 
 ### Stop
 
 ```bash
-npm run docker:down
+yarn docker:down
 ```
 
 ## Test Execution
@@ -31,7 +31,7 @@ npm run docker:down
 Execute the integration tests
 
 ```bash
-npm run test
+yarn test
 ```
 
 ### Integration Tests with Coverage
@@ -39,17 +39,27 @@ npm run test
 Execute the integration tests with coverage
 
 ```bash
-npm run test:coverage
+yarn test:coverage
 ```
 
-### Service Tests
+### e2e Tests
 
 Execute the service tests against the local docker container
 
 ```bash
-npm run docker:up
-npm run test:service
-npm run docker:down 
+yarn docker:up
+yarn test:e2e
+yarn docker:down 
+```
+
+### Contract Tests
+
+Execute the service tests against the local docker container
+
+```bash
+yarn docker:up
+yarn test:contract
+yarn docker:down 
 ```
 
 ## Tag release
