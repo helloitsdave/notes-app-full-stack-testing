@@ -12,15 +12,15 @@ jobs:
     env:
       API_URL: http://localhost:5000
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1
 
-    - name: Use Node.js 18.x
-      uses: actions/setup-node@v3
+    - name: Use Node.js 20.x
+      uses: actions/setup-node@v4
       with:
-        node-version: 18.x
+        node-version: 20.x
 
     - name: Create .env file
       run: | 
@@ -30,7 +30,7 @@ jobs:
     - name: Start service in docker
       run: |
         cd ./backend
-        npm run docker:up
+        yarn docker:up
 
     - name: Wait for service to start
       run: |
@@ -49,18 +49,18 @@ jobs:
     - name: Install Playwright
       run: |
         cd ./playwright
-        npm ci
-        npx playwright install chromium
+        yarn
+        yarn playwright install chromium
 
     - name: Run Playwright Tests
       run: |
         cd ./playwright
-        npm run test
+        yarn test
 
     - name: Stop service in docker
       run: |
         cd ./backend
-        npm run docker:down
+        yarn docker:down
 
     - name: Deploy FE to production
       uses: johnbeynon/render-deploy-action@v0.0.8
