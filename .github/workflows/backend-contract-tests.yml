@@ -6,6 +6,7 @@ on:
     paths:
       - "backend/**"
       - "frontend/src/api/**"
+      - "frontend/contract-tests/**"
 
 defaults:
   run:
