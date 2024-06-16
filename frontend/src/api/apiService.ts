@@ -10,6 +10,8 @@ const api = axios.create({
     'Content-Type': 'application/json',
     Authorization: `Bearer ${localStorage.getItem('token')}`,
   },
+  timeout: 2 * 60 * 1000,
+  signal: AbortSignal.timeout(2 * 60 * 1000),
 });
 
 api.interceptors.request.use((config) => {
