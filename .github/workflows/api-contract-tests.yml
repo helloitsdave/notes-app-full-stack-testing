@@ -1,4 +1,4 @@
-name: Backend Contract Tests
+name: Api Contract Tests
 
 on:
   pull_request:

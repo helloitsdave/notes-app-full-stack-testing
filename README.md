@@ -76,7 +76,7 @@ Executes tests using mocked dependencies
 - [supertest](https://github.com/ladjs/supertest), [vitest](https://vitest.dev/) and [vitest-mock-extended](https://github.com/eratio08/vitest-mock-extended)
 
 ### [API Contract Tests](backend/tests/contract)
-[![Backend Contract Tests](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/backend-contract-tests.yml/badge.svg)](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/backend-contract-tests.yml)
+[![Backend Contract Tests](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/api-contract-tests.yml/badge.svg)](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/api-contract-tests.yml)
 
 Executes against dockerised BE App and Seeded DB
 
