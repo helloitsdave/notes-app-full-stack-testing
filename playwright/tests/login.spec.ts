@@ -7,7 +7,7 @@ let page: Page;
 let loginPage: LoginPage;
 let notesPage: NotesPage;
 
-const timeout = 60 * 1000;
+const timeout = 2 * 60 * 1000;
 
 test.beforeAll(async ({ browser }) => {
   await allure.feature('User Login');

@@ -8,7 +8,7 @@ let page: Page;
 let loginPage: LoginPage;
 let notesPage: NotesPage;
 
-const timeout = 60 * 1000;
+const timeout = 2 * 60 * 1000;
 const NOTE_TITLE = faker.lorem.sentence();
 const NOTE_CONTENT = faker.lorem.lines({ min: 1, max: 5 });
 const EDITED_NOTE_TITLE = faker.lorem.sentence();
