@@ -53,7 +53,7 @@ jobs:
         yarn
         yarn playwright install msedge
 
-    - name: Run Playwright Tests against Real Edge Browser
+    - name: Run Playwright Tests against a real Edge Browser
       run: |
         cd ./playwright
         yarn test:edge

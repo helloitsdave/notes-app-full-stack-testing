@@ -52,10 +52,10 @@ jobs:
         yarn
         yarn playwright install chromium
 
-    - name: Run Playwright Tests
+    - name: Run Playwright Tests against chromium
       run: |
         cd ./playwright
-        yarn test
+        yarn test:chromium
 
     - name: Stop service in docker
       run: |

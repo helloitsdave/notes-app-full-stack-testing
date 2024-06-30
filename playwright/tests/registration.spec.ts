@@ -7,7 +7,7 @@ import apiLogin from '../helpers/apiLogin';
 
 let page: Page;
 let registrationPage: RegistrationPage;
-const timeout = 2* 60 * 1000; // Render.com free tier may take 60 seconds to startup
+const timeout = 2 * 60 * 1000; // Render.com free tier may take 60 seconds to startup
 let token: string;
 
 const username = faker.internet.userName().toLowerCase();

@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "install": "playwright install-deps chromium",
-    "test": "playwright test --project chromium",
+    "test:chromium": "playwright test --project chromium",
+    "test:engines": "playwright test --project chromium firefox webkit",
     "test:edge": "playwright test --project 'Microsoft Edge'",
     "test:production": "export URL=https://notes-app-full-stack-bjml.onrender.com && playwright test --grep @PRODUCTION --project chromium",
     "lint": "eslint . --ext .ts",
@@ -31,6 +32,7 @@
     "eslint-plugin-import": "2.29.1",
     "eslint-plugin-playwright": "0.20.0",
     "eslint-plugin-prettier": "5.1.2",
-    "prettier": "3.1.1"
+    "prettier": "3.1.1",
+    "typescript": "5.5.2"
   }
 }

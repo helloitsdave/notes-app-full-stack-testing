@@ -1,4 +1,4 @@
-name: Frontend Service Tests - Playwright
+name: Frontend Service Tests - Playwright - Chromium, Webkit, Firefox
 
 on:
   pull_request:
@@ -51,12 +51,12 @@ jobs:
       run: |
         cd ./playwright
         yarn
-        yarn playwright install chromium
+        yarn playwright install-deps
 
-    - name: Run Playwright Tests
+    - name: Run Playwright Tests against chromium, webkit and firefox
       run: |
         cd ./playwright
-        yarn test
+        yarn test:engines
 
     - name: Stop service in docker
       run: |
