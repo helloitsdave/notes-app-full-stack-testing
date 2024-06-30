@@ -1,9 +1,10 @@
-name: Frontend Service Tests - Deploy to Production
+name: Frontend Service Tests - Playwright - Edge
 
 on:
-  push:
+  pull_request:
     branches: [ "main" ]
     paths:
+      - "playwright/**"
       - "frontend/**"
 
 jobs:
@@ -30,7 +31,7 @@ jobs:
     - name: Start service in docker
       run: |
         cd ./backend
-        yarn docker:up
+        npm run docker:up
 
     - name: Wait for service to start
       run: |
@@ -50,21 +51,14 @@ jobs:
       run: |
         cd ./playwright
         yarn
-        yarn playwright install chromium
+        yarn playwright install msedge
 
-    - name: Run Playwright Tests against chromium
+    - name: Run Playwright Tests against a real Edge Browser
       run: |
         cd ./playwright
-        yarn test:chromium
+        yarn test:edge
 
     - name: Stop service in docker
       run: |
         cd ./backend
-        yarn docker:down
-
-    - name: Deploy FE to production
-      uses: johnbeynon/render-deploy-action@v0.0.8
-
-      with:
-        service-id: ${{ secrets.MY_RENDER_SERVICE_ID_FE }}
-        api-key: ${{ secrets.MY_RENDER_API_KEY }}
+        npm run docker:down
