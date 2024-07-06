@@ -1,3 +1,0 @@
-"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"broken","Mon Jun 17 12:15:22 GMT 2024","Mon Jun 17 12:17:28 GMT 2024","125172","chromium","","Notes App Login","","","should see user successfully logged in",""
-"failed","Mon Jun 17 12:19:33 GMT 2024","Mon Jun 17 12:20:47 GMT 2024","73617","chromium","","Notes App Login","","","should see error message when login fails",""
