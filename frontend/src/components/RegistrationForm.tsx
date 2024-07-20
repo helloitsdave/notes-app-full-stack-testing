@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { AxiosError } from 'axios';
 import { createUser } from '../api/apiService';
 import Spinner from './Spinner';
+import validatePassword from '../helpers/validatePassword';
 
 export interface RegistrationFormProps {
   onRegister: () => void;
@@ -20,7 +21,7 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ onRegister }) => {
   const [registered, setRegistered] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    setForm({ ...form, errorText: '', [e.target.name]: e.target.value });
   };
 
   const handleChangeUsername = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,6 +31,16 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ onRegister }) => {
   const handleSubmit = async (e: React.FormEvent) => {
     setForm({ ...form, errorText: '' });
     e.preventDefault();
+
+    // Check if password meets requirements
+    if (!validatePassword(form.password)) {
+      setForm({
+        ...form,
+        errorText:
+          'Error: Password should be at least 8 characters and contain one special character',
+      });
+      return;
+    }
 
     // Check if passwords match
     if (form.password !== form.confirmPassword) {

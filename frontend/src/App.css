@@ -348,6 +348,7 @@ textarea {
     border-radius: 20px;
     padding: 20px;
     margin: 10px;
+    max-width: 300px;
 
   }
 
