@@ -12,7 +12,7 @@ let token: string;
 
 const username = faker.internet.userName().toLowerCase();
 const email = faker.internet.email();
-const password = faker.internet.password();
+const password = 'PA$$WORD';
 
 test.beforeAll(async ({ browser }) => {
   await allure.feature('User Registration');

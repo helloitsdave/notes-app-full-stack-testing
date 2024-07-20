@@ -13,31 +13,6 @@ describe('RegistrationForm', () => {
     expect(screen.getByPlaceholderText('Password')).toBeInTheDocument();
     expect(screen.getByPlaceholderText('Confirm Password')).toBeInTheDocument();
   });
-  it('should show error message on failed password match', async () => {
-    render(<RegistrationForm {...props} />);
-    userEvent.type(screen.getByPlaceholderText('Username'), 'testerunique');
-    userEvent.type(screen.getByPlaceholderText('Email'), 'test@email.com');
-    userEvent.type(screen.getByPlaceholderText('Password'), 'pass');
-    userEvent.type(screen.getByPlaceholderText('Confirm Password'), 'passwor');
-    userEvent.click(screen.getByText('Register'));
-    expect(
-      await screen.findByText('Error: Passwords do not match'),
-    ).toBeInTheDocument();
-  });
-  it('should throw error message on failed registration', async () => {
-    render(<RegistrationForm {...props} />);
-    userEvent.type(screen.getByPlaceholderText('Username'), 'test');
-    userEvent.type(screen.getByPlaceholderText('Email'), 'test@email.com');
-    userEvent.type(screen.getByPlaceholderText('Password'), 'pass');
-    userEvent.type(screen.getByPlaceholderText('Confirm Password'), 'pass');
-    userEvent.click(screen.getByText('Register'));
-
-    await waitFor(() => {
-      expect(
-        screen.getByText('Error: An error occurred. Please retry'),
-      ).toBeInTheDocument();
-    });
-  });
   it('should register new user', async () => {
     render(<RegistrationForm {...props} />);
     userEvent.type(
@@ -48,12 +23,64 @@ describe('RegistrationForm', () => {
       screen.getByPlaceholderText('Email'),
       `test${Date.now()}@email.com`,
     );
-    userEvent.type(screen.getByPlaceholderText('Password'), 'pass');
-    userEvent.type(screen.getByPlaceholderText('Confirm Password'), 'pass');
+    userEvent.type(screen.getByPlaceholderText('Password'), 'password$');
+    userEvent.type(
+      screen.getByPlaceholderText('Confirm Password'),
+      'password$',
+    );
     userEvent.click(screen.getByText('Register'));
     await waitFor(() => {
       expect(
         screen.getByText('Account created successfully!'),
+      ).toBeInTheDocument();
+    });
+  });
+  it('should force password to meet requirements', async () => {
+    render(<RegistrationForm {...props} />);
+    userEvent.type(
+      screen.getByPlaceholderText('Username'),
+      `test${Date.now()}`,
+    );
+    userEvent.type(
+      screen.getByPlaceholderText('Email'),
+      `test${Date.now()}@email.com`,
+    );
+    userEvent.type(screen.getByPlaceholderText('Password'), 'passwor');
+    userEvent.type(screen.getByPlaceholderText('Confirm Password'), 'passwor');
+    userEvent.click(screen.getByText('Register'));
+    await waitFor(() => {
+      expect(
+        screen.getByText(
+          'Error: Password should be at least 8 characters and contain one special character',
+        ),
+      ).toBeInTheDocument();
+    });
+  });
+  it('should show error message on failed password match', async () => {
+    render(<RegistrationForm {...props} />);
+    userEvent.type(screen.getByPlaceholderText('Username'), 'testerunique');
+    userEvent.type(screen.getByPlaceholderText('Email'), 'test@email.com');
+    userEvent.type(screen.getByPlaceholderText('Password'), 'password1234$');
+    userEvent.type(screen.getByPlaceholderText('Confirm Password'), 'passwor');
+    userEvent.click(screen.getByText('Register'));
+    expect(
+      await screen.findByText('Error: Passwords do not match'),
+    ).toBeInTheDocument();
+  });
+  it('should throw error message on failed registration', async () => {
+    render(<RegistrationForm {...props} />);
+    userEvent.type(screen.getByPlaceholderText('Username'), 'test');
+    userEvent.type(screen.getByPlaceholderText('Email'), 'test@email.com');
+    userEvent.type(screen.getByPlaceholderText('Password'), 'password$');
+    userEvent.type(
+      screen.getByPlaceholderText('Confirm Password'),
+      'password$',
+    );
+    userEvent.click(screen.getByText('Register'));
+
+    await waitFor(() => {
+      expect(
+        screen.getByText('Error: An error occurred. Please retry'),
       ).toBeInTheDocument();
     });
   });
