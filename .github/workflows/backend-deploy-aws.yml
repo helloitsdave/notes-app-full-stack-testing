@@ -9,7 +9,7 @@ jobs:
     runs-on: ec2-runner-be
     steps:
       - name: Pull image from docker hub
-        run: docker pull push ${{ secrets.DOCKERHUB_USERNAME }}/notes-app-be:latest
+        run: docker pull ${{ secrets.DOCKERHUB_USERNAME }}/notes-app-be:latest
       - name: Delete old container
         run: docker rm -f notes-app-be
       - name: Run docker container
