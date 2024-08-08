@@ -25,15 +25,9 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      - name: Extract version from tag
-        id: extract_version
-        run: echo "::set-output name=VERSION::$(echo ${GITHUB_REF/refs\/tags\//} | cut -d'/' -f2)"
     
       - name: Build and push Docker image
-        env:
-            IMAGE_TAG: ${{ steps.extract_version.outputs.VERSION }}
         run: |
           yarn docker:app:build
-          docker tag notes-app-be:latest ${{ secrets.DOCKERHUB_USERNAME }}/notes-app-be:$IMAGE_TAG
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/notes-app-be:$IMAGE_TAG
+          docker tag notes-app-be:latest ${{ secrets.DOCKERHUB_USERNAME }}/notes-app-be:latest
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/notes-app-be:latest
