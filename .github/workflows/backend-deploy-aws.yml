@@ -13,4 +13,4 @@ jobs:
       - name: Delete old container
         run: docker rm -f notes-app-be
       - name: Run docker container
-        run: docker run -e DATABASE_URL=${{ secrets.PROD_DATABASE_URL }} -e JWT_SECRET=${{ secrets.JWT_SECRET }} -d -p 5000:5000 --name notes-app-be push ${{ secrets.DOCKERHUB_USERNAME }}/notes-app-be:latest
+        run: docker run -e DATABASE_URL=${{ secrets.PROD_DATABASE_URL }} -e JWT_SECRET=${{ secrets.JWT_SECRET }} -d -p 5000:5000 --name notes-app-be ${{ secrets.DOCKERHUB_USERNAME }}/notes-app-be:latest
