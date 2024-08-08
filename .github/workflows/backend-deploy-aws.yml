@@ -8,6 +8,8 @@ jobs:
   deploy:
     runs-on: ec2-runner-be
     steps:
+      - name: Login to docker hub
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} 
       - name: Pull image from docker hub
         run: docker pull ${{ secrets.DOCKERHUB_USERNAME }}/notes-app-be:latest
       - name: Delete old container
