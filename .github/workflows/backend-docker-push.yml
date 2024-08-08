@@ -2,8 +2,7 @@ name: Docker Push Backend
 
 on:
   push:
-    tags:
-      - "be/*.*"
+    branches: [aws-deploy]
 defaults:
   run:
     working-directory: ./backend
