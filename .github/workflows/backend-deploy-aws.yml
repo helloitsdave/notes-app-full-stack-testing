@@ -8,9 +8,11 @@ jobs:
   deploy:
     runs-on: ec2-runner-be
     steps:
-      - name: Pull image from docker hub
-        run: docker pull ${{ secrets.DOCKERHUB_USERNAME }}/notes-app-be:latest
       - name: Delete old container
         run: docker rm -f notes-app-be
+      - name: Prune docker system
+        run: docker system prune -f
+      - name: Pull image from docker hub
+        run: docker pull ${{ secrets.DOCKERHUB_USERNAME }}/notes-app-be:latest
       - name: Run docker container
         run: docker run -e DATABASE_URL=${{ secrets.PROD_DATABASE_URL }} -e JWT_SECRET=${{ secrets.JWT_SECRET }} -d -p 5000:5000 --name notes-app-be ${{ secrets.DOCKERHUB_USERNAME }}/notes-app-be:latest
