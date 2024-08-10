@@ -1,0 +1,16 @@
+name: Deploy Frontend to AWS
+
+on:
+  push:
+    branches: [aws-deploy]
+
+jobs:   
+  deploy:
+    runs-on: ec2-runner-fe
+    steps:
+      - name: Pull image from docker hub
+        run: docker pull ${{ secrets.DOCKERHUB_USERNAME }}/notes-app-fe:latest
+      - name: Delete old container
+        run: docker rm -f notes-app-fe
+      - name: Run docker container
+        run: docker run -e REACT_APP_API_BASE_URL=${{ secrets.PROD_API_URL }} -d -p 3000:3000 --name notes-app-fe ${{ secrets.DOCKERHUB_USERNAME }}/notes-app-fe:latest
