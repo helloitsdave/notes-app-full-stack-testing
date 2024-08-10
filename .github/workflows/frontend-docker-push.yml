@@ -27,6 +27,6 @@ jobs:
     
       - name: Build and push Docker image
         run: |
-          yarn docker:app:build
+          yarn docker:build
           docker tag notes-app-fe:latest ${{ secrets.DOCKERHUB_USERNAME }}/notes-app-fe:latest
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/notes-app-fe:latest
