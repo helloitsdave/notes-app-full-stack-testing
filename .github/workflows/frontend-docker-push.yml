@@ -27,6 +27,6 @@ jobs:
     
       - name: Build and push Docker image
         run: |
-          yarn docker:build
+          docker build --build-arg REACT_APP_API_BASE_URL=${{ secrets.REACT_APP_API_BASE_URL }} -t notes-app-fe .
           docker tag notes-app-fe:latest ${{ secrets.DOCKERHUB_USERNAME }}/notes-app-fe:latest
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/notes-app-fe:latest
