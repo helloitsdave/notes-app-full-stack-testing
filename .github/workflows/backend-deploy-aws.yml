@@ -8,7 +8,7 @@ jobs:
   deploy:
     runs-on: ec2-runner-be
     steps:
-      - name: Delete old container
+      - name: Delete old be container
         run: docker rm -f notes-app-be
       - name: Prune docker system
         run: docker system prune -f
