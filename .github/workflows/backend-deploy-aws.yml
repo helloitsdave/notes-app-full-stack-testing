@@ -35,6 +35,8 @@ jobs:
     steps:
       - name: Delete old be container
         run: docker rm -f notes-app-be
+      - name: Delete old be image
+        run: docker image rm -f ${{ secrets.DOCKERHUB_USERNAME }}notes-app-fe
       - name: Prune docker system
         run: docker system prune -f
       - name: Pull image from docker hub
