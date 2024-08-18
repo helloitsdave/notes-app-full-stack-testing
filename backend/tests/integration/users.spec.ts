@@ -56,7 +56,7 @@ describe('Get Users', () => {
   });
 });
 
-describe.only('Get user', () => {
+describe('Get user', () => {
   test('GET user info for existing user', async () => {
     prisma.user.findFirst.mockResolvedValue({
       id: 'ccf89a7e-b941-4f17-bbe0-4e0c8b2cd272',
