@@ -1,37 +1,36 @@
 # Use an official Node.js runtime based on Alpine Linux as the base image
-FROM node:20-alpine
-
-# Install bash
-RUN apk add --no-cache bash
+FROM node:20-alpine as builder
 
 # Set the working directory inside the container
 WORKDIR /usr/src/app
 
-# Copy package.json and package-lock.json to the working directory
-COPY package.json yarn.lock ./
+# Install dependencies required for the build
+RUN apk add --no-cache bash openssl3
+
+# Copy package.json, package-lock.json, and TypeScript configuration files
+COPY package.json yarn.lock tsconfig.json ./
 
 # Install the application dependencies
 RUN yarn
 
-# Required for prisma
-RUN apk add openssl3
-
-# Copy the TypeScript configuration files
-COPY tsconfig.json ./
-
-# Copy the application code into the container
-COPY . .
-
+# Copy the application code and other necessary files into the container
+COPY . ./
 COPY wait-for-it.sh wait-for-it.sh
 
-# Make the script executable
-RUN chmod +x wait-for-it.sh
+# Make the script executable and build the application
+RUN chmod +x wait-for-it.sh && \
+    npx prisma generate && \
+    yarn build
 
-# Primsa generate
-RUN npx prisma generate
+# Use a new, clean base image for the runtime
+FROM node:20-alpine
 
-# Build TypeScript code
-RUN yarn build
+WORKDIR /usr/src/app
+
+# Copy only the built artifacts and necessary files from the builder stage
+COPY --from=builder /usr/src/app/dist ./dist
+COPY --from=builder /usr/src/app/node_modules ./node_modules
+COPY --from=builder /usr/src/app/wait-for-it.sh ./wait-for-it.sh
 
 # Expose the port that the application will run on
 EXPOSE 5000
