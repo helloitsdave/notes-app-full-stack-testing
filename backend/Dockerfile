@@ -27,10 +27,14 @@ FROM node:20-alpine
 
 WORKDIR /usr/src/app
 
+# Install dependencies required for the build
+RUN apk add --no-cache bash
+
 # Copy only the built artifacts and necessary files from the builder stage
-COPY --from=builder /usr/src/app/dist ./dist
-COPY --from=builder /usr/src/app/node_modules ./node_modules
-COPY --from=builder /usr/src/app/wait-for-it.sh ./wait-for-it.sh
+COPY --from=builder /usr/src/app/ ./
+
+# Copy the wait-for-it.sh script and make it executable
+RUN chmod +x wait-for-it.sh
 
 # Expose the port that the application will run on
 EXPOSE 5000
