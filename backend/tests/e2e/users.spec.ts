@@ -42,7 +42,7 @@ describe('Authenticated Flows', () => {
     expect(getUsersResponse.body.length).toBeGreaterThan(0);
   });
 
-  test.only('Get the user response', async () => {
+  test('Get the user response', async () => {
     const getUsersResponse = await request(USER_URL)
       .get('/')
       .set('Authorization', `Bearer ${token}`);
