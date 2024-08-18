@@ -7,6 +7,7 @@ config();
 
 const BASE_URL = `${process.env.API_URL}`;
 const USERS_URL = `${BASE_URL}/api/users`;
+const USER_URL = `${BASE_URL}/api/user`;
 
 const username = faker.internet.userName().toLowerCase();
 const email = faker.internet.email();
@@ -39,6 +40,16 @@ describe('Authenticated Flows', () => {
       .set('Authorization', `Bearer ${token}`);
     expect(getUsersResponse.status).toBe(200);
     expect(getUsersResponse.body.length).toBeGreaterThan(0);
+  });
+
+  test.only('Get the user response', async () => {
+    const getUsersResponse = await request(USER_URL)
+      .get('/')
+      .set('Authorization', `Bearer ${token}`);
+    expect(getUsersResponse.status).toBe(200);
+    expect(getUsersResponse.body.username).toBe('Test User');
+    expect(getUsersResponse.body.email).toBe('helloitsdave@hotmail.com');
+    expect(getUsersResponse.body.password).toBeUndefined();
   });
 
   test("Username's should be unique", async () => {

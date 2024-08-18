@@ -1,15 +1,19 @@
 import { Page } from '@playwright/test';
+import UserProfileModal from './UserProfileModal';
 
 class NotesPage {
   private page: Page;
+  private userProfileModal: UserProfileModal;
 
   constructor(page: Page) {
     this.page = page;
+    this.userProfileModal = new UserProfileModal(page);
   }
 
   spinnerContainer = () => this.page.getByTestId('spinner-container');
   addNewNoteButton = () =>
     this.page.getByRole('button', { name: 'Add a Note' });
+  profileButton = () => this.page.getByRole('button', { name: 'Profile' });
   addNoteTitleInput = () => this.page.getByPlaceholder('Title');
   addNoteContentInput = () => this.page.getByPlaceholder('Content');
   addNoteButton = () => this.page.getByRole('button', { name: 'Add Note' });
@@ -20,6 +24,12 @@ class NotesPage {
   saveNoteButton = () => this.page.getByRole('button', { name: 'Save' });
   closeNoteModalButton = () =>
     this.page.locator('[class*="modal-close"]').first();
+
+  async viewUserProfile() {
+    await this.profileButton().click();
+    await this.userProfileModal.modal().waitFor({ state: 'visible' });
+    return this.userProfileModal;
+  }
 
   async goto() {
     await this.page.goto('/');
