@@ -1,8 +1,7 @@
 name: Deploy Frontend to AWS
 
 on:
-  push:
-    branches: [aws-deploy]
+  workflow_dispatch:
 
 permissions: write-all
 

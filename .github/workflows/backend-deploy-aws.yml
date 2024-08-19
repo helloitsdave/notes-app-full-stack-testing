@@ -1,9 +1,8 @@
 name: Deploy Backend to AWS
 
 on:
-  push:
-    branches: [aws-deploy]
-
+  workflow_dispatch:
+    
 jobs:  
   build:
     defaults:
