@@ -8,7 +8,7 @@
     "test:chromium": "playwright test --project chromium",
     "test:engines": "playwright test --project chromium firefox webkit",
     "test:edge": "playwright test --project 'Microsoft Edge'",
-    "test:production": "export URL=https://notes-app-full-stack-bjml.onrender.com && playwright test --grep @PRODUCTION --project chromium",
+    "test:production": "export URL=https://www.noteapp.co.uk && playwright test --grep @PRODUCTION --project chromium",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
     "lint:ci": "eslint . --ext .ts --format @microsoft/eslint-formatter-sarif --output-file eslint-results.sarif",
