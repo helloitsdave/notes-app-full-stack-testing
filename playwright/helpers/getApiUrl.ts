@@ -5,7 +5,7 @@ const getApiUrl = async () => {
 
   const apiURL = baseURL?.includes('localhost')
     ? 'http://localhost:5000'
-    : 'https://notes-app-full-stack-be.onrender.com';
+    : 'https://www.noteapp.co.uk';
 
   if (!baseURL) {
     throw new Error('Base URL is required to make API requests');
