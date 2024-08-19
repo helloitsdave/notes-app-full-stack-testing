@@ -11,7 +11,7 @@ let createdID: number;
 let token: string;
 
 test('Health check', async () => {
-  const response = await request(BASE_URL).get('/health');
+  const response = await request(BASE_URL).get('/api/health');
   expect(response.status).toBe(200);
 });
 

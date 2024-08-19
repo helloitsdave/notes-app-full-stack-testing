@@ -4,8 +4,16 @@ import './App.css';
 import NoteFormModal from './components/NoteFormModal';
 import NoteGrid from './components/NoteGrid';
 import Spinner from './components/Spinner';
+import UserModal from './components/UserModal';
 import type NoteType from './types/note';
-import { postNote, patchNote, getNotes, removeNote } from './api/apiService';
+import type UserType from './types/user';
+import {
+  postNote,
+  patchNote,
+  getNotes,
+  removeNote,
+  getUser,
+} from './api/apiService';
 
 export interface LogoutProps {
   onLogout: () => void;
@@ -17,9 +25,12 @@ const NoteApp: React.FC<LogoutProps> = ({ onLogout }) => {
   const [connectionIssue, setConnectionIssue] = useState<boolean>(false);
   const [isDataLoading, setIsDataLoading] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isUserModalVisible, setIsUserModalVisible] = useState(false);
+  const [user, setUser] = useState<UserType | null>(null);
 
   useEffect(() => {
     fetchNotes();
+    getUserInfo();
   }, []);
 
   const fetchNotes = async () => {
@@ -76,6 +87,15 @@ const NoteApp: React.FC<LogoutProps> = ({ onLogout }) => {
     }
   };
 
+  const getUserInfo = async () => {
+    try {
+      const response = await getUser();
+      setUser(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const handleEdit = (note: NoteType) => {
     setSelectedNote(note);
     setIsModalVisible(true);
@@ -84,6 +104,7 @@ const NoteApp: React.FC<LogoutProps> = ({ onLogout }) => {
   const handleCancel = () => {
     setSelectedNote(null);
     setIsModalVisible(false);
+    setIsUserModalVisible(false);
   };
 
   return (
@@ -96,6 +117,14 @@ const NoteApp: React.FC<LogoutProps> = ({ onLogout }) => {
           onClick={() => setIsModalVisible(true)}
         >
           Add a note
+        </Button>
+        <Button
+          className="view-profile-button"
+          type="primary"
+          style={{ marginBottom: '20px' }}
+          onClick={() => setIsUserModalVisible(true)}
+        >
+          Profile
         </Button>
         <Button
           className="logout-button"
@@ -128,6 +157,12 @@ const NoteApp: React.FC<LogoutProps> = ({ onLogout }) => {
           handleEdit={handleEdit}
         />
       )}
+
+      <UserModal
+        isModalVisible={isUserModalVisible}
+        handleCancel={handleCancel}
+        user={user}
+      />
     </div>
   );
 };

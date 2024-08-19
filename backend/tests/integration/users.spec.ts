@@ -56,6 +56,39 @@ describe('Get Users', () => {
   });
 });
 
+describe('Get user', () => {
+  test('GET user info for existing user', async () => {
+    prisma.user.findFirst.mockResolvedValue({
+      id: 'ccf89a7e-b941-4f17-bbe0-4e0c8b2cd272',
+      username: 'Dave',
+      password: 'check',
+      email: 'testing@backend.com',
+      createdAt: new Date('2024-02-05T23:33:42.252Z'),
+      updatedAt: new Date('2024-02-05T23:33:42.252Z'),
+    });
+
+    const response = await request(app).get('/api/user');
+    expect(response.status).toBe(200);
+    expect(response.body).toStrictEqual({
+      id: 'ccf89a7e-b941-4f17-bbe0-4e0c8b2cd272',
+      username: 'Dave',
+      email: 'testing@backend.com',
+      createdAt: '2024-02-05T23:33:42.252Z',
+      updatedAt: '2024-02-05T23:33:42.252Z',
+    });
+  });
+  test('Network Error', async ({}) => {
+    prisma.user.findFirst.mockImplementation(() => {
+      throw new Error('Test error');
+    });
+    const response = await request(app).get('/api/user');
+    expect(response.status).toBe(500);
+    expect(response.body).toStrictEqual({
+      error: 'Oops, something went wrong',
+    });
+  });
+});
+
 describe('Create User', () => {
   test('POST with email, username and password', async ({}) => {
     prisma.user.create.mockResolvedValue({
@@ -137,7 +170,7 @@ describe('Create User', () => {
 describe('Delete User', () => {
   test('DELETE with id', async ({}) => {
     prisma.user.delete.mockResolvedValue({
-      id: 'gcf89a7e-b941-4f17-bbe0-4e0c8b2cd272',
+      id: 'ccf89a7e-b941-4f17-bbe0-4e0c8b2cd272',
       username: 'Dave',
       password: 'check',
       email: null,
