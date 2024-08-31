@@ -30,7 +30,7 @@ jobs:
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/notes-app-be:latest 
   deploy:
     needs: build
-    runs-on: ec2-runner-be
+    runs-on: ec2-runner-fe
     steps:
       - name: Delete old be container
         run: docker rm -f notes-app-be
