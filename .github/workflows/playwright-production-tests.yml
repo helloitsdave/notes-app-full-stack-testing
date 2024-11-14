@@ -2,8 +2,6 @@ name: Playwright e2e Production Tests
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '0 12 * * *'
   
 defaults:
   run:
