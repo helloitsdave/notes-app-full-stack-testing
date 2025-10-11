@@ -1,18 +1,10 @@
-name: Backend e2e Tests
+name: Frontend Service Tests - Deploy to Production
 
 on:
   push:
     branches: [ "main" ]
     paths:
-      - "backend/**"
-  pull_request:
-    branches: [ "main" ]
-    paths:
-      - "backend/**"
-
-defaults:
-  run:
-    working-directory: ./backend
+      - "frontend/**"
 
 jobs:
   build:
@@ -31,29 +23,48 @@ jobs:
         node-version: 20.x
 
     - name: Create .env file
-      run: |
+      run: | 
+        cd ./backend
         echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" > .env
-        echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> .env
 
     - name: Start service in docker
       run: |
+        cd ./backend
         yarn docker:up
 
     - name: Wait for service to start
       run: |
           sleep 15
 
-    - name: Print application logs
-      run: docker-compose logs
-
     - name: Test connectivity
       run: curl ${API_URL}
 
-    - name: Run e2e Tests
+    - name: Install and start frontend
       run: |
+        cd ./frontend
         yarn
-        yarn test:e2e
+        yarn build
+        yarn start &
+
+    - name: Install Playwright
+      run: |
+        cd ./playwright
+        yarn
+        yarn playwright install chromium
+
+    - name: Run Playwright Tests against chromium
+      run: |
+        cd ./playwright
+        yarn test:chromium
 
     - name: Stop service in docker
       run: |
+        cd ./backend
         yarn docker:down
+
+    - name: Deploy FE to production
+      uses: johnbeynon/render-deploy-action@v0.0.8
+
+      with:
+        service-id: ${{ secrets.MY_RENDER_SERVICE_ID_FE }}
+        api-key: ${{ secrets.MY_RENDER_API_KEY }}

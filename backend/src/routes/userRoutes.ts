@@ -20,23 +20,6 @@ router.get('/api/users', authenticateToken, async (req, res) => {
   }
 });
 
-router.get('/api/user', authenticateToken, async (req, res) => {
-  // get id from decoded jwt token
-  const id = req.user.userId;
-
-  try {
-    const user = await prisma.user.findFirst({
-      where: { id },
-    });
-    // Remove password from the response
-    delete user.password;
-    res.json(user);
-  } catch (error) {
-    console.log('error', error);
-    res.status(500).send({ error: 'Oops, something went wrong' });
-  }
-});
-
 router.post('/api/users', async (req, res) => {
   const { email, password, username } = req.body;
 

@@ -77,11 +77,6 @@ export const login = async (username: string, password: string) => {
   return response;
 };
 
-export const getUser = async () => {
-  const response = await api.get('user');
-  return response;
-};
-
 export const createUser = async (user: {
   username: string;
   email: string;

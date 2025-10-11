@@ -23,7 +23,7 @@ app.use('/', noteRoutes);
 app.use('/', userRoutes);
 app.use('/', loginRoutes);
 
-app.get('/api/health', (req, res) => {
+app.get('/health', (req, res) => {
   res.json({ status: 'ok' });
 });
 
