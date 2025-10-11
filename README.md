@@ -10,10 +10,12 @@ Refactored the app for testability and added a few additional tweaks.
 ## Deployed app
 [![Playwright e2e Production Tests](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/playwright-production-tests.yml/badge.svg)](https://github.com/helloitsdave/notes-app-full-stack-testing/actions/workflows/playwright-production-tests.yml)
 
-- FE and BE services are deployed using aws free tier on [aws](https://aws.amazon.com/free)
+- FE and BE services are deployed using the free tier on [render.com](https://render.com/)
 - Database is deployed using serverless postgres on [neon](https://neon.tech/)
 
-[https://www.noteapp.co.uk](https://www.noteapp.co.uk)
+[https://notes-app-full-stack-bjml.onrender.com/](https://notes-app-full-stack-bjml.onrender.com/)
+
+*Note: Free tier services sleep after inactivity and may take up to 60 seconds to wake up.*
 
 ## FE Implementation
 
