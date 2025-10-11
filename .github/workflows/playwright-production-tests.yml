@@ -12,7 +12,7 @@ jobs:
     timeout-minutes: 10
     runs-on: ubuntu-latest
     env:
-      HEALTH_URL: https://www.noteapp.co.uk/api/health
+      HEALTH_URL: https://notes-app-full-stack-be.onrender.com/health
     steps:
     - uses: actions/checkout@v4
 
