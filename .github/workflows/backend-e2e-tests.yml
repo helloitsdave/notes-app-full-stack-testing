@@ -44,7 +44,7 @@ jobs:
           sleep 15
 
     - name: Print application logs
-      run: docker-compose logs
+      run: docker compose logs
 
     - name: Test connectivity
       run: curl ${API_URL}

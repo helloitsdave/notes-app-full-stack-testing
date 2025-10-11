@@ -12,15 +12,15 @@
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
     "lint:ci": "eslint . --ext .ts --format @microsoft/eslint-formatter-sarif --output-file eslint-results.sarif",
-    "allure:docker": "docker-compose up -d allure allure-ui",
-    "allure:docker:logs": "docker-compose logs -f allure allure-ui"
+    "allure:docker": "docker compose up -d allure allure-ui",
+    "allure:docker:logs": "docker compose logs -f allure allure-ui"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@faker-js/faker": "^8.4.1",
-    "@playwright/test": "1.42.1",
+    "@playwright/test": "1.56",
     "@types/node": "20.10.6",
     "@typescript-eslint/eslint-plugin": "6.16.0",
     "@typescript-eslint/parser": "6.16.0",
