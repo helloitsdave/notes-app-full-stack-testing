@@ -223,8 +223,8 @@ describe('Delete a note', () => {
 });
 
 describe('Health check', () => {
-  test('GET /api/health', async ({}) => {
-    const response = await request(app).get('/api/health');
+  test('GET /health', async ({}) => {
+    const response = await request(app).get('/health');
     expect(response.status).toBe(200);
     expect(response.body).toStrictEqual({ status: 'ok' });
   });

@@ -38,8 +38,7 @@ body::before {
   }
 
   .action-header {
-    width: 40%;
-    flex-basis: auto;
+    width: 30%;
   }
 }
 
