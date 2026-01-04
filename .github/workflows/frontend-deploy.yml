@@ -12,6 +12,7 @@ jobs:
         with:
           service-id: ${{ secrets.MY_RENDER_SERVICE_ID_FE }}
           api-key: ${{ secrets.MY_RENDER_API_KEY }}
+          wait-for-success: true
 
       - name: Trigger E2E Tests
         if: success()
