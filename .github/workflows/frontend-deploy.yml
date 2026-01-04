@@ -18,5 +18,5 @@ jobs:
         uses: peter-evans/repository-dispatch@v3
         with:
           token: ${{ secrets.G_ACCESS_TOKEN }}
-          repository: helloitsdave/notes-app-e2e-tests
+          repository: dave-poe/notes-app-e2e-tests
           event-type: trigger-production-tests-frontend
