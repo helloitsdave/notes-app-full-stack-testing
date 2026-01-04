@@ -13,7 +13,43 @@ jobs:
         with:
           service-id: ${{ secrets.MY_RENDER_SERVICE_ID_FE }}
           api-key: ${{ secrets.MY_RENDER_API_KEY }}
-          wait-for-success: true
+
+      - name: Wait for Render Deployment
+        env:
+          RENDER_API_KEY: ${{ secrets.MY_RENDER_API_KEY }}
+          RENDER_SERVICE_ID: ${{ secrets.MY_RENDER_SERVICE_ID_FE }}
+        run: |
+          MAX_RETRIES=100
+          SLEEP_INTERVAL=10
+          
+          for i in $(seq 1 $MAX_RETRIES); do
+            echo "Waiting for deployment to complete..."
+            sleep $SLEEP_INTERVAL
+
+            echo "Attempt $i of $MAX_RETRIES to fetch deployment status..."
+            
+            response=$(curl --silent --header "Authorization: Bearer $RENDER_API_KEY" "https://api.render.com/v1/services/$RENDER_SERVICE_ID/deploys?limit=1")
+            
+            if [ -z "$response" ]; then
+              echo "Error: Empty response from Render API"
+              continue
+            fi
+
+            status=$(echo "$response" | jq -r '.[0].deploy.status')
+            
+            echo "Current deploy status: $status"
+            
+            if [ "$status" == "live" ]; then
+              echo "Deployment successful!"
+              exit 0
+            elif [[ "$status" == "build_failed" || "$status" == "pre_deploy_failed" || "$status" == "update_failed" || "$status" == "canceled" || "$status" == "deactivated" ]]; then
+              echo "Deployment failed with status: $status"
+              exit 1
+            fi
+          done
+          
+          echo "Timed out waiting for deployment"
+          exit 1
 
       - name: Trigger E2E Tests
         if: success()
